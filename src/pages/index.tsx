@@ -2,6 +2,11 @@ import Navbar from './components/Navbar';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { CryptoData } from '../types';
+import { AiOutlineArrowRight } from 'react-icons/ai';
+import { Menu, Transition } from '@headlessui/react';
+import Profile from './components/Profile';
+import Link from 'next/link';
+import router from 'next/router';
 
 export default function Home() {
   const [coins, setCoins] = useState<CryptoData>();
@@ -14,6 +19,10 @@ export default function Home() {
     };
     getData();
   }, []);
+
+  function classNames(...classes: string[]) {
+    return classes.filter(Boolean).join(' ');
+  }
 
   return (
     <form>
@@ -45,18 +54,19 @@ export default function Home() {
       </div>
 
       <div className='overflow-x-auto relative container mt-10 mx-auto '>
-        <table className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
+        <table className='w-full text-sm text-left text-gray-500 dark:text-gray-400 '>
           <thead className='text-xs text-white text-bold uppercase  '>
             <tr>
               <th scope='col' className='py-3 px-6'>
                 Name
               </th>
               <th scope='col' className='py-3 px-6'>
-                Price
-              </th>
-              <th scope='col' className='py-3 px-6'>
                 Symbol
               </th>
+              <th scope='col' className='py-3 px-6'>
+                Price
+              </th>
+
               <th scope='col' className='py-3 px-6'>
                 1h %
               </th>
@@ -72,36 +82,53 @@ export default function Home() {
               <th scope='col' className='py-3 px-6'>
                 Volume(24h)
               </th>
-              <th scope='col' className='py-3 px-6'>
+              {/* <th scope='col' className='py-3 px-6'>
                 Lash 7 Days
-              </th>
+              </th> */}
             </tr>
           </thead>
 
           {coins?.data.map((coin) => (
             <>
-              <tbody>
-                <tr className='border-b dark:border-gray-700'>
+              <tbody className=''>
+                <tr className='border-b dark:border-gray-700 '>
                   <th
                     scope=''
-                    className='py-4 px-6 font-medium text-gray-900  dark:text-white'
+                    className='py-4 px-6 font-medium 
+                     text-white'
                   >
                     {coin.name}
                   </th>
-                  <td className='py-4 px-6'>{coin.quote.USD.price}</td>
-                  <td className='py-4 px-6'>{coin.symbol}</td>
-                  <td className='py-4 px-6'>
-                    {coin.quote.USD.percent_change_1h}
-                  </td>
-
-                  <td className='py-4 px-6'>
-                    {coin.quote.USD.percent_change_24h}
+                  <th scope='' className='py-4 px-6 font-medium text-white'>
+                    {coin.symbol}
+                  </th>
+                  <td className='py-4 px-6 '>
+                    {coin.quote.USD.price.toFixed(2)}
                   </td>
                   <td className='py-4 px-6'>
-                    {coin.quote.USD.percent_change_7d}
+                    {coin.quote.USD.percent_change_1h.toFixed(2)}%
                   </td>
-                  <td className='py-4 px-6'>${coin.quote.USD.market_cap}</td>
-                  <td className='py-4 px-6'>${coin.quote.USD.volume_24h}</td>
+                  <td className='py-4 px-6'>
+                    {coin.quote.USD.percent_change_24h.toFixed(2)}%
+                  </td>
+                  <td className='py-4 px-6'>
+                    {coin.quote.USD.percent_change_7d.toFixed(2)}%
+                  </td>
+                  <td className='py-4 px-6'>
+                    ${coin.quote.USD.market_cap.toFixed(2)}$
+                  </td>
+                  <td className='py-4 px-6'>
+                    ${coin.quote.USD.volume_24h.toFixed(2)}
+                  </td>
+                  {/* text-white hover:rounded-full hover:text-white   px-3 py-2 rounded-md text-sm font-medium */}
+                  <Menu>
+                    <Menu.Button className='ml-10 rounded-md bg-[#25282A] py-2 px-4 text-main' onClick={(e: any) => {
+                      e.preventDefault();
+                      router.push(`/details/${coin.id}`);
+                    }}>
+                      details
+                    </Menu.Button>
+                  </Menu>
                 </tr>
               </tbody>
             </>

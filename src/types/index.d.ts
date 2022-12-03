@@ -14,6 +14,7 @@ export interface Status {
 }
 
 export interface Data {
+  price: ReactNode;
   id: number;
   name: string;
   symbol: string;
