@@ -52,7 +52,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className='overflow-x-auto relative container mt-10 mx-auto '>
+      <div className='overflow-x-auto relative container mt-10 mx-auto'>
         <table className='w-full text-sm text-left text-gray-500 dark:text-gray-400 '>
           <thead className='text-xs text-white text-bold uppercase  '>
             <tr>
@@ -90,7 +90,7 @@ export default function Home() {
           {coins?.data.map((coin) => (
             <>
               <tbody key={coin.id}>
-                <tr className='border-b dark:border-gray-700 '>
+                <tr className='border-b dark:border-gray-700'>
                   <th
                     scope=''
                     className='py-4 px-6 font-medium 
