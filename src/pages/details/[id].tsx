@@ -6,11 +6,11 @@ import { CryptoDetails } from '../../types';
 const Details = () => {
   const [isData, setData] = useState<CryptoDetails>();
   const router = useRouter();
-  const { id, name } = router.query;
+  const { id } = router.query;
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get(`/api/details/?id=${id}&name=${name}`);
+      const res = await axios.get(`/api/details/?id=${id}`);
 
       setData(res.data);
     };
