@@ -2,13 +2,14 @@ import Header from './components/Header';
 import Navbar from './components/Navbar';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { CryptoData } from '../types';
 
 export default function Home() {
-  const [coins, setCoins] = useState<any[]>([]);
+  const [coins, setCoins] = useState<CryptoData>();
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get('/api/hello');
+      const res = await axios.get<CryptoData>('/api/hello');
       console.log(res.data);
       setCoins(res.data);
     };
@@ -23,14 +24,14 @@ export default function Home() {
       </div>
       <div>
         <h1 className='font-bold text-2xl text-center mt-5'>
-          <span dir='auto'>Today's Cryptocurrency Prices by Market Cap</span>
+          {/* <span dir='auto'>Today's Cryptocurrency Prices by Market Cap</span> */}
         </h1>
       </div>
       <div>
         <div>
-          {coins.map((coin) => (
+          {/* {coins.map((coin) => (
             <div>{coin.name}</div>
-          ))}  
+          ))}   */}
         </div>
       </div>
     </form>
