@@ -7,8 +7,9 @@ export default async function handler(
 ) {
   if (req.method === 'GET') {
     const query = req.query;
-    const { id } = query;
-    console.log(id);
+    const { id, name } = query;
+    console.log(query.id);
+    console.log(query.name);
   }
 
   res.status(200).json({ message: 'test' });
