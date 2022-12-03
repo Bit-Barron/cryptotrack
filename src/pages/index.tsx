@@ -90,7 +90,6 @@ export default function Home() {
           {coins?.data.map((coin) => (
             <>
               <tbody key={coin.id}>
-               
                 <tr className='border-b dark:border-gray-700 '>
                   <th
                     scope=''
@@ -119,6 +118,21 @@ export default function Home() {
                   </td>
                   <td className='py-4 px-6'>
                     ${coin.quote.USD.volume_24h.toFixed(2)}
+                  </td>
+                  <td>
+                    <div className='flex justify-end'>
+                      <Menu>
+                        <Menu.Button
+                          className='ml-10 flex justify-end rounded-md bg-[#25282A] py-2 px-4 text-main'
+                          onClick={(e: any) => {
+                            e.preventDefault();
+                            router.push(`/details/${coin.id}`);
+                          }}
+                        >
+                          details
+                        </Menu.Button>
+                      </Menu>
+                    </div>
                   </td>
 
                   {/* text-white hover:rounded-full hover:text-white   px-3 py-2 rounded-md text-sm font-medium */}

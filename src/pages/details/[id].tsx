@@ -4,13 +4,11 @@ import React from 'react';
 export const details = async () => {
   const router = useRouter();
   const { id } = router.query;
-  console.log(id)
+  console.log(id);
 
   return (
     <>
-      <div className='container'>
-        
-      </div>
+      <div className='container'></div>
     </>
   );
 };
