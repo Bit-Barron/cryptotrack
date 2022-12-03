@@ -1,10 +1,10 @@
-import Navbar from './components/Navbar';
+import Navbar from '../components/Navbar';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { CryptoData } from '../types';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { Menu, Transition } from '@headlessui/react';
-import Profile from './components/Profile';
+import Profile from '../components/Profile';
 import Link from 'next/link';
 import router from 'next/router';
 
