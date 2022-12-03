@@ -1,13 +1,21 @@
+import axios from 'axios';
 import { useRouter } from 'next/router';
-import React from 'react';
 
-export const details = async () => {
+const Details = async () => {
+  const router = useRouter();
+  const { data } = await axios.get('/api/details', {
+    params: {
+      id: router.query.id,
+    },
+  });
+  console.log(data)
 
   return (
     <>
-      <div className='container'></div>
+    <div>
+    </div>
     </>
-  );
+  )
 };
 
-export default details;
+export default Details;
