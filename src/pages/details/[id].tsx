@@ -1,13 +1,17 @@
-import { COMPILER_INDEXES } from 'next/dist/shared/lib/constants';
 import { useRouter } from 'next/router';
+import React from 'react';
 
-const Details = () => {
+export const details = async () => {
   const router = useRouter();
   const { id } = router.query;
+
   return (
-    <div>
-      <h1>Details {}</h1>
-    </div>
+    <>
+      <div className='container'>
+        asd {id} asd
+      </div>
+    </>
   );
 };
-export default Details;
+
+export default details;
