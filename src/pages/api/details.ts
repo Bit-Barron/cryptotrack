@@ -1,14 +1,13 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { CryptoData } from '../../types';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<CryptoData>
+  res: NextApiResponse
 ) {
-    if(req.method === "GET") {
-        
-    }
+  if (req.method === 'GET') {
+    console.log(res.)
+  }
 
+  res.status(200).json({ message: 'test' });
 }

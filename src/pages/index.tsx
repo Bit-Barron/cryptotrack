@@ -13,7 +13,7 @@ export default function Home() {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get<CryptoData>('/api/crypto');
+      const res = await axios.get<CryptoData>('/api/list');
       setCoins(res.data);
     };
     getData();

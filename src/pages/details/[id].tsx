@@ -1,16 +1,25 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
-const Details = async () => {
+const Details = () => {
+  const [isData, setData] = useState<any[]>([]);
   const router = useRouter();
-  const { data } = await axios.get('/api/details', {
-    params: {
-      id: router.query.id,
-    },
+  useEffect(() => {
+    const getData = async () => {
+      const res = await axios.get(`/api/details ${router.query.id}`);
+      console.log(res.data);
+      setData(res.data);
+    };
   });
-  console.log(data);
 
-  return <div>{data.name}</div>;
+
+  return (
+    <div>
+      <h1>Details</h1>
+      <div></div>
+    </div>
+  );
 };
 
 export default Details;
