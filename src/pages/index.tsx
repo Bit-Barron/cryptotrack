@@ -14,7 +14,6 @@ export default function Home() {
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get<CryptoData>('/api/hello');
-      console.log(res.data);
       setCoins(res.data);
     };
     getData();
@@ -90,47 +89,50 @@ export default function Home() {
 
           {coins?.data.map((coin) => (
             <>
-              <tbody className=''>
-                <tr className='border-b dark:border-gray-700 '>
-                  <th
-                    scope=''
-                    className='py-4 px-6 font-medium 
+                <tbody key={coin.id}>
+                  <tr className='border-b dark:border-gray-700 '>
+                    <th
+                      scope=''
+                      className='py-4 px-6 font-medium 
                      text-white'
-                  >
-                    {coin.name}
-                  </th>
-                  <th scope='' className='py-4 px-6 font-medium text-white'>
-                    {coin.symbol}
-                  </th>
-                  <td className='py-4 px-6 '>
-                    {coin.quote.USD.price.toFixed(2)}
-                  </td>
-                  <td className='py-4 px-6'>
-                    {coin.quote.USD.percent_change_1h.toFixed(2)}%
-                  </td>
-                  <td className='py-4 px-6'>
-                    {coin.quote.USD.percent_change_24h.toFixed(2)}%
-                  </td>
-                  <td className='py-4 px-6'>
-                    {coin.quote.USD.percent_change_7d.toFixed(2)}%
-                  </td>
-                  <td className='py-4 px-6'>
-                    ${coin.quote.USD.market_cap.toFixed(2)}$
-                  </td>
-                  <td className='py-4 px-6'>
-                    ${coin.quote.USD.volume_24h.toFixed(2)}
-                  </td>
-                  {/* text-white hover:rounded-full hover:text-white   px-3 py-2 rounded-md text-sm font-medium */}
-                  <Menu>
-                    <Menu.Button className='ml-10 rounded-md bg-[#25282A] py-2 px-4 text-main' onClick={(e: any) => {
-                      e.preventDefault();
-                      router.push(`/details/${coin.id}`);
-                    }}>
-                      details
-                    </Menu.Button>
-                  </Menu>
-                </tr>
-              </tbody>
+                    >
+                      {coin.name}
+                    </th>
+                    <th scope='' className='py-4 px-6 font-medium text-white'>
+                      {coin.symbol}
+                    </th>
+                    <td className='py-4 px-6 '>
+                      {coin.quote.USD.price.toFixed(2)}
+                    </td>
+                    <td className='py-4 px-6'>
+                      {coin.quote.USD.percent_change_1h.toFixed(2)}%
+                    </td>
+                    <td className='py-4 px-6'>
+                      {coin.quote.USD.percent_change_24h.toFixed(2)}%
+                    </td>
+                    <td className='py-4 px-6'>
+                      {coin.quote.USD.percent_change_7d.toFixed(2)}%
+                    </td>
+                    <td className='py-4 px-6'>
+                      ${coin.quote.USD.market_cap.toFixed(2)}$
+                    </td>
+                    <td className='py-4 px-6'>
+                      ${coin.quote.USD.volume_24h.toFixed(2)}
+                    </td>
+                    {/* text-white hover:rounded-full hover:text-white   px-3 py-2 rounded-md text-sm font-medium */}
+                    <Menu>
+                      <Menu.Button
+                        className='ml-10 rounded-md bg-[#25282A] py-2 px-4 text-main'
+                        onClick={(e: any) => {
+                          e.preventDefault();
+                          router.push(`/details/${coin.id}`);
+                        }}
+                      >
+                        details
+                      </Menu.Button>
+                    </Menu>
+                  </tr>
+                </tbody>
             </>
           ))}
         </table>
