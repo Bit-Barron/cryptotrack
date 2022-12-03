@@ -6,7 +6,9 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'GET') {
-    console.log(req.query.id)
+    const query = req.query;
+    const { id } = query;
+    console.log(id);
   }
 
   res.status(200).json({ message: 'test' });

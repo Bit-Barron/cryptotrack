@@ -13,12 +13,14 @@ const Details = () => {
       const res = await axios.get(`/api/details`, {
         params: {
           id,
-        }
+        },
       });
-      console.log(res.data);
       setData(res.data);
+
     };
-  });
+
+    getData();
+  }, []);
 
   return (
     <div>
