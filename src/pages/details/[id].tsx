@@ -10,7 +10,7 @@ const Details = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get(`/api/details`,  );
+      const res = await axios.get(`/api/details`);
       setData(res.data);
     };
 
