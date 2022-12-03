@@ -8,14 +8,9 @@ const Details = async () => {
       id: router.query.id,
     },
   });
-  console.log(data)
+  console.log(data);
 
-  return (
-    <>
-    <div>
-    </div>
-    </>
-  )
+  return <div>{data.name}</div>;
 };
 
 export default Details;

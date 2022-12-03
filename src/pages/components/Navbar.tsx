@@ -34,7 +34,7 @@ export default function Example() {
             <div className='relative flex items-center justify-between h-16 '>
               <div className='flex items-center px-2 lg:px-0'>
                 <div className='flex-shrink-0'>
-                  <h1 className='text-2xl font-bold'>CRYPTOTRACK</h1>
+                  <h1 className='text-2xl font-bold ml-3'>CRYPTOTRACK</h1>
                 </div>
                 <div className='hidden lg:block lg:ml-6'>
                   <div className='flex space-x-4'>
