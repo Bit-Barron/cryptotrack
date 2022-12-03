@@ -4,14 +4,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function Home() {
-  const [isData, setData] = useState<any[]>([]);
+  const [coins, setCoins] = useState<any[]>([]);
+
   useEffect(() => {
     const getData = async () => {
-      const result = await axios.get(
-        'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=fe979189-cae7-490e-8cbd-66158a83141d'
-      )
-      setData(result.data);
-      console.log(result.status);
+      const res = await axios.get('/api/hello');
+      console.log(res.data);
+      setCoins(res.data);
     };
     getData();
   }, []);
@@ -28,10 +27,11 @@ export default function Home() {
         </h1>
       </div>
       <div>
-        <div>{isData.map((coin) => (
-          <div>{coin.name.BellIcon}</div>
-        )
-      )}</div>
+        <div>
+          {coins.map((coin) => (
+            <div>{coin.name}</div>
+          ))}  
+        </div>
       </div>
     </form>
   );
