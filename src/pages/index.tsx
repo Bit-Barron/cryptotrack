@@ -1,16 +1,16 @@
 import Navbar from '../components/Navbar';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { CryptoData } from '../types';
+import { CryptoList } from '../types';
 import { Menu } from '@headlessui/react';
 import router from 'next/router';
 
 export default function Home() {
-  const [coins, setCoins] = useState<CryptoData>();
+  const [coins, setCoins] = useState<CryptoList>();
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get<CryptoData>('/api/list');
+      const res = await axios.get<CryptoList>('/api/list');
       setCoins(res.data);
     };
     getData();
