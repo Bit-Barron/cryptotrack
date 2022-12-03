@@ -10,8 +10,10 @@ const Details = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.post(`/api/details`, {
-        id,
+      const res = await axios.get(`/api/details`, {
+        params: {
+          id,
+        }
       });
       console.log(res.data);
       setData(res.data);
