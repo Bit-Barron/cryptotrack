@@ -14,7 +14,6 @@
   }
   ```
 */
-import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 
 function classNames(...classes: string[]) {
