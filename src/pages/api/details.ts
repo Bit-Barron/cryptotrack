@@ -9,7 +9,7 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     const query = req.query;
-    const { id, name } = query;
+    const { id } = query;
     // const result = await axios.post(
     //   "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=fe979189-cae7-490e-8cbd-66158a83141d",
     //   {

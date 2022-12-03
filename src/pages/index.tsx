@@ -28,8 +28,7 @@ export default function Home() {
           Today's Cryptocurrency Prices by Market track
         </h1>
       </div>
-      <div></div>
-      <div className='flex justify-center gap-2'>
+      <div className='flex justify-center gap-2 rounded-lg'>
         <div className='w-[400px] h-20 mx-automt mt-10 bg-[#181a1b] '>
           <div className='mt-2 ml-4 flex'>
             <span className='mt-1 text-red-500'></span>
