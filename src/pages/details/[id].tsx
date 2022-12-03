@@ -10,7 +10,8 @@ const Details = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get(`/api/details`);
+      const res = await axios.get(`/api/details/?id=${id}`);
+
       setData(res.data);
     };
 
@@ -20,7 +21,6 @@ const Details = () => {
   return (
     <div>
       <h1>Details</h1>
-      <div></div>
     </div>
   );
 };
