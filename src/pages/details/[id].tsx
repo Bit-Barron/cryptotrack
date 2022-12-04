@@ -17,13 +17,13 @@ const Details = () => {
 
     getData();
   }, []);
-
+      
   return (
     <div>
-      <h1>Details</h1>
-      <div></div>
+      <h1>{}</h1>
     </div>
   );
+
 };
 
 export default Details;
