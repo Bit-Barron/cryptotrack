@@ -22,7 +22,7 @@ export default function Home() {
   const handlePageChange = () => {
     useEffect(() => {
       const getData = async () => {
-        const res = await axios.get<CryptoList>("/api/nextpage/?page=2");
+        const res = await axios.get<CryptoList>("/api/nextpage/");
         setCoins(res.data);
       };
       getData();
