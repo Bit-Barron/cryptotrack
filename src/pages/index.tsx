@@ -24,20 +24,18 @@ export default function Home() {
     <form>
       <Navbar />
       <div>
-        <h1 className='font-bold text-2xl text-center mt-5 '>
+        <h1 className='font-bold text-2xl text-center mt-5'>
           Today's Cryptocurrency Prices by Market track
         </h1>
       </div>
-      <div className='flex justify-center gap-2 rounded-lg'>
+      <div className='flex justify-center gap-36 rounded-lg'>
         <div className='w-[400px] h-20 mx-automt mt-10 bg-[#181a1b] '>
           <div className='mt-2 ml-4 flex'>
-            <span className='mt-1 text-red-500'></span>
             Trending
           </div>
         </div>
         <div className='w-[400px]  h-20 mx-automt mt-10 bg-[#181a1b] '>
           <div className='mt-2 ml-4 flex'>
-            <span className='mt-1 text-blue-500'></span>
             Recently added
           </div>
         </div>
@@ -46,6 +44,7 @@ export default function Home() {
             <span className='mt-1 '>Top Community artivle</span>
           </div>
         </div>
+       
       </div>
 
       <div className='overflow-x-auto relative container mt-10 mx-auto'>
