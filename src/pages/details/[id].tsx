@@ -116,12 +116,12 @@ const Details = () => {
                     scope="row"
                     className="whitespace-nowrap py-4 px-6 font-medium text-white"
                   >
-                    24h 
+                    24h
                   </th>
                   <td className="py-4 px-6">
                     {isData?.data[`${id}`].quote.USD.percent_change_24h}EUR
                   </td>
-                </tr>{" "}
+                </tr>
                 <tr className="border-b border-gray-200 dark:border-gray-700">
                   <th
                     scope="row"
