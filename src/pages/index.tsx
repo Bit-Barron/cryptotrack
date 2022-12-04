@@ -108,8 +108,6 @@ export default function Home() {
                       </Menu>
                     </div>
                   </td>
-
-                  {/* text-white hover:rounded-full hover:text-white   px-3 py-2 rounded-md text-sm font-medium */}
                 </tr>
               </tbody>
             </>
