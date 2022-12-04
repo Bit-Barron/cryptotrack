@@ -10,7 +10,6 @@ export default function Home() {
   const [coins, setCoins] = useState<CryptoList>();
   const [isData, setData] = useState<CryptoList>();
   const [pageNumber, setPageNumber] = useState(1);
-  const myRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const getData = async () => {
