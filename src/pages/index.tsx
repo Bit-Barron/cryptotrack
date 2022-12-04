@@ -96,6 +96,7 @@ export default function Home() {
                   <td className="py-4 px-6">
                     ${coin.quote.USD.volume_24h.toFixed(2)}
                   </td>
+                  
                   <td>
                     <div className="flex justify-end">
                       <Menu>

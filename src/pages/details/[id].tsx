@@ -22,7 +22,7 @@ const Details = () => {
     <>
       <Navbar />
       <div className="flex">
-        <div className="ml-10  mr-10 mt-5 w-full rounded-lg bg-[#25262d] p-5">
+        <div className="ml-10 mr-10 mt-20 w-full rounded-lg bg-[#25262d] p-5">
           <div className="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
             <div className="mb-2 text-2xl font-bold text-white">Details</div>
           </div>
@@ -103,6 +103,17 @@ const Details = () => {
                   </th>
                   <td className="py-4 px-6">
                     {isData?.data[`${id}`].quote.USD.volume_change_24h}EUR
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    className="whitespace-nowrap py-4 px-6 font-medium text-white"
+                  >
+                    fully diluted market cap
+                  </th>
+                  <td className="py-4 px-6">
+                    {isData?.data[`${id}`].quote.USD.fully_diluted_market_cap}EUR
                   </td>
                 </tr>
                 <tr className="border-b border-gray-200 dark:border-gray-700">
