@@ -2,12 +2,12 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { CryptoDetails } from "../../types";
-import {AiOutlineArrowRight} from 'react-icons/ai'
 
 const Details = () => {
   const [isData, setData] = useState<CryptoDetails>();
   const router = useRouter();
   const { id } = router.query;
+  let sum = 1;
 
   useEffect(() => {
     const getData = async () => {
@@ -18,7 +18,7 @@ const Details = () => {
     id && getData();
   }, [id]);
 
-  console.log(isData?.["data"]["2"]);
+  console.log(isData?.["data"][sum++]);
 
   return (
     <div>

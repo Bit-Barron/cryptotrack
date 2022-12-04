@@ -104,7 +104,8 @@ export default function Home() {
                             router.push(`/details/${coin.id}`);
                           }}
                         >
-                          details<AiOutlineArrowRight className="mt-1 ml-1" />
+                          details
+                          <AiOutlineArrowRight className="mt-1 ml-1" />
                         </Menu.Button>
                       </Menu>
                     </div>
