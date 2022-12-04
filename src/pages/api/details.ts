@@ -10,7 +10,7 @@ export default async function handler(
     const query = req.query;
     const { id } = query;
     const result = await axios.get(
-      ``,
+      "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=fe979189-cae7-490e-8cbd-66158a83141d",
       {
         headers: {
           "X-CMC_PRO_API_KEY": "fe979189-cae7-490e-8cbd-66158a83141d",
