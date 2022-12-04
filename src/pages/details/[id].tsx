@@ -25,45 +25,9 @@ const Details = () => {
         <div className="ml-10  mr-10 mt-5 w-full rounded-lg bg-[#25262d] p-5">
           <div className="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
             <div className="mb-2 text-2xl font-bold text-white">Details</div>
-            <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
-              <tbody>
-                <tr className="border-b border-gray-200 dark:border-gray-700">
-                  <th
-                    scope="row"
-                    className="whitespace-nowrappy-4 px-6 font-medium text-white"
-                  >
-                    Name
-                  </th>
-
-                  <td className="py-4 px-6">{isData?.data[`${id}`].name}</td>
-                </tr>
-
-                <tr className="border-b border-gray-200 dark:border-gray-700">
-                  <th
-                    scope="row"
-                    className="whitespace-nowrap py-4 px-6 font-medium text-white"
-                  >
-                    Symbol
-                  </th>
-                  <td className="py-4 px-6">{isData?.data[`${id}`].symbol}</td>
-                </tr>
-                <th
-                  scope="row"
-                  className="whitespace-nowrap py-4 px-6 font-medium text-white"
-                >
-                  Max Supplay
-                </th>
-                <td className="py-4 px-6">
-                  {isData?.data[`${id}`].max_supply}
-                </td>
-                <tr></tr>
-              </tbody>
-            </table>
+        
           </div>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <div className="mb-2 mt-10 text-2xl font-bold text-white">
-              Price
-            </div>
             <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
               <tbody>
                 <tr className="border-b border-gray-200 dark:border-gray-700">
