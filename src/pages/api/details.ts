@@ -11,8 +11,11 @@ export default async function handler(
     const query = req.query;
     const { id } = query;
     const result = await axios.get<CryptoDetails>(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=${id}`,
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest`,
       {
+        params: {
+          id,
+        },
         headers: {
           "X-CMC_PRO_API_KEY": "fe979189-cae7-490e-8cbd-66158a83141d",
           "Content-Type": "application/json",
