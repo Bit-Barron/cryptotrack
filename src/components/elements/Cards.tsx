@@ -26,7 +26,7 @@ export const Cards: React.FC<CardsProps> = ({}) => {
           </div>
           <div className="text-right">
             <p className="text-2xl">1,257</p>
-            <p>Visitors</p>
+            <p>Trending</p>
           </div>
         </div>
         <div className="group bg-[#25262d] flex w-96 items-center justify-between rounded-md border-b-4 border-blue-600  p-3 font-medium text-white shadow-lg dark:border-gray-600 ">
@@ -49,7 +49,7 @@ export const Cards: React.FC<CardsProps> = ({}) => {
           </div>
           <div className="text-right">
             <p className="text-2xl">557</p>
-            <p>Orders</p>
+            <p>Recently Added</p>
           </div>
         </div>
         <div className="group flex w-96 items-center justify-between rounded-md border-b-4 border-blue-600 bg-[#25262d] p-3 font-medium text-white shadow-lg dark:border-gray-600 ">
@@ -72,7 +72,7 @@ export const Cards: React.FC<CardsProps> = ({}) => {
           </div>
           <div className="text-right">
             <p className="text-2xl">$11,257</p>
-            <p>Sales</p>
+            <p>Top Community Accounts</p>
           </div>
         </div>
         <div className="group flex w-96 items-center justify-between rounded-md border-b-4 border-blue-600 bg-[#25262d] p-3 font-medium text-white shadow-lg dark:border-gray-600 ">
