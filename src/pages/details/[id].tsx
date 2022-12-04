@@ -11,6 +11,7 @@ const Details = () => {
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get(`/api/details/?id=${id}`);
+      console.log(res.data)
 
       setData(res.data);
     };
@@ -20,7 +21,7 @@ const Details = () => {
       
   return (
     <div>
-      <h1>{}</h1>
+      <h1>{isData?.data.data.symbol}</h1>
     </div>
   );
 
