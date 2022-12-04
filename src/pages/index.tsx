@@ -1,7 +1,7 @@
 import { Menu } from "@headlessui/react";
 import axios from "axios";
 import router from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Navbar from "../components/Navbar/Navbar";
 import { CryptoList } from "../types";
@@ -22,17 +22,6 @@ export default function Home() {
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
   }
-
-  const handleScroll = () => {
-    useEffect(() => {
-      const getData = async () => {
-        const res = await axios.get<CryptoList>("/api/nextpage");
-
-        setCoins(res.data);
-      };
-      getData();
-    }, []);
-  };
 
   return (
     <form>
@@ -129,10 +118,7 @@ export default function Home() {
           ))}
         </table>
       </div>
-      <button
-        className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
-        onClick={() => handleScroll()}
-      >
+      <button className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">
         Next
       </button>
     </form>
