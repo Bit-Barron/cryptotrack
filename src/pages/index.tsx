@@ -25,14 +25,14 @@ export default function Home() {
   }
 
   const handleScroll = () => {
-    const scrollHeight = myRef.current?.scrollHeight;
-    const scrollTop = myRef.current?.scrollTop;
-    const clientHeight = myRef.current?.clientHeight;
-    if (scrollHeight && scrollTop && clientHeight) {
-      if (scrollHeight - scrollTop === clientHeight) {
-        setPageNumber((prev) => prev + 1);
-      }
-    }
+    useEffect(() => {
+      const getData = async () => {
+        const res = await axios.get<CryptoList>("/api/nextpage");
+
+        setCoins(res.data);
+      };
+      getData();
+    }, []);
   };
 
   return (
