@@ -24,7 +24,7 @@ const Details = () => {
     <div>
       <h1>Details</h1>
       <div>
-        <h1></h1>
+        <h1>{isData?.["data"][sum++]}</h1>
       </div>
     </div>
   );
