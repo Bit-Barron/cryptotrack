@@ -101,7 +101,7 @@ export default function Home() {
                     <div className="flex justify-end">
                       <Menu>
                         <Menu.Button
-                          className="text-main ml-10 flex justify-end rounded-md bg-[#25282A] py-2 px-4"
+                          className="text-main ml-10 flex justify-end rounded-md  py-2 px-4"
                           onClick={(e: any) => {
                             e.preventDefault();
                             router.push(`/details/${coin.id}`);

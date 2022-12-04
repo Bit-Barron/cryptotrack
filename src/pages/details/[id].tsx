@@ -187,11 +187,14 @@ const Details = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-end mr-10">
-        <button className="flex justify-end rounded bg-[#25262d] mt-5 py-2 px-6 font-bold text-white hover:bg-blue-700" onClick={(e) => {
-          e.preventDefault();
-          return router.push("/")
-        }}>
+      <div className="mr-10 flex justify-end">
+        <button
+          className="mt-5 flex justify-end rounded bg-[#25262d] py-2 px-6 font-bold text-white hover:bg-blue-700"
+          onClick={(e) => {
+            e.preventDefault();
+            return router.push("/");
+          }}
+        >
           Back
         </button>
       </div>
