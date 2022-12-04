@@ -17,14 +17,12 @@ const Details = () => {
     id && getData();
   }, [id]);
 
-  console.log(isData);
+  console.log(isData?.data);
 
   return (
     <div>
       <h1>Details</h1>
-      <div>
-        <h2>{}</h2>
-      </div>
+      <div>{}</div>
     </div>
   );
 };

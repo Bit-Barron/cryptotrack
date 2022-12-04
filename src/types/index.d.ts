@@ -53,6 +53,7 @@ export type CryptoList = {
 };
 
 export type CryptoDetails = {
+  [x: string]: SetStateAction<CryptoDetails | undefined>;
   status: {
     timestamp: string;
     error_code: number;
