@@ -11,18 +11,22 @@ const Details = () => {
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get<CryptoDetails>(`/api/details/?id=${id}`);
-      setData(res.data);
+      setData(res?.["data"]["2"]);
     };
 
     id && getData();
   }, [id]);
 
-  console.log(isData?.data);
+  console.log(isData?.["data"]["2"]);
 
   return (
     <div>
       <h1>Details</h1>
-      <div>{}</div>
+      <div>
+        <h2>{isData && <div>{isData && (
+          <div>{}</div>
+        )}</div>}</h2>
+      </div>
     </div>
   );
 };
