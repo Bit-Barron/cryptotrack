@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Informations from "../../components/elements/Detail/Informations";
 import Navbar from "../../components/Navbar/Navbar";
 import { CryptoDetails } from "../../types";
 
@@ -22,9 +21,7 @@ const Details = () => {
   return (
     <>
       <Navbar />
-      <div>
-        <Informations />
-      </div>
+     
     </>
   );
 };
