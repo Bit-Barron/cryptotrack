@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { CryptoDetails } from "../../types";
+import {AiOutlineArrowRight} from 'react-icons/ai'
 
 const Details = () => {
   const [isData, setData] = useState<CryptoDetails>();
@@ -11,7 +12,7 @@ const Details = () => {
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get<CryptoDetails>(`/api/details/?id=${id}`);
-      setData(res?.["data"]["2"]);
+      setData(res.data);
     };
 
     id && getData();
@@ -23,9 +24,7 @@ const Details = () => {
     <div>
       <h1>Details</h1>
       <div>
-        <h2>{isData && <div>{isData && (
-          <div>{}</div>
-        )}</div>}</h2>
+        <h1></h1>
       </div>
     </div>
   );

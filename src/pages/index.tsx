@@ -2,6 +2,7 @@ import { Menu } from "@headlessui/react";
 import axios from "axios";
 import router from "next/router";
 import { useEffect, useState } from "react";
+import { AiOutlineArrowRight } from "react-icons/ai";
 import Navbar from "../components/Navbar/Navbar";
 import { CryptoList } from "../types";
 
@@ -103,7 +104,7 @@ export default function Home() {
                             router.push(`/details/${coin.id}`);
                           }}
                         >
-                          details
+                          details<AiOutlineArrowRight className="mt-1 ml-1" />
                         </Menu.Button>
                       </Menu>
                     </div>
