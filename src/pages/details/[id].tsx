@@ -19,7 +19,14 @@ const Details = () => {
 
   console.log(isData);
 
-  return <div></div>;
+  return (
+    <div>
+      <h1>Details</h1>
+      <div>
+        <h2>{}</h2>
+      </div>
+    </div>
+  );
 };
 
 export default Details;
