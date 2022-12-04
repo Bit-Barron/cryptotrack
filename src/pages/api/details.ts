@@ -17,10 +17,9 @@ export default async function handler(
           "Content-Type": "application/json",
           "Accept-Encoding": "application/json",
         },
-        
       }
     );
-
+    console.log(result.data)
   }
 
   res.status(200).json({ message: "test" });
