@@ -8,9 +8,8 @@ export default async function handler(
   res: NextApiResponse<CryptoDetails>
 ) {
   if (req.method === "GET") {
-    const query = req.query;
-    const { id } = query;
-    console.log(id)    
-
+    const { data } = req.query;
+    console.log(data)
+   
   }
 }

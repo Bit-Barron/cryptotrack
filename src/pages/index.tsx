@@ -1,7 +1,7 @@
 import { Menu } from "@headlessui/react";
 import axios from "axios";
 import router from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Navbar from "../components/Navbar/Navbar";
 import { CryptoList } from "../types";
@@ -9,6 +9,8 @@ import { CryptoList } from "../types";
 export default function Home() {
   const [coins, setCoins] = useState<CryptoList>();
   const [isData, setData] = useState<CryptoList>();
+  const [pageNumber, setPageNumber] = useState(1);
+  const myRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -18,13 +20,20 @@ export default function Home() {
     getData();
   }, []);
 
-  useEffect(() => {
-    
-  })
-
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
   }
+
+  const handleScroll = () => {
+    const scrollHeight = myRef.current?.scrollHeight;
+    const scrollTop = myRef.current?.scrollTop;
+    const clientHeight = myRef.current?.clientHeight;
+    if (scrollHeight && scrollTop && clientHeight) {
+      if (scrollHeight - scrollTop === clientHeight) {
+        setPageNumber((prev) => prev + 1);
+      }
+    }
+  };
 
   return (
     <form>
@@ -121,6 +130,12 @@ export default function Home() {
           ))}
         </table>
       </div>
+      <button
+        className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
+        onClick={() => handleScroll()}
+      >
+        Next
+      </button>
     </form>
   );
 }
