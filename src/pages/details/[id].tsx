@@ -11,20 +11,15 @@ const Details = () => {
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get(`/api/details/?id=${id}`);
-      console.log(res.data)
 
       setData(res.data);
     };
 
     getData();
-  }, []);
-      
-  return (
-    <div>
-      <h1>{isData?.data.data.symbol}</h1>
-    </div>
-  );
+  }, [id]);
+  console.log(isData);
 
+  return <div></div>;
 };
 
 export default Details;
