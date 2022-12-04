@@ -19,15 +19,14 @@ export default function Home() {
     getData();
   }, []);
 
-  const handlePageChange = () => {
-    useEffect(() => {
-      const getData = async () => {
-        const res = await axios.get<CryptoList>("/api/nextpage/");
-        setCoins(res.data);
-      };
-      getData();
-    }, []);
-  };
+  useEffect(() => {
+    setPageNumber(pageNumber + 1);
+    const getData = async () => {
+      const res = await axios.get<CryptoList>(`/api/list/?page=${pageNumber}`);
+      setData(res.data);
+    };
+    getData();
+  }, []);
 
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
@@ -129,10 +128,7 @@ export default function Home() {
           ))}
         </table>
       </div>
-      <button
-        className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
-        onClick={() => handlePageChange()}
-      >
+      <button className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">
         Next
       </button>
     </form>
