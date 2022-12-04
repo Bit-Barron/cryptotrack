@@ -8,6 +8,7 @@ import { CryptoList } from "../types";
 
 export default function Home() {
   const [coins, setCoins] = useState<CryptoList>();
+  const [isData, setData] = useState<CryptoList>();
 
   useEffect(() => {
     const getData = async () => {
@@ -16,6 +17,10 @@ export default function Home() {
     };
     getData();
   }, []);
+
+  useEffect(() => {
+    
+  })
 
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
