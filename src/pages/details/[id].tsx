@@ -25,11 +25,30 @@ const Details = () => {
         <div className="ml-10  mr-10 mt-5 w-full rounded-lg bg-[#25262d] p-5">
           <div className="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
             <div className="mb-2 text-2xl font-bold text-white">Details</div>
-        
           </div>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
               <tbody>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    className="whitespace-nowrappy-4 px-6 font-medium text-white"
+                  >
+                    Name
+                  </th>
+
+                  <td className="py-4 px-6">{isData?.data[`${id}`].name}</td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    className="whitespace-nowrappy-4 px-6 font-medium text-white"
+                  >
+                    Symbol
+                  </th>
+
+                  <td className="py-4 px-6">{isData?.data[`${id}`].symbol}</td>
+                </tr>
                 <tr className="border-b border-gray-200 dark:border-gray-700">
                   <th
                     scope="row"
@@ -62,6 +81,39 @@ const Details = () => {
                   </th>
                   <td className="py-4 px-6">
                     {isData?.data[`${id}`].quote.USD.market_cap}EUR
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    className="whitespace-nowrap py-4 px-6 font-medium text-white"
+                  >
+                    Volume 24h
+                  </th>
+                  <td className="py-4 px-6">
+                    {isData?.data[`${id}`].quote.USD.volume_24h}EUR
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    className="whitespace-nowrap py-4 px-6 font-medium text-white"
+                  >
+                    Volume Change
+                  </th>
+                  <td className="py-4 px-6">
+                    {isData?.data[`${id}`].quote.USD.volume_change_24h}EUR
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    className="whitespace-nowrap py-4 px-6 font-medium text-white"
+                  >
+                    TVL
+                  </th>
+                  <td className="py-4 px-6">
+                    {isData?.data[`${id}`].quote.USD.tvl}EUR
                   </td>
                 </tr>
                 <tr className="border-b border-gray-200 dark:border-gray-700">
@@ -102,10 +154,10 @@ const Details = () => {
                     scope="row"
                     className="whitespace-nowrap py-4 px-6 font-medium text-white"
                   >
-                    24h Volumen
+                    60d
                   </th>
                   <td className="py-4 px-6">
-                    {isData?.data[`${id}`].quote.USD.volume_24h}EUR
+                    {isData?.data[`${id}`].quote.USD.percent_change_60d}EUR
                   </td>
                 </tr>{" "}
                 <tr className="border-b border-gray-200 dark:border-gray-700">
@@ -113,10 +165,10 @@ const Details = () => {
                     scope="row"
                     className="whitespace-nowrap py-4 px-6 font-medium text-white"
                   >
-                    24h Volumen
+                    7d
                   </th>
                   <td className="py-4 px-6">
-                    {isData?.data[`${id}`].quote.USD.volume_24h}EUR
+                    {isData?.data[`${id}`].quote.USD.percent_change_7d}EUR
                   </td>
                 </tr>{" "}
                 <tr className="border-b border-gray-200 dark:border-gray-700">
@@ -124,16 +176,24 @@ const Details = () => {
                     scope="row"
                     className="whitespace-nowrap py-4 px-6 font-medium text-white"
                   >
-                    24h Volumen
+                    90d
                   </th>
                   <td className="py-4 px-6">
-                    {isData?.data[`${id}`].quote.USD.volume_24h}EUR
+                    {isData?.data[`${id}`].quote.USD.percent_change_90d}EUR
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
+      </div>
+      <div className="flex justify-end mr-10">
+        <button className="flex justify-end rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700" onClick={(e) => {
+          e.preventDefault();
+          return router.push("/")
+        }}>
+          Back
+        </button>
       </div>
     </>
   );
