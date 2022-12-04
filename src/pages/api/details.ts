@@ -1,15 +1,16 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { CryptoDetails } from "../../types";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<CryptoDetails>
 ) {
   if (req.method === "GET") {
     const query = req.query;
     const { id } = query;
-    const result = await axios.get(
+    const result = await axios.get<CryptoDetails>(
       `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=${id}`,
       {
         headers: {
