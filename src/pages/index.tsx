@@ -3,6 +3,7 @@ import axios from "axios";
 import router from "next/router";
 import { useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { Cards } from "../components/elements/Cards";
 import Navbar from "../components/Navbar/Navbar";
 import { CryptoList } from "../types";
 
@@ -31,6 +32,8 @@ export default function Home() {
       </div>
 
       <div className="container relative mx-auto mt-10 overflow-x-auto">
+        <Cards />
+
         <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400 ">
           <thead className="text-bold text-xs uppercase text-white  ">
             <tr>
