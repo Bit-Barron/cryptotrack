@@ -22,7 +22,7 @@ export default function Example() {
         setData(res.data);
       };
       getData();
-    });
+    }, []);
   };
 
   return (
@@ -52,6 +52,9 @@ export default function Example() {
                       placeholder="Search"
                       type="search"
                     />
+                    {isData?.data.map((item) => (
+                      <div>{item.name}</div>
+                    ))}
                   </div>
                 </div>
               </div>
