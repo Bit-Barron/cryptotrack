@@ -20,7 +20,6 @@ export default function Example() {
       const getData = async () => {
         const res = await axios.get<CryptoList>("/api/list");
         setData(res.data);
-        console.log(res.data);
       };
       getData();
     });
