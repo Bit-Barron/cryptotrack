@@ -76,7 +76,7 @@ export default function Home() {
 
           {coins?.data.map((coin) => (
             <>
-              <tbody key={coin.id}>
+              <tbody key={coin.name}>
                 <tr className="border-b dark:border-gray-700">
                   <th
                     scope=""
