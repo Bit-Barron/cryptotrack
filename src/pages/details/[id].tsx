@@ -18,6 +18,8 @@ const Details = () => {
     id && getData();
   }, [id]);
 
+
+
   return (
     <>
       <Navbar />
@@ -113,7 +115,8 @@ const Details = () => {
                     fully diluted market cap
                   </th>
                   <td className="py-4 px-6">
-                    {isData?.data[`${id}`].quote.USD.fully_diluted_market_cap}EUR
+                    {isData?.data[`${id}`].quote.USD.fully_diluted_market_cap}
+                    EUR
                   </td>
                 </tr>
                 <tr className="border-b border-gray-200 dark:border-gray-700">

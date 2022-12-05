@@ -9,7 +9,7 @@ import { CryptoList } from "../types";
 export default function Home() {
   const [coins, setCoins] = useState<CryptoList>();
   const [isData, setData] = useState<CryptoList>();
-  const [pageNumber, setPageNumber] = useState(1);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const getData = async () => {
@@ -20,10 +20,9 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    setPageNumber(pageNumber + 1);
     const getData = async () => {
-      const res = await axios.get<CryptoList>(`/api/list/?page=${pageNumber}`);
-      setData(res.data);
+      const res = await axios.get<any>(`/api/nextpage/?id=${page + 1}`);
+      setPage(res.data);
     };
     getData();
   }, []);
