@@ -22,7 +22,7 @@ export default function Home() {
   const handlePage = () => {
     setPage(page + 1);
     const getData = async () => {
-      const res = await axios.get<CryptoList>(`/api/list/?nextpage=${page}`);
+      const res = await axios.get(`/api/list/nextpage=${page + 1}`);
       setData(res.data);
       console.log(res.data);
     };
@@ -128,6 +128,7 @@ export default function Home() {
             </>
           ))}
         </table>
+        
       </div>
       <button
         className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
