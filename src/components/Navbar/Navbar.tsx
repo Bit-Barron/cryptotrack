@@ -2,7 +2,7 @@ import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import SearchIcon from "@heroicons/react/solid/SearchIcon";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CryptoList } from "../../types";
 import Bell from "./Bell";
 import DesktopNavbar from "./DesktopNavbar";
@@ -12,18 +12,19 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
+
+
 export default function Example() {
   const [isData, setData] = useState<CryptoList>();
 
   const handleSearch = async (e: any) => {
-    useEffect(() => {
-      const getData = async () => {
-        const res = await axios.get<CryptoList>("/api/list");
-        setData(res.data);
-      };
-      getData();
-    }, []);
+    const getData = async () => {
+      const res = await axios.get<CryptoList>("/api/list");
+      setData(res.data);
+    };
+    getData();
   };
+
 
   return (
     <Disclosure as="nav" className="bg-[#181a1b]">
@@ -52,12 +53,15 @@ export default function Example() {
                       placeholder="Search"
                       type="search"
                     />
-                    {isData?.data.map((item) => (
-                      <div>{item.name}</div>
-                    ))}
                   </div>
                 </div>
+                {isData?.data.map((item) => (
+                  <div key={item.id}>
+                    <p>{item.name}</p>
+                  </div>
+                ))}
               </div>
+              
               <div className="flex lg:hidden ">
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>

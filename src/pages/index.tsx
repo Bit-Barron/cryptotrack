@@ -1,6 +1,7 @@
 import axios from "axios";
 import router from "next/router";
 import { useEffect, useState } from "react";
+import { isTemplateSpan } from "typescript";
 import Navbar from "../components/Navbar/Navbar";
 import { CryptoList } from "../types";
 
@@ -35,7 +36,7 @@ export default function Home() {
 
   return (
     <form className="">
-      <Navbar />
+      <Navbar/>
       <div>
         <h1 className="mt-5 text-center text-2xl font-bold">
           Today's Cryptocurrency Prices by Market track
