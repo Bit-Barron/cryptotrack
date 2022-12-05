@@ -1,8 +1,6 @@
-import { Menu } from "@headlessui/react";
 import axios from "axios";
 import router from "next/router";
 import { useEffect, useState } from "react";
-import { AiOutlineArrowRight } from "react-icons/ai";
 import Navbar from "../components/Navbar/Navbar";
 import { CryptoList } from "../types";
 
@@ -34,7 +32,7 @@ export default function Home() {
   }
 
   return (
-    <form>
+    <form className="">
       <Navbar />
       <div>
         <h1 className="mt-5 text-center text-2xl font-bold">
@@ -77,10 +75,16 @@ export default function Home() {
           {coins?.data.map((coin) => (
             <>
               <tbody key={coin.name}>
-                <tr className="border-b dark:border-gray-700">
+                <tr
+                  className="border-b hover:bg-gray-700 dark:border-gray-700"
+                  onClick={(e: any) => {
+                    e.preventDefault();
+                    return router.push(`/details/${coin.id}`);
+                  }}
+                >
                   <th
                     scope=""
-                    className="py-4 px-6 font-medium 
+                    className="py-4 px-6 font-medium  
                      text-white"
                   >
                     {coin.name}
@@ -108,27 +112,13 @@ export default function Home() {
                   </td>
 
                   <td>
-                    <div className="flex justify-end">
-                      <Menu>
-                        <Menu.Button
-                          className="text-main ml-10 flex justify-end rounded-md  py-2 px-4"
-                          onClick={(e: any) => {
-                            e.preventDefault();
-                            router.push(`/details/${coin.id}`);
-                          }}
-                        >
-                          details
-                          <AiOutlineArrowRight className="mt-1 ml-1" />
-                        </Menu.Button>
-                      </Menu>
-                    </div>
+                    <div className="flex justify-end"></div>
                   </td>
                 </tr>
               </tbody>
             </>
           ))}
         </table>
-        
       </div>
       <button
         className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
