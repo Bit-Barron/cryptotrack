@@ -3,7 +3,7 @@ import React from "react";
 interface DesktopNavbarProps {}
 const DesktopNavbar: React.FC<DesktopNavbarProps> = ({}) => {
   return (
-    <div className="flex items-center px-2 lg:px-0 ml-10">
+    <div className="flex items-center px-2 lg:px-0">
       <div className="flex-shrink-0">
         <h1 className="ml-3 text-2xl font-bold">CRYPTOTRACK</h1>
       </div>

@@ -2,7 +2,6 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import Sidebar from "../../components/Sidebar/Sidebar";
 import { CryptoDetails } from "../../types";
 
 const Details = () => {
@@ -25,7 +24,6 @@ const Details = () => {
   return (
     <div>
       <Navbar />
-      <Sidebar />
     </div>
   );
 };

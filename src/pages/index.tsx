@@ -20,11 +20,13 @@ export default function Home() {
   const handlePage = () => {
     setPage(page + 1);
     const getData = async () => {
-      const res = await axios.get(`/api/list/nextpage=${page + 1}`);
+      const res = await axios.get<CryptoList>("/api/nextpage", {
+        params: {
+          page: page,
+        },
+      });
       setData(res.data);
-      console.log(res.data);
     };
-    getData();
   };
 
   function classNames(...classes: string[]) {
