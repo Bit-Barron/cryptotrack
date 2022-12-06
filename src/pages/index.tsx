@@ -17,13 +17,10 @@ export default function Home() {
     getData();
   }, []);
 
-  useEffect(() => {
-    const getData = async () => {
-      const res = await axios.get(`/api/nextpage=${page}`);
-      console.log(res.data);
-    };
-    getData();
-  }, []);
+  const handlePage = () => {
+    setPage(page + 1);
+  };
+  console.log(page);
 
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
@@ -118,7 +115,11 @@ export default function Home() {
           ))}
         </table>
       </div>
-      <button className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">
+      <button
+        className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
+        type="button"
+        onClick={() => handlePage()}
+      >
         Next
       </button>
     </form>
