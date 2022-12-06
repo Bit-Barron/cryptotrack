@@ -10,17 +10,6 @@ export default async function handler(
   if (req.method === "GET") {
     const query = req.query;
     const { data } = req.query;
-    const result = await axios.get<CryptoDetails>(
-      `https://api.coinmarketcap.com/data-api/v3/cryptocurrency/listing`,
-      {
-        headers: {
-          "X-CMC_PRO_API_KEY": "fe979189-cae7-490e-8cbd-66158a83141d",
-          "Content-Type": "application/json",
-          "Accept-Encoding": "application/json",
-        },
-      }
-    );
-    console.log(result.data);
-    res.status(200).json(result.data);
+    console.log(data)
   }
 }

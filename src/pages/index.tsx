@@ -7,12 +7,20 @@ import { CryptoList } from "../types";
 export default function Home() {
   const [coins, setCoins] = useState<CryptoList>();
   const [isData, setData] = useState<CryptoList>();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<any>(1);
 
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get<CryptoList>("/api/list");
       setCoins(res.data);
+    };
+    getData();
+  }, []);
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await axios.get(`/api/nextpage=${page}`);
+      console.log(res.data);
     };
     getData();
   }, []);
@@ -64,7 +72,7 @@ export default function Home() {
 
           {coins?.data.map((coin) => (
             <>
-              <tbody key={coin.name}>
+              <tbody>
                 <tr
                   className="border-b hover:bg-gray-700 dark:border-gray-700"
                   onClick={(e: any) => {
@@ -110,9 +118,7 @@ export default function Home() {
           ))}
         </table>
       </div>
-      <button
-        className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
-      >
+      <button className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">
         Next
       </button>
     </form>
