@@ -1,7 +1,6 @@
 import axios from "axios";
 import router from "next/router";
 import { useEffect, useState } from "react";
-import { isTemplateSpan } from "typescript";
 import Navbar from "../components/Navbar/Navbar";
 import { CryptoList } from "../types";
 
@@ -18,25 +17,13 @@ export default function Home() {
     getData();
   }, []);
 
-  const handlePage = () => {
-    setPage(page + 1);
-    const getData = async () => {
-      const res = await axios.get<CryptoList>("/api/nextpage", {
-        params: {
-          page: page,
-        },
-      });
-      setData(res.data);
-    };
-  };
-
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
   }
 
   return (
     <form className="">
-      <Navbar/>
+      <Navbar />
       <div>
         <h1 className="mt-5 text-center text-2xl font-bold">
           Today's Cryptocurrency Prices by Market track
@@ -125,7 +112,6 @@ export default function Home() {
       </div>
       <button
         className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
-        onClick={() => handlePage()}
       >
         Next
       </button>

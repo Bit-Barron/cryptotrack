@@ -55,11 +55,7 @@ export default function Example() {
                     />
                   </div>
                 </div>
-                {isData?.data.map((item) => (
-                  <div key={item.id}>
-                    <p>{item.name}</p>
-                  </div>
-                ))}
+              
               </div>
               
               <div className="flex lg:hidden ">
