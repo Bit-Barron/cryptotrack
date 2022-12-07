@@ -9,7 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get<CryptoList>("/api/list");
+      const res = await axios.get<CryptoList>(`/api/list?`);
       setCoins(res.data);
     };
     getData();
@@ -18,7 +18,6 @@ export default function Home() {
   const handlePageButton = async () => {
     const res = await axios.get("/api/nextpage")
     console.log(res.data);
-    console.log
   };
 
   return (
