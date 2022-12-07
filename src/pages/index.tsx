@@ -21,6 +21,7 @@ export default function Home() {
     setPage(page + 1);
   };
   console.log(page);
+  
 
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
