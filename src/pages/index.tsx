@@ -6,7 +6,6 @@ import { CryptoList } from "../types";
 
 export default function Home() {
   const [coins, setCoins] = useState<CryptoList>();
-  const [page, setPage] = useState<any>(1);
 
   useEffect(() => {
     const getData = async () => {
@@ -16,11 +15,11 @@ export default function Home() {
     getData();
   }, []);
 
-  const handlePageButton = async() => {
-    setPage(page + 1);
-    const res = await axios.get<any>("/api/nextpage")
-    console.log(res.data)
-  }
+  const handlePageButton = async () => {
+    const res = await axios.get("/api/nextpage")
+    console.log(res.data);
+    console.log
+  };
 
   return (
     <form className="">
@@ -111,9 +110,7 @@ export default function Home() {
         className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
         type="button"
         onClick={handlePageButton}
-      >
-        Next
-      </button>
+      >Next</button>
     </form>
   );
 }
