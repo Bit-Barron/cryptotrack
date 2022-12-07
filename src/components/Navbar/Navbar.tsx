@@ -68,7 +68,6 @@ export default function Example() {
                   )}
                 </Disclosure.Button>
               </div>
-              <Bell />
             </div>
           </div>
 

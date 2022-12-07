@@ -1,26 +1,30 @@
 import axios from "axios";
 import router from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import { CryptoList } from "../types";
 
 export default function Home() {
   const [coins, setCoins] = useState<CryptoList>();
   const [page, setPage] = useState(1);
-  const [isData, setData] = useState<CryptoList>();
 
   const getData = async () => {
     setPage(page + 1);
     const response = await axios.get("/api/nextpage", {
       params: {
-        page, 
+        page,
       },
     });
-    console.log(page)
     console.log(response.data);
-  }
+  };
 
-
+  useEffect(() => {
+    const getData = async () => {
+      const res = await axios.get<CryptoList>("/api/list");
+      setCoins(res.data);
+    };
+    getData();
+  }, []);
 
   return (
     <form>
@@ -106,7 +110,7 @@ export default function Home() {
           ))}
         </table>
       </div>
-     
+
       <button
         className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
         onClick={() => getData()}
