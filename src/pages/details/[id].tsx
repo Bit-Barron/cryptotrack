@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { CryptoDetails } from "../../types";
 
+
 const Details = () => {
   const [symbol, setSymbol] = useState("");
 

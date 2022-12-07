@@ -1,6 +1,6 @@
 import axios from "axios";
 import router from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import { CryptoList } from "../types";
 
@@ -8,15 +8,10 @@ export default function Home() {
   const [coins, setCoins] = useState<CryptoList>();
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const getData = async () => {
-      setLoading(true);
-      const res = await axios.get<CryptoList>(`/api/list/?`);
-      setCoins(res.data);
-      setLoading(false);
-    };
-    getData();
-  }, []);
+  const getData = async () => {
+    const response = await axios.get("/api/nextpage");
+    console.log(response.data);
+  }
 
   if (loading) {
     return (
@@ -112,6 +107,7 @@ export default function Home() {
       </div>
       <button
         className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
+        onClick={() => getData()}
         type="button"
       >
         Next
