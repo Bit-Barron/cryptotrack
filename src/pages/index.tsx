@@ -6,20 +6,22 @@ import { CryptoList } from "../types";
 
 export default function Home() {
   const [coins, setCoins] = useState<CryptoList>();
-  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [isData, setData] = useState<CryptoList>();
 
   const getData = async () => {
-    const response = await axios.get("/api/nextpage");
+    setPage(page + 1);
+    const response = await axios.get("/api/nextpage", {
+      params: {
+        page, 
+      },
+    });
+    console.log(page)
     console.log(response.data);
   }
 
-  if (loading) {
-    return (
-      <div className="mt-52 flex justify-center text-2xl font-bold text-white">
-        Loading...
-      </div>
-    );
-  }
+
+
   return (
     <form>
       <Navbar />
@@ -28,7 +30,6 @@ export default function Home() {
           Today's Cryptocurrency Prices by Market track
         </h1>
       </div>
-
       <div className="container relative mx-auto mt-10 overflow-x-auto">
         <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400 ">
           <thead className="text-bold text-xs uppercase text-white  ">
@@ -105,6 +106,7 @@ export default function Home() {
           ))}
         </table>
       </div>
+     
       <button
         className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
         onClick={() => getData()}
