@@ -7,21 +7,37 @@ import { CryptoList } from "../types";
 export default function Home() {
   const [coins, setCoins] = useState<CryptoList>();
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
-  const getData = async () => {
+  const next = async () => {
     setPage(page + 1);
     const response = await axios.get("/api/nextpage", {
       params: {
         page,
       },
     });
-    console.log(response.data);
+    console.log(response.data)
   };
+
+  const previous = async () => {
+    setPage(page - 1);
+    const response = await axios.get("/api/nextpage", {
+      params: {
+        page,
+      },
+    });
+    console.log(response.data)
+
+  };
+
+  console.log(page);
 
   useEffect(() => {
     const getData = async () => {
+      setLoading(true);
       const res = await axios.get<CryptoList>("/api/list");
       setCoins(res.data);
+      setLoading(false);
     };
     getData();
   }, []);
@@ -29,6 +45,7 @@ export default function Home() {
   return (
     <form>
       <Navbar />
+
       <div>
         <h1 className="mt-5 text-center text-2xl font-bold">
           Today's Cryptocurrency Prices by Market track
@@ -110,14 +127,28 @@ export default function Home() {
           ))}
         </table>
       </div>
+      {loading && (
+        <div className="mt-52 flex justify-center text-3xl font-bold ">
+          Loading...
+        </div>
+      )}
 
-      <button
-        className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
-        onClick={() => getData()}
-        type="button"
-      >
-        Next
-      </button>
+      <div className="mt-5 flex justify-center">
+        <button
+          type="button"
+          className="mr-2 mb-2 rounded-lg border border-gray-200 py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
+          onClick={() => previous()}
+        >
+          Previous
+        </button>
+        <button
+          type="button"
+          className="mr-2 mb-2 rounded-lg border border-gray-200  py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
+          onClick={() => next()}
+        >
+          Next
+        </button>
+      </div>
     </form>
   );
 }
