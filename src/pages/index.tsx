@@ -6,22 +6,27 @@ import { CryptoList } from "../types";
 
 export default function Home() {
   const [coins, setCoins] = useState<CryptoList>();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get<CryptoList>(`/api/list?`);
+      setLoading(true);
+      const res = await axios.get<CryptoList>(`/api/list/?`);
       setCoins(res.data);
+      setLoading(false);
     };
     getData();
   }, []);
 
-  const handlePageButton = async () => {
-    const res = await axios.get("/api/nextpage")
-    console.log(res.data);
-  };
-
+  if (loading) {
+    return (
+      <div className="mt-52 flex justify-center text-2xl font-bold text-white">
+        Loading...
+      </div>
+    );
+  }
   return (
-    <form className="">
+    <form>
       <Navbar />
       <div>
         <h1 className="mt-5 text-center text-2xl font-bold">
@@ -108,8 +113,9 @@ export default function Home() {
       <button
         className="mx-auto mt-2 flex rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
         type="button"
-        onClick={handlePageButton}
-      >Next</button>
+      >
+        Next
+      </button>
     </form>
   );
 }
