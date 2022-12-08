@@ -6,7 +6,7 @@ import { CryptoList } from "../types";
 
 export default function Home() {
   const [coins, setCoins] = useState<CryptoList>();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const next = async () => {
@@ -16,7 +16,7 @@ export default function Home() {
         page,
       },
     });
-    console.log(response.data)
+    console.log(response.data);
   };
 
   const previous = async () => {
@@ -26,10 +26,8 @@ export default function Home() {
         page,
       },
     });
-    console.log(response.data)
-
+    console.log(response.data);
   };
-
   console.log(page);
 
   useEffect(() => {
@@ -41,6 +39,8 @@ export default function Home() {
     };
     getData();
   }, []);
+
+
 
   return (
     <form>
@@ -128,7 +128,7 @@ export default function Home() {
         </table>
       </div>
       {loading && (
-        <div className="mt-52 flex justify-center text-3xl font-bold ">
+        <div className="mt-52 flex justify-center text-3xl font-bold text-white">
           Loading...
         </div>
       )}
