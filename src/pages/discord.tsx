@@ -1,13 +1,17 @@
-import React from 'react'
+import React from "react";
+import Navbar from "../components/Navbar/Navbar";
 
-interface DiscordProps {
-
-}
+interface DiscordProps {}
 
 const Discord: React.FC<DiscordProps> = ({}) => {
-        return (
-            <h1 className='flex justify-center mt-40 text-3xl text-white font-bold '>Coming Soon ....</h1>
-        );
-}
+  return (
+    <>
+      <Navbar />
+      <h1 className="mt-40 flex justify-center text-3xl font-bold text-white ">
+        Coming Soon ....
+      </h1>
+    </>
+  );
+};
 
-export default Discord  
+export default Discord;
