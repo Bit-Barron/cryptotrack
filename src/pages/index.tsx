@@ -35,6 +35,7 @@ export default function Home() {
       }
     );
     setPage(page - 100);
+    console.log(page)
 
     cryptoStore.cryptoCurrencies =
       response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
@@ -43,8 +44,8 @@ export default function Home() {
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
+      await prev()
       await next();
-      await prev();
       setLoading(false);
     };
     getData();
@@ -113,13 +114,12 @@ export default function Home() {
                   </th>
                   <td className="py-4 px-6 ">
                     {coin.quotes
-                      .find((q) => q.name === "USD")
-                      ?.price.toFixed(2)}
+                      .find((q) => q.name === "USD")?.percentChange1h}
                   </td>
                   <td className="py-4 px-6">
                     {coin.quotes
                       .find((q) => q.name === "USD")
-                      ?.percentChange1h.toFixed(2) }
+                      ?.percentChange1h.toFixed(2)}
                     %
                   </td>
                   <td className="py-4 px-6">
@@ -163,8 +163,8 @@ export default function Home() {
         <button
           type="button"
           className="mr-2 mb-2 rounded-lg border border-gray-200 py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
-          onClick={() => prev()}
-        >
+       onClick={() => prev()}
+       >
           Previous
         </button>
         <button

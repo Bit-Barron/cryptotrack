@@ -11,7 +11,7 @@ const MobileNavbar: React.FC<mobileNavbarProps> = ({}) => {
         <Disclosure.Button
           as="a"
           href="#"
-          className=" block rounded-md px-3 py-2 text-base font-medium text-white"
+          className=" block rounded-md px-3 py-2 text-base font-medium "
         >
           Cryptocurrencies
         </Disclosure.Button>
@@ -29,21 +29,14 @@ const MobileNavbar: React.FC<mobileNavbarProps> = ({}) => {
         >
           Community
         </Disclosure.Button>
+
         <Disclosure.Button
           as="a"
-          href="#"
+          href="/discord"
           className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
         >
-          Products
+          Discord
         </Disclosure.Button>
-        <Disclosure.Button
-          as="a"
-          href="#"
-          className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-        >
-          Lern
-        </Disclosure.Button>
-       
       </div>
     </Disclosure.Panel>
   );

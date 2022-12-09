@@ -10,10 +10,10 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({}) => {
       <div className="hidden lg:ml-6 lg:block">
         <div className="flex space-x-4">
           <a
-            href="#"
+            href="/"
             className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
           >
-            Cryptocurrencies
+            Dashboard
           </a>
           <a
             href="#"
@@ -27,17 +27,12 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({}) => {
           >
             Community
           </a>
+
           <a
-            href="#"
+            href="/discord"
             className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
           >
-            Products
-          </a>
-          <a
-            href="#"
-            className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-          >
-            Learn
+            Discord
           </a>
         </div>
       </div>
