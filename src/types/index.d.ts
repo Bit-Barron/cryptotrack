@@ -1,105 +1,75 @@
-export type CryptoList = {
-  status: {
-    timestamp: string;
-    error_code: number;
-    error_message: any;
-    elapsed: number;
-    credit_count: number;
-    notice: string;
-    total_count: number;
-  };
-  data: Array<{
-    id: number;
-    name: string;
-    symbol: string;
-    slug: string;
-    num_market_pairs: number;
-    date_added: string;
-    tags: Array<string>;
-    max_supply?: number;
-    circulating_supply: number;
-    total_supply: number;
-    platform?: {
-      id: number;
-      name: string;
-      symbol: string;
-      slug: string;
-      token_address: string;
-    };
-    cmc_rank: number;
-    self_reported_circulating_supply?: number;
-    self_reported_market_cap?: number;
-    tvl_ratio?: number;
-    last_updated: string;
-    quote: {
-      USD: {
-        price: number;
-        volume_24h: number;
-        volume_change_24h: number;
-        percent_change_1h: number;
-        percent_change_24h: number;
-        percent_change_7d: number;
-        percent_change_30d: number;
-        percent_change_60d: number;
-        percent_change_90d: number;
-        market_cap: number;
-        market_cap_dominance: number;
-        fully_diluted_market_cap: number;
-        tvl?: number;
-        last_updated: string;
-      };
-    };
-  }>;
-};
+export interface CryptoCurrencyApiResponse {
+  data: Data;
+  status: Status;
+}
 
-export type CryptoDetails = {
-  [x: string]: SetStateAction<CryptoDetails | undefined>;
-  status: {
-    timestamp: string;
-    error_code: number;
-    error_message: any;
-    elapsed: number;
-    credit_count: number;
-    notice: string;
-  };
-  data: {
-    [key: string]: {
-      id: number;
-      name: string;
-      symbol: string;
-      slug: string;
-      num_market_pairs: number;
-      date_added: string;
-      tags: Array<string>;
-      max_supply: number;
-      circulating_supply: number;
-      total_supply: number;
-      is_active: number;
-      platform: any;
-      cmc_rank: number;
-      is_fiat: number;
-      self_reported_circulating_supply: any;
-      self_reported_market_cap: any;
-      tvl_ratio: any;
-      last_updated: string;
-      quote: {
-        USD: {
-          price: number;
-          volume_24h: number;
-          volume_change_24h: number;
-          percent_change_1h: number;
-          percent_change_24h: number;
-          percent_change_7d: number;
-          percent_change_30d: number;
-          percent_change_60d: number;
-          percent_change_90d: number;
-          market_cap: number;
-          market_cap_dominance: number;
-          fully_diluted_market_cap: number;
-          tvl: any;
-          last_updated: string;
-        };
-      };
-    };
-  };
-};
+export interface Data {
+  cryptoCurrencyList: CryptoCurrency[];
+  totalCount: string;
+}
+
+export interface CryptoCurrency {
+  id: number;
+  name: string;
+  symbol: string;
+  slug: string;
+  tags: string[];
+  cmcRank: number;
+  marketPairCount: number;
+  circulatingSupply: number;
+  selfReportedCirculatingSupply: number;
+  totalSupply: number;
+  maxSupply: number;
+  isActive: number;
+  lastUpdated: Date;
+  dateAdded: Date;
+  quotes: Quote[];
+  platform: Platform;
+  isAudited: boolean;
+  auditInfoList?: AuditInfo[];
+}
+
+export interface AuditInfo {
+  coinId: string;
+  auditor: string;
+  auditStatus: number;
+  score: string;
+  auditTime: Date;
+  reportUrl: string;
+}
+
+export interface Platform {
+  id: number;
+  name: string;
+  symbol: string;
+  slug: string;
+  token_address: string;
+}
+
+export interface Quote {
+  name: string;
+  price: number;
+  volume24h: number;
+  marketCap: number;
+  percentChange1h: number;
+  percentChange24h: number;
+  percentChange7d: number;
+  lastUpdated: Date;
+  percentChange30d: number;
+  percentChange60d: number;
+  percentChange90d: number;
+  fullyDilluttedMarketCap: number;
+  marketCapByTotalSupply: number;
+  dominance: number;
+  turnover: number;
+  ytdPriceChangePercentage: number;
+  tvl?: number;
+}
+
+export interface Status {
+  timestamp: Date;
+  error_code: string;
+  error_message: string;
+  elapsed: string;
+  credit_count: number;
+}

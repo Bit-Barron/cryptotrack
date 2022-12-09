@@ -2,45 +2,53 @@ import axios from "axios";
 import router from "next/router";
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
-import { CryptoList } from "../types";
+import { useStores } from "../stores";
+import { CryptoCurrencyApiResponse } from "../types";
 
 export default function Home() {
-  const [coins, setCoins] = useState<CryptoList>();
-  const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const cryptoStore = useStores().cryptoStore;
 
   const next = async () => {
-    setPage(page + 1);
-    const response = await axios.get("/api/nextpage", {
-      params: {
-        page,
-      },
-    });
-    console.log(response.data);
+    const response = await axios.get<CryptoCurrencyApiResponse>(
+      "/api/nextpage",
+      {
+        params: {
+          page,
+        },
+      }
+    );
+    setPage(page + 100);
+
+    cryptoStore.cryptoCurrencies =
+      response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
   };
 
-  const previous = async () => {
-    setPage(page - 1);
-    const response = await axios.get("/api/nextpage", {
-      params: {
-        page,
-      },
-    });
-    console.log(response.data);
+  const prev = async () => {
+    const response = await axios.get<CryptoCurrencyApiResponse>(
+      "/api/nextpage",
+      {
+        params: {
+          page,
+        },
+      }
+    );
+    setPage(page - 100);
+
+    cryptoStore.cryptoCurrencies =
+      response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
   };
-  console.log(page);
 
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-      const res = await axios.get<CryptoList>("/api/list");
-      setCoins(res.data);
+      await next();
+      await prev();
       setLoading(false);
     };
     getData();
   }, []);
-
-
 
   return (
     <form>
@@ -83,7 +91,7 @@ export default function Home() {
             </tr>
           </thead>
 
-          {coins?.data.map((coin) => (
+          {cryptoStore.cryptoCurrencies.map((coin) => (
             <>
               <tbody>
                 <tr
@@ -104,22 +112,40 @@ export default function Home() {
                     {coin.symbol}
                   </th>
                   <td className="py-4 px-6 ">
-                    {coin.quote.USD.price.toFixed(2)}
+                    {coin.quotes
+                      .find((q) => q.name === "USD")
+                      ?.price.toFixed(2)}
                   </td>
                   <td className="py-4 px-6">
-                    {coin.quote.USD.percent_change_1h.toFixed(2)}%
+                    {coin.quotes
+                      .find((q) => q.name === "USD")
+                      ?.percentChange1h.toFixed(2) }
+                    %
                   </td>
                   <td className="py-4 px-6">
-                    {coin.quote.USD.percent_change_24h.toFixed(2)}%
+                    {coin.quotes
+                      .find((q) => q.name === "USD")
+                      ?.percentChange24h.toFixed(2)}
+                    %
                   </td>
                   <td className="py-4 px-6">
-                    {coin.quote.USD.percent_change_7d.toFixed(2)}%
+                    {coin.quotes
+                      .find((q) => q.name === "USD")
+                      ?.percentChange7d.toFixed(2)}
+                    %
                   </td>
                   <td className="py-4 px-6">
-                    ${coin.quote.USD.market_cap.toFixed(2)}$
+                    $
+                    {coin.quotes
+                      .find((q) => q.name === "USD")
+                      ?.marketCap.toFixed(2)}
+                    $
                   </td>
                   <td className="py-4 px-6">
-                    ${coin.quote.USD.volume_24h.toFixed(2)}
+                    $
+                    {coin.quotes
+                      .find((q) => q.name === "USD")
+                      ?.volume24h.toFixed(2)}
                   </td>
                 </tr>
               </tbody>
@@ -137,7 +163,7 @@ export default function Home() {
         <button
           type="button"
           className="mr-2 mb-2 rounded-lg border border-gray-200 py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
-          onClick={() => previous()}
+          onClick={() => prev()}
         >
           Previous
         </button>

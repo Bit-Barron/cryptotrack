@@ -4,10 +4,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { CryptoDetails } from "../../types";
 
-
 const Details = () => {
-  const [symbol, setSymbol] = useState("");
-
   const [isData, setData] = useState<CryptoDetails>();
   const router = useRouter();
   const { id } = router.query;
@@ -17,7 +14,6 @@ const Details = () => {
       const res = await axios.get<CryptoDetails>(`/api/details/?id=${id}`);
       setData(res.data);
     };
-
     id && getData();
   }, [id]);
   const crypto = isData?.data[`${id}`];

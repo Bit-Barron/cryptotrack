@@ -1,20 +1,15 @@
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import SearchIcon from "@heroicons/react/solid/SearchIcon";
-import axios from "axios";
-import { useState } from "react";
-import { CryptoList } from "../../types";
+import { useStores } from "../../stores";
 import DesktopNavbar from "./DesktopNavbar";
 import MobileNavbar from "./MobileNavbar";
 
 export default function Example() {
-  const [isData, setData] = useState<CryptoList>();
+  const cryptoStore = useStores().cryptoStore;
 
   const handleSearch = async (e: any) => {
-    const getData = async () => {
-      const res = await axios.get<CryptoList>("/api/list");
-      setData(res.data);
-    };
+    const getData = async () => {};
     getData();
   };
 

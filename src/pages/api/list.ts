@@ -1,13 +1,13 @@
 import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { CryptoList } from "../../types";
+import { CryptoCurrencyApiResponse } from "../../types";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<CryptoList>
+  res: NextApiResponse<CryptoCurrencyApiResponse>
 ) {
   if (req.method === "GET") {
-    const result = await axios.get<CryptoList>(
+    const result = await axios.get<CryptoCurrencyApiResponse>(
       "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
       {
         headers: {
