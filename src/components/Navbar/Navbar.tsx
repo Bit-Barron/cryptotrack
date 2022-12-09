@@ -1,16 +1,23 @@
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import SearchIcon from "@heroicons/react/solid/SearchIcon";
-import { useStores } from "../../stores";
+import axios from "axios";
+import { useState } from "react";
 import DesktopNavbar from "./DesktopNavbar";
 import MobileNavbar from "./MobileNavbar";
 
 export default function Example() {
-  const cryptoStore = useStores().cryptoStore;
+  const [search, setSearch] = useState("");
 
   const handleSearch = async (e: any) => {
-    const getData = async () => {};
-    getData();
+    const res = await axios.get("/api/search", {
+      params: {
+        search,
+      },
+    });
+    setSearch(res.data);
+
+    console.log(e.target.value);
   };
 
   return (

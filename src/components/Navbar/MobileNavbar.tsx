@@ -10,24 +10,10 @@ const MobileNavbar: React.FC<mobileNavbarProps> = ({}) => {
         {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
         <Disclosure.Button
           as="a"
-          href="#"
+          href="/"
           className=" block rounded-md px-3 py-2 text-base font-medium "
         >
-          Cryptocurrencies
-        </Disclosure.Button>
-        <Disclosure.Button
-          as="a"
-          href="#"
-          className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-        >
-          Exchanges
-        </Disclosure.Button>
-        <Disclosure.Button
-          as="a"
-          href="#"
-          className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-        >
-          Community
+          Dashboard
         </Disclosure.Button>
 
         <Disclosure.Button

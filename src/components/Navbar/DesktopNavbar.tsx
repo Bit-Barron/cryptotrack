@@ -5,7 +5,7 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({}) => {
   return (
     <div className="flex items-center px-2 lg:px-0">
       <div className="flex-shrink-0">
-        <h1 className="ml-3 text-2xl font-bold">CRYPTOTRACK</h1>
+        <h1 className="text-2xl font-bold">CRYPTOTRACK</h1>
       </div>
       <div className="hidden lg:ml-6 lg:block">
         <div className="flex space-x-4">
@@ -14,13 +14,6 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({}) => {
             className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
           >
             Dashboard
-          </a>
-
-          <a
-            href="/ranks"
-            className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-          >
-            Ranks
           </a>
 
           <a

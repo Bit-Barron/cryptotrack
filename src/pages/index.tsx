@@ -40,6 +40,8 @@ export default function Home() {
       response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
   };
 
+  console.log(page)
+
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
