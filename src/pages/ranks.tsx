@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar/Navbar";
 interface ranksProps {}
 
 const ranks: React.FC<ranksProps> = ({}) => {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState();
 
   useEffect(() => {
     const getData = async () => {
@@ -36,9 +36,9 @@ const ranks: React.FC<ranksProps> = ({}) => {
           asd
         </div>
       </div>
-      {data.map((item) => (
+      {/* {data?.map((item) => (
         <div>{item.name}</div>
-      ))}
+      ))} */}
     </div>
   );
 };

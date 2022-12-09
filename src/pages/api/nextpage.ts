@@ -8,12 +8,10 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     const { page } = req.query;
-    console.log(page);
 
     const response = await axios.get(
       `https://api.coinmarketcap.com/data-api/v3/cryptocurrency/listing?start=${page}`
     );
-    console.log(response.data	)
     return res.status(200).json(response.data);
 
   }

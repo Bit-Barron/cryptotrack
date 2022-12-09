@@ -35,7 +35,6 @@ export default function Home() {
       }
     );
     setPage(page - 100);
-    console.log(page);
 
     cryptoStore.cryptoCurrencies =
       response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
