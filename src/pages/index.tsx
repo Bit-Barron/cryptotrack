@@ -26,27 +26,11 @@ export default function Home() {
       response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
   };
 
-  const prev = async () => {
-    const response = await axios.get<CryptoCurrencyApiResponse>(
-      "/api/nextpage",
-      {
-        params: {
-          page,
-        },
-      }
-    );
-    setPage(page - 100);
-
-    cryptoStore.cryptoCurrencies =
-      response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
-  };
-
   console.log;
 
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-      await prev();
       await next();
       setLoading(false);
     };
@@ -58,7 +42,7 @@ export default function Home() {
       <Navbar />
 
       <div className="relativ mr-10">
-        <div className="flex justify-end mt-3">
+        <div className="mt-3 flex justify-end">
           <input
             id="search"
             name="search"
@@ -185,13 +169,6 @@ export default function Home() {
       )}
 
       <div className="mt-5 flex justify-center">
-        <button
-          type="button"
-          className="mr-2 mb-2 rounded-lg border border-gray-200 py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
-          onClick={() => prev()}
-        >
-          Previous
-        </button>
         <button
           type="button"
           className="mr-2 mb-2 rounded-lg border border-gray-200  py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
