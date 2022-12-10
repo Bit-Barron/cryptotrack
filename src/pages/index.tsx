@@ -26,8 +26,6 @@ export default function Home() {
       response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
   };
 
-  console.log;
-
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
@@ -106,16 +104,16 @@ export default function Home() {
                     className="border-b hover:bg-gray-700 dark:border-gray-700"
                     onClick={(e: any) => {
                       e.preventDefault();
-                      return router.push(`/details/${coin.id}`);
+                      return router.push(`/details/${coin.name}`);
                     }}
                   >
-                    <th
+                    {/* <th
                       scope=""
                       className="py-4 px-6 font-medium  
                      text-white"
                     >
                       {coin.name}
-                    </th>
+                    </th> */}
                     <th scope="" className="py-4 px-6 font-medium text-white">
                       {coin.symbol}
                     </th>
@@ -169,6 +167,7 @@ export default function Home() {
       )}
 
       <div className="mt-5 flex justify-center">
+    
         <button
           type="button"
           className="mr-2 mb-2 rounded-lg border border-gray-200  py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"

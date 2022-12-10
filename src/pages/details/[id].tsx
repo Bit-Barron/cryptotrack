@@ -1,26 +1,34 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { createNoSubstitutionTemplateLiteral } from "typescript";
 import Navbar from "../../components/Navbar/Navbar";
-import { CryptoDetails } from "../../types";
+import { CryptoCurrencyApiResponse } from "../../types";
 
 const Details = () => {
-  const [isData, setData] = useState<CryptoDetails>();
+  const [isData, setData] = useState<any>();
   const router = useRouter();
-  const { id } = router.query;
+  const { name } = router.query;
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get<CryptoDetails>(`/api/details/?id=${id}`);
+      const res = await axios.get<CryptoCurrencyApiResponse>(
+        `https://api.coingecko.com/api/v3/coins/${name}?localization=false&tickers=false&market_data=false&community_data=false        `
+      );
       setData(res.data);
     };
-    id && getData();
-  }, [id]);
-  const crypto = isData?.data[`${id}`];
+    name && getData();
+  }, [name]);
+
+  console.log(name)
+  console.log(name)
+  
+  const crypto = isData?.[`${name}`];
 
   return (
     <div>
       <Navbar />
+      <div>{crypto?.name}</div>
     </div>
   );
 };
