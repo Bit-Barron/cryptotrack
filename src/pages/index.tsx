@@ -104,16 +104,16 @@ export default function Home() {
                     className="border-b hover:bg-gray-700 dark:border-gray-700"
                     onClick={(e: any) => {
                       e.preventDefault();
-                      return router.push(`/details/${coin.name}`);
+                      return router.push(`/details/${coin.id}`);
                     }}
                   >
-                    {/* <th
+                    <th
                       scope=""
                       className="py-4 px-6 font-medium  
                      text-white"
                     >
                       {coin.name}
-                    </th> */}
+                    </th>
                     <th scope="" className="py-4 px-6 font-medium text-white">
                       {coin.symbol}
                     </th>
