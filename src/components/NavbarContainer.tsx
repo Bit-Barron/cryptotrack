@@ -1,8 +1,8 @@
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import DesktopNavbar from "./DesktopNavbar";
-import MobileNavbar from "./MobileNavbar";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
+import DesktopNavbar from "./Navbar/DesktopNavbar";
+import MobileNavbar from "./Navbar/MobileNavbar";
 
 export default function Example() {
   const router = useRouter();
@@ -19,7 +19,6 @@ export default function Example() {
                   <label htmlFor="search" className="sr-only">
                     Search
                   </label>
-               
                 </div>
               </div>
 

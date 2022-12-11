@@ -1,8 +1,8 @@
-import { Combobox, Menu } from "@headlessui/react";
+import { Menu } from "@headlessui/react";
 import axios from "axios";
 import router from "next/router";
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar/Navbar";
+import Navbar from "../components/NavbarContainer";
 import { useStores } from "../stores";
 import { CryptoCurrencyApiResponse } from "../types";
 
@@ -77,7 +77,6 @@ export default function Home() {
               />
             </Menu.Button>
           </Menu>
-        
         </div>
       </div>
       <div>
