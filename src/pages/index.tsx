@@ -1,3 +1,4 @@
+import { Combobox, Menu } from "@headlessui/react";
 import axios from "axios";
 import router from "next/router";
 import { useEffect, useState } from "react";
@@ -34,24 +35,50 @@ export default function Home() {
     getData();
   }, []);
 
-  let options = [
-    { id: 1, name: "Aerospace" },
-    { id: 2, name: "Mechanical" },
-    { id: 3, name: "Civil" },
-    { id: 4, name: "Biomedical" },
-    { id: 5, name: "Nuclear" },
-    { id: 6, name: "Industrial" },
-    { id: 7, name: "Chemical" },
-    { id: 8, name: "Agricultural" },
-    { id: 9, name: "Electrical" },
+  const people = [
+    "Durward Reynolds",
+    "Kenton Towne",
+    "Therese Wunsch",
+    "Benedict Kessler",
+    "Katelyn Rohan",
   ];
+
+  const [selectedPerson, setSelectedPerson] = useState(people[0]);
+  const [query, setQuery] = useState("");
+
+  const filteredPeople =
+    query === ""
+      ? people
+      : people.filter((person) => {
+          return person.toLowerCase().includes(query.toLowerCase());
+        });
 
   return (
     <form>
       <Navbar />
 
       <div className="relativ mr-10">
-    
+        <div className="mt-3 flex justify-end">
+          {/* <input
+            id="search"
+            name="search"
+            className="flex justify-end rounded-md border border-transparent bg-gray-700 py-2 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 focus:outline-none focus:ring-white sm:text-sm"
+            placeholder="Search"
+            type="search"
+          /> */}
+          <Menu>
+            <Menu.Button>
+              <input
+                id="search"
+                name="search"
+                className="flex justify-end rounded-md border border-transparent bg-gray-700 py-2 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 focus:outline-none focus:ring-white sm:text-sm"
+                placeholder="Search"
+                type="search"
+              />
+            </Menu.Button>
+          </Menu>
+        
+        </div>
       </div>
       <div>
         <h1 className="mt-5 text-center text-2xl font-bold text-white">
@@ -64,7 +91,7 @@ export default function Home() {
       <div className="container relative mx-auto mt-10 overflow-x-auto">
         <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
           <thead className="text-bold text-xs uppercase text-white ">
-            <tr className="">
+            <tr>
               <th scope="col" className="py-3 px-6">
                 Ranks
               </th>
@@ -105,7 +132,7 @@ export default function Home() {
             <>
               <tbody>
                 <tr
-                  className="border-b hover:bg-gray-700 dark:border-gray-700"
+                  className="border-b hover:bg-gray-700 dark:border-gray-700 "
                   onClick={(e: any) => {
                     e.preventDefault();
                     return router.push(`/details/${coin.id}`);
