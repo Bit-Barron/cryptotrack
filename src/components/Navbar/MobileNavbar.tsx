@@ -1,9 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import React from "react";
 
-interface mobileNavbarProps {}
-
-const MobileNavbar: React.FC<mobileNavbarProps> = ({}) => {
+const MobileNavbar: React.FC = ({}) => {
   return (
     <Disclosure.Panel className="lg:hidden">
       <div className="space-y-1 px-2 pt-2 pb-3">
@@ -11,7 +9,7 @@ const MobileNavbar: React.FC<mobileNavbarProps> = ({}) => {
         <Disclosure.Button
           as="a"
           href="/"
-          className=" block rounded-md px-3 py-2 text-base font-medium "
+          className="block rounded-md px-3 py-2  text-base font-medium"
         >
           Dashboard
         </Disclosure.Button>

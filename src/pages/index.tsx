@@ -10,6 +10,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const cryptoStore = useStores().cryptoStore;
+  const [query, setQuery] = useState("");
 
   const next = async () => {
     const response = await axios.get<CryptoCurrencyApiResponse>(
@@ -26,6 +27,13 @@ export default function Home() {
       response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
   };
 
+  const coingecko = async () => {
+    const response = await axios.get(
+      `https://api.coingecko.com/api/v3/search?query=${query}`
+    );
+    console.log(response.data.coins);
+  };
+
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
@@ -34,24 +42,6 @@ export default function Home() {
     };
     getData();
   }, []);
-
-  const people = [
-    "Durward Reynolds",
-    "Kenton Towne",
-    "Therese Wunsch",
-    "Benedict Kessler",
-    "Katelyn Rohan",
-  ];
-
-  const [selectedPerson, setSelectedPerson] = useState(people[0]);
-  const [query, setQuery] = useState("");
-
-  const filteredPeople =
-    query === ""
-      ? people
-      : people.filter((person) => {
-          return person.toLowerCase().includes(query.toLowerCase());
-        });
 
   return (
     <form>
@@ -69,6 +59,7 @@ export default function Home() {
           <Menu>
             <Menu.Button>
               <input
+              onChange={() => setQuery(query)}
                 id="search"
                 name="search"
                 className="flex justify-end rounded-md border border-transparent bg-gray-700 py-2 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 focus:outline-none focus:ring-white sm:text-sm"

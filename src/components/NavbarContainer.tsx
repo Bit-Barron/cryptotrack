@@ -1,17 +1,14 @@
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { useRouter } from "next/router";
 import DesktopNavbar from "./Navbar/DesktopNavbar";
 import MobileNavbar from "./Navbar/MobileNavbar";
 
 export default function Example() {
-  const router = useRouter();
-
   return (
     <Disclosure as="nav" className="bg-[#181a1b]">
       {({ open }) => (
         <>
-          <div className="">
+          <div className="p-1.5">
             <div className="relative flex h-16 items-center justify-between">
               <DesktopNavbar />
               <div className="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
