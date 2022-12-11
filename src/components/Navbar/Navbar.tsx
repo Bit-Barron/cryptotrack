@@ -19,24 +19,7 @@ export default function Example() {
                   <label htmlFor="search" className="sr-only">
                     Search
                   </label>
-                  <div>
-                    <div className="mt-3 flex justify-center">
-                      <button
-                        type="button"
-                        className="mr-2 mb-2 rounded-lg border border-gray-200 py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
-                      onClick={() => router.push("/login")}
-                      >
-                        Login
-                      </button>
-                      <button
-                        type="button"
-                        className="mr-2 mb-2 rounded-lg border border-gray-200  py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
-                      onClick={() => router.push("/register")}
-                      >
-                        Register
-                      </button>
-                    </div>
-                  </div>
+               
                 </div>
               </div>
 

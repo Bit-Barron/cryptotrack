@@ -139,12 +139,6 @@ export default function Home() {
                   <td className="py-4 px-6">
                     {coin.quotes
                       .find((q) => q.name === "USD")
-                      ?.percentChange1h.toFixed(2)}
-                    %
-                  </td>
-                  <td className="py-4 px-6">
-                    {coin.quotes
-                      .find((q) => q.name === "USD")
                       ?.percentChange24h.toFixed(2)}
                     %
                   </td>
@@ -155,12 +149,12 @@ export default function Home() {
                     %
                   </td>
                   <td className="py-4 px-6">
-                    $
                     {coin.quotes
                       .find((q) => q.name === "USD")
                       ?.marketCap.toFixed(2)}
-                    $
+                    %
                   </td>
+                 
                   <td className="py-4 px-6">
                     $
                     {coin.quotes
