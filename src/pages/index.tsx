@@ -52,14 +52,24 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <h1 className="mt-5 text-center text-2xl font-bold">
+        <h1 className="mt-5 text-center text-2xl font-bold text-white">
           Today's Cryptocurrency Prices by Market track
         </h1>
+        <div className="mt-2 text-center text-white">
+          the crypto market shoots higher and higher into the ceiling
+        </div>
       </div>
       <div className="container relative mx-auto mt-10 overflow-x-auto">
-        <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400 ">
+        <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400 bg-[#17171a]">
           <thead className="text-bold text-xs uppercase text-white  ">
             <tr>
+              
+              <th scope="col" className="py-3 px-6">
+                Ranks
+              </th>
+              <th scope="col" className="py-3 px-6">
+                Icons
+              </th>
               <th scope="col" className="py-3 px-6">
                 Name
               </th>
@@ -107,6 +117,16 @@ export default function Home() {
                       return router.push(`/details/${coin.id}`);
                     }}
                   >
+                  
+                    <th scope="" className="px-6 font-medium">
+                      {coin.cmcRank}
+                    </th>
+                    <th className="px-5">
+                      <img
+                      className="h-10 rounded-full"
+                        src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`}
+                      />
+                    </th>
                     <th
                       scope=""
                       className="py-4 px-6 font-medium  
@@ -167,7 +187,6 @@ export default function Home() {
       )}
 
       <div className="mt-5 flex justify-center">
-    
         <button
           type="button"
           className="mr-2 mb-2 rounded-lg border border-gray-200  py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"

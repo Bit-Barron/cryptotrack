@@ -47,7 +47,9 @@ body {
 body{
   font-family: 'Nunito', sans-serif;
   color:#676767;
-  background-color: #1e1e1e;
+  background-color: #17171a;
+  background-image: linear-gradient(#17171a, #21232e );
+
 }
 
 .bg-card{
