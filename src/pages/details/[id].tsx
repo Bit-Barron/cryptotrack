@@ -26,7 +26,7 @@ const Details = () => {
     <>
       <Navbar />
       <div className="flex">
-        <div className="ml-10 mr-10 mt-20 w-full rounded-lg bg-[#151518] p-5">
+        <div className="ml-10 mr-10 mt-20 w-full rounded-lg ] p-5">
           <div className="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
             <div className="mb-2 text-2xl font-bold text-white">Details</div>
           </div>

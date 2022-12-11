@@ -8,7 +8,6 @@ import { CryptoCurrencyApiResponse } from "../types";
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
   const cryptoStore = useStores().cryptoStore;
 
   const next = async () => {
@@ -47,7 +46,6 @@ export default function Home() {
             className="flex justify-end rounded-md border border-transparent bg-gray-700 py-2 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 focus:outline-none focus:ring-white sm:text-sm"
             placeholder="Search"
             type="search"
-            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
       </div>
@@ -60,10 +58,9 @@ export default function Home() {
         </div>
       </div>
       <div className="container relative mx-auto mt-10 overflow-x-auto">
-        <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400 bg-[#17171a]">
-          <thead className="text-bold text-xs uppercase text-white  ">
+        <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400 ">
+          <thead className="text-bold text-xs uppercase text-white ">
             <tr>
-              
               <th scope="col" className="py-3 px-6">
                 Ranks
               </th>
@@ -97,87 +94,83 @@ export default function Home() {
               </th>
             </tr>
           </thead>
-          {cryptoStore.cryptoCurrencies
-            .filter((value) => {
-              if (search === "") {
-                return value;
-              } else if (
-                value.name.toLowerCase().includes(search.toLowerCase())
-              ) {
-                return value;
-              }
-            })
-            .map((coin) => (
-              <>
-                <tbody>
-                  <tr
-                    className="border-b hover:bg-gray-700 dark:border-gray-700"
-                    onClick={(e: any) => {
-                      e.preventDefault();
-                      return router.push(`/details/${coin.id}`);
-                    }}
-                  >
-                  
-                    <th scope="" className="px-6 font-medium">
-                      {coin.cmcRank}
-                    </th>
-                    <th className="px-5">
-                      <img
-                      className="h-10 rounded-full"
-                        src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`}
-                      />
-                    </th>
-                    <th
-                      scope=""
-                      className="py-4 px-6 font-medium  
+          {cryptoStore.cryptoCurrencies.map((coin) => (
+            <>
+              <tbody>
+                <tr
+                  className="border-b hover:bg-gray-700 dark:border-gray-700 "
+                  onClick={(e: any) => {
+                    e.preventDefault();
+                    return router.push(`/details/${coin.id}`);
+                  }}
+                >
+                  <th scope="" className="px-6 font-medium">
+                    {coin.cmcRank}
+                  </th>
+                  <th className="px-5">
+                    <img
+                      className="h-8 rounded-full"
+                      src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`}
+                    />
+                  </th>
+                  <th
+                    scope=""
+                    className="py-4 px-6 font-medium  
                      text-white"
-                    >
-                      {coin.name}
-                    </th>
-                    <th scope="" className="py-4 px-6 font-medium text-white">
-                      {coin.symbol}
-                    </th>
-                    <td className="py-4 px-6 ">
-                      {
-                        coin.quotes.find((q) => q.name === "USD")
-                          ?.percentChange1h
-                      }
-                    </td>
-                    <td className="py-4 px-6">
-                      {coin.quotes
-                        .find((q) => q.name === "USD")
-                        ?.percentChange1h.toFixed(2)}
-                      %
-                    </td>
-                    <td className="py-4 px-6">
-                      {coin.quotes
-                        .find((q) => q.name === "USD")
-                        ?.percentChange24h.toFixed(2)}
-                      %
-                    </td>
-                    <td className="py-4 px-6">
-                      {coin.quotes
-                        .find((q) => q.name === "USD")
-                        ?.percentChange7d.toFixed(2)}
-                      %
-                    </td>
-                    <td className="py-4 px-6">
-                      $
-                      {coin.quotes
-                        .find((q) => q.name === "USD")
-                        ?.marketCap.toFixed(2)}
-                      $
-                    </td>
-                    <td className="py-4 px-6">
-                      $
-                      {coin.quotes
-                        .find((q) => q.name === "USD")
-                        ?.volume24h.toFixed(2)}
-                    </td>
-                  </tr>
-                </tbody>
-              </>
-            ))}
+                  >
+                    {coin.name}
+                  </th>
+
+                  <th scope="" className="py-4 px-6 font-medium text-white">
+                    {coin.symbol}
+                  </th>
+                  <th
+                    scope=""
+                    className="py-4 px-6 font-medium  
+                     text-white"
+                  >
+                    ${coin.quotes
+                      .find((q) => q.name === "USD")
+                      ?.price.toFixed(2)}
+                  </th>
+                  <td className="py-4 px-6 ">
+                    {coin.quotes.find((q) => q.name === "USD")?.percentChange1h}
+                  </td>
+                  <td className="py-4 px-6">
+                    {coin.quotes
+                      .find((q) => q.name === "USD")
+                      ?.percentChange1h.toFixed(2)}
+                    %
+                  </td>
+                  <td className="py-4 px-6">
+                    {coin.quotes
+                      .find((q) => q.name === "USD")
+                      ?.percentChange24h.toFixed(2)}
+                    %
+                  </td>
+                  <td className="py-4 px-6">
+                    {coin.quotes
+                      .find((q) => q.name === "USD")
+                      ?.percentChange7d.toFixed(2)}
+                    %
+                  </td>
+                  <td className="py-4 px-6">
+                    $
+                    {coin.quotes
+                      .find((q) => q.name === "USD")
+                      ?.marketCap.toFixed(2)}
+                    $
+                  </td>
+                  <td className="py-4 px-6">
+                    $
+                    {coin.quotes
+                      .find((q) => q.name === "USD")
+                      ?.volume24h.toFixed(2)}
+                  </td>
+                </tr>
+              </tbody>
+            </>
+          ))}
         </table>
       </div>
       {loading && (

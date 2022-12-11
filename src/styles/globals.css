@@ -46,62 +46,6 @@ body {
 
 body{
   font-family: 'Nunito', sans-serif;
-  color:#676767;
   background-color: #17171a;
-  background-image: linear-gradient(#17171a, #21232e );
-
-}
-
-.bg-card{
-  background-color:#171717;
-}
-.bg-sidebar-card-top{
-  background-color: #353535;
-}
-.sidebar-separator-top{
-  border-bottom: 1px solid #2e2e2e;
-}
-.sidebar-separator-bottom{
-  border-top: 1px solid #2e2e2e;
-}
-.text-premium-yellow{
-  color: #f7b91c;
-}
-.icon-background{
-  background: #2d2d2d;
-}
-
-.tooltip-head{
-background: #1d1d1d;
-}
-.tooltip-body{
-  background:#252525 ;
-}
-
-.search-icon{
-  top: 50%;
-  transform: translate(0, -50%);
-}
-
-.card-stack-border{
-  border-bottom: 2px solid #696969;
-}
-.bg-details{
-  background-color: #1e1e1e;
-}
-
-.add-component-head{
-  background-color: #181818;
-  background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
-}
-
-.sidebar-item-selected{
-  color: white;
-  border-right: 2px solid white;
-}
-.sidebar-item{
-  border-right: 2px solid transparent;
-}
-.sidebar-item:hover {
- color:#a1a0a0;
+  background-image: linear-gradient(#21232e , #17171a);
 }
