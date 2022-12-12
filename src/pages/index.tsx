@@ -1,16 +1,19 @@
-import { Menu } from "@headlessui/react";
+import { Menu, Transition } from "@headlessui/react";
 import axios from "axios";
 import router from "next/router";
 import { useEffect, useState } from "react";
 import Navbar from "../components/NavbarContainer";
 import { useStores } from "../stores";
 import { CryptoCurrencyApiResponse } from "../types";
+import { Root } from "../types/goingecko";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const cryptoStore = useStores().cryptoStore;
   const [query, setQuery] = useState("");
+  const [result, setResult] = useState<any[]>([]);
+  const [show, setIsShown] = useState(false);
 
   const next = async () => {
     const response = await axios.get<CryptoCurrencyApiResponse>(
@@ -27,12 +30,16 @@ export default function Home() {
       response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
   };
 
-  const coingecko = async () => {
-    const response = await axios.get(
-      `https://api.coingecko.com/api/v3/search?query=${query}`
-    );
-    console.log(response.data.coins);
+  const getData = async () => {
+    const response = await axios.post<any>(`/api/search`, {
+      params: {
+        query,
+      },
+    });
+
+    setResult(response.data);
   };
+
 
   useEffect(() => {
     const getData = async () => {
@@ -42,12 +49,10 @@ export default function Home() {
     };
     getData();
   }, []);
-
   return (
     <form>
       <Navbar />
-
-      <div className="relativ mr-10">
+      <>
         <div className="mt-3 flex justify-end">
           {/* <input
             id="search"
@@ -57,9 +62,9 @@ export default function Home() {
             type="search"
           /> */}
           <Menu>
-            <Menu.Button>
+            <Menu.Button className="mr-5">
               <input
-              onChange={() => setQuery(query)}
+                onChange={(e) => setQuery(e.target.value)}
                 id="search"
                 name="search"
                 className="flex justify-end rounded-md border border-transparent bg-gray-700 py-2 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 focus:outline-none focus:ring-white sm:text-sm"
@@ -68,8 +73,30 @@ export default function Home() {
               />
             </Menu.Button>
           </Menu>
+
+          <button
+            type="button"
+            onClick={() => {
+              getData();
+              setIsShown(!show);
+            }}
+            className="mr-3 rounded bg-blue-500 py-1 px-2 font-semibold text-white hover:bg-blue-700"
+          >
+            search
+          </button>
         </div>
-      </div>
+        <div className="flex justify-end">
+          <Transition
+            show={show}
+            className="mt-4 mr-20  w-96 rounded-lg bg-[#171924] p-4 py-2 font-medium text-gray-400"
+          >
+            {result.map((item) => (
+              <div>{item.name}</div>
+            ))}
+          </Transition>
+        </div>
+      </>
+
       <div>
         <h1 className="mt-5 text-center text-2xl font-bold text-white">
           Today's Cryptocurrency Prices by <span className="">CryptoTrack</span>
