@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/NavbarContainer";
 import { useStores } from "../stores";
 import { CryptoCurrencyApiResponse } from "../types";
-import { Root } from "../types/goingecko";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -50,9 +49,9 @@ export default function Home() {
     getData();
   }, []);
   return (
-    <form>
+    <form className="">
       <Navbar />
-      <>
+      <div className="p-3">
         <div className="mt-3 flex justify-end">
           {/* <input
             id="search"
@@ -95,13 +94,13 @@ export default function Home() {
             ))}
           </Transition>
         </div>
-      </>
+      </div>
 
       <div>
         <h1 className="mt-5 text-center text-2xl font-bold text-white">
           Today's Cryptocurrency Prices by <span className="">CryptoTrack</span>
         </h1>
-        <div className="mt-2 text-center text-white">
+        <div className="mt-2 text-center text-white p-2">
           the crypto market shoots higher and higher into the ceiling
         </div>
       </div>
@@ -213,7 +212,7 @@ export default function Home() {
                       .find((q) => q.name === "USD")
                       ?.volume24h.toFixed(2)}
                   </td>
-                  <td className="py-4 px-6">
+                  <td className="">
                     <img
                       src={`https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/${coin.id}.svg`}
                     />
