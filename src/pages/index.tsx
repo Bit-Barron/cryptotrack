@@ -35,10 +35,14 @@ export default function Home() {
         query,
       },
     });
+    const responseFilter = response.data.find(
+      (q: any) => q.name === "USD"
+    )?.price
+
+    console.log(response)
 
     setResult(response.data);
   };
-
 
   useEffect(() => {
     const getData = async () => {
@@ -49,7 +53,7 @@ export default function Home() {
     getData();
   }, []);
   return (
-    <form className="">
+    <form>
       <Navbar />
       <div className="p-3">
         <div className="mt-3 flex justify-end">
@@ -100,7 +104,7 @@ export default function Home() {
         <h1 className="mt-5 text-center text-2xl font-bold text-white">
           Today's Cryptocurrency Prices by <span className="">CryptoTrack</span>
         </h1>
-        <div className="mt-2 text-center text-white p-2">
+        <div className="mt-2 p-2 text-center text-white">
           the crypto market shoots higher and higher into the ceiling
         </div>
       </div>
