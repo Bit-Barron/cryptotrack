@@ -29,21 +29,6 @@ export default function Home() {
       response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
   };
 
-  const getData = async () => {
-    const response = await axios.post<any>(`/api/search`, {
-      params: {
-        query,
-      },
-    });
-    const responseFilter = response.data.find(
-      (q: any) => q.name === "USD"
-    )?.price
-
-    console.log(response)
-
-    setResult(response.data);
-  };
-
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
@@ -52,6 +37,18 @@ export default function Home() {
     };
     getData();
   }, []);
+
+  const Submit = async () => {
+    const response = await axios.post<any>(`/api/search`, {
+      params: {
+        query,
+      },
+    });
+
+    console.log(response);
+  };
+  console.log(query);
+
   return (
     <form>
       <Navbar />
@@ -80,7 +77,7 @@ export default function Home() {
           <button
             type="button"
             onClick={() => {
-              getData();
+              Submit();
               setIsShown(!show);
             }}
             className="mr-3 rounded bg-blue-500 py-1 px-2 font-semibold text-white hover:bg-blue-700"
@@ -92,11 +89,7 @@ export default function Home() {
           <Transition
             show={show}
             className="mt-4 mr-20  w-96 rounded-lg bg-[#171924] p-4 py-2 font-medium text-gray-400"
-          >
-            {result.map((item) => (
-              <div>{item.name}</div>
-            ))}
-          </Transition>
+          ></Transition>
         </div>
       </div>
 
