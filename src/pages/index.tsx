@@ -12,6 +12,7 @@ export default function Home() {
   const cryptoStore = useStores().cryptoStore;
   const [query, setQuery] = useState<string>("");
   const [show, setIsShown] = useState(false);
+  const [result, setResult] = useState<any>([]);
 
   const next = async () => {
     const response = await axios.get<CryptoCurrencyApiResponse>(
@@ -28,15 +29,15 @@ export default function Home() {
       response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
   };
 
-  const submit = async () => {
-    const response = await axios.post<any>(`/api/search`, {
+  const getData = async () => {
+    const response = await axios.get<any>(`/api/search`, {
       params: {
         query,
       },
     });
-    console.log(response);
+
+    setResult(response.data);
   };
-  console.log(query);
 
   useEffect(() => {
     const getData = async () => {
@@ -68,7 +69,7 @@ export default function Home() {
           <button
             type="button"
             onClick={() => {
-              submit();
+              getData();
               setIsShown(!show);
             }}
             className="mr-3 rounded bg-blue-500 py-1 px-2 font-semibold text-white hover:bg-blue-700"
