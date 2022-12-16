@@ -72,7 +72,6 @@ export default function Home() {
               />
             </Menu.Button>
           </Menu>
-
           <button
             type="button"
             onClick={() => {
