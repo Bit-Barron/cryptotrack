@@ -38,8 +38,12 @@ export default function Home() {
     const res = response.data.filter((item: any) => {
       console.log(item)
     })
-    console.log(res)
     setResult(response.data);
+
+    const filter = result.data.filter((item: any) => {
+      console.log(item);
+    })
+    console.log(filter)
   };
 
   useEffect(() => {
@@ -75,7 +79,7 @@ export default function Home() {
               getData();
               setIsShown(!show);
             }}
-            className="mr-3 rounded bg-blue-500 py-1 px-2 font-semibold text-white hover:bg-blue-700"
+            className="mr-3 rounded bg-gray-500 py-1 px-2 font-semibold text-white hover:bg-gray-700"
           >
             search
           </button>
