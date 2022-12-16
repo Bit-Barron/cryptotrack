@@ -29,7 +29,7 @@ export default function Home() {
       response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
   };
 
-  useEffect(() => {
+    useEffect(() => {
     const getData = async () => {
       setLoading(true);
       await next();
@@ -44,8 +44,8 @@ export default function Home() {
         query,
       }
     })
-    console.log(query);
-    console.log(response);
+    console.log(response)
+
   };
   console.log(query);
 
