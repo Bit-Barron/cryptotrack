@@ -10,9 +10,9 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const cryptoStore = useStores().cryptoStore;
-  const [query, setQuery] = useState("");
-  const [result, setResult] = useState<any[]>([]);
+  const [query, setQuery] = useState<string>("");
   const [show, setIsShown] = useState(false);
+  const [result, setResult] = useState<any>([]);
 
   const next = async () => {
     const response = await axios.get<CryptoCurrencyApiResponse>(
@@ -39,12 +39,12 @@ export default function Home() {
   }, []);
 
   const Submit = async () => {
-    const response = await axios.post<any>(`/api/search`, {
+    const response = await axios.post<CryptoCurrencyApiResponse>("/api/search", {
       params: {
         query,
-      },
-    });
-
+      }
+    })
+    console.log(query);
     console.log(response);
   };
   console.log(query);
