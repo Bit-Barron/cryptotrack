@@ -29,7 +29,18 @@ export default function Home() {
       response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
   };
 
-    useEffect(() => {
+  const getData = async () => {
+    const response = await axios.post<any>(`/api/search`, {
+      params: {
+        query,
+      },
+    });
+    console.log(response);
+
+    setResult(response.data);
+  };
+
+  useEffect(() => {
     const getData = async () => {
       setLoading(true);
       await next();
@@ -37,17 +48,6 @@ export default function Home() {
     };
     getData();
   }, []);
-
-  const Submit = async () => {
-    const response = await axios.post<CryptoCurrencyApiResponse>("/api/search", {
-      params: {
-        query,
-      }
-    })
-    console.log(response)
-
-  };
-  console.log(query);
 
   return (
     <form>
@@ -77,7 +77,7 @@ export default function Home() {
           <button
             type="button"
             onClick={() => {
-              Submit();
+              getData();
               setIsShown(!show);
             }}
             className="mr-3 rounded bg-blue-500 py-1 px-2 font-semibold text-white hover:bg-blue-700"
