@@ -12,7 +12,6 @@ export default function Home() {
   const cryptoStore = useStores().cryptoStore;
   const [query, setQuery] = useState<string>("");
   const [show, setIsShown] = useState(false);
-  const [result, setResult] = useState<any>([]);
 
   const next = async () => {
     const response = await axios.get<CryptoCurrencyApiResponse>(
@@ -29,16 +28,15 @@ export default function Home() {
       response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
   };
 
-  const getData = async () => {
+  const submit = async () => {
     const response = await axios.post<any>(`/api/search`, {
       params: {
         query,
       },
     });
     console.log(response);
-
-    setResult(response.data);
   };
+  console.log(query);
 
   useEffect(() => {
     const getData = async () => {
@@ -54,13 +52,6 @@ export default function Home() {
       <Navbar />
       <div className="p-3">
         <div className="mt-3 flex justify-end">
-          {/* <input
-            id="search"
-            name="search"
-            className="flex justify-end rounded-md border border-transparent bg-gray-700 py-2 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 focus:outline-none focus:ring-white sm:text-sm"
-            placeholder="Search"
-            type="search"
-          /> */}
           <Menu>
             <Menu.Button className="mr-5">
               <input
@@ -77,7 +68,7 @@ export default function Home() {
           <button
             type="button"
             onClick={() => {
-              getData();
+              submit();
               setIsShown(!show);
             }}
             className="mr-3 rounded bg-blue-500 py-1 px-2 font-semibold text-white hover:bg-blue-700"
