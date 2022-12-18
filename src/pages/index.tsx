@@ -10,7 +10,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const cryptoStore = useStores().cryptoStore;
-  const [query, setQuery] = useState<any>('Bitcoin');
+  const [query, setQuery] = useState<any>("Bitcoin");
   const [show, setIsShown] = useState(false);
   const [results, setResults] = useState<any[]>([]);
 
@@ -30,13 +30,15 @@ export default function Home() {
   };
 
   const search = async (e: any) => {
-    e.preventDefault();
+    e?.preventDefault();
 
-    const { data }: any = await axios.get(`/api/hello`, {
+    const { data }: any = await axios.get<any>(`/api/search`, {
       params: {
         query,
       },
     });
+
+    console.log("asd");
 
     console.log(data);
 
@@ -61,6 +63,7 @@ export default function Home() {
             <Menu.Button className="mr-5">
               <input
                 onChange={(e) => setQuery(e.target.value)}
+                value={query}
                 id="search"
                 name="search"
                 className="flex justify-end rounded-md border border-transparent bg-gray-700 py-2 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 focus:outline-none focus:ring-white sm:text-sm"
@@ -72,7 +75,7 @@ export default function Home() {
           <button
             type="button"
             onClick={() => {
-              search
+              search;
               setIsShown(!show);
             }}
             className="mr-3 rounded bg-gray-500 py-1 px-2 font-semibold text-white hover:bg-gray-700"
@@ -84,7 +87,15 @@ export default function Home() {
           <Transition
             show={show}
             className="mt-4 mr-20  w-96 rounded-lg bg-[#171924] p-4 py-2 font-medium text-gray-400"
-          ></Transition>
+          >
+            <div>
+              {results?.map((item, idx) => (
+                <div key={idx}>
+                  <div>{item.name}</div>
+                </div>
+              ))}
+            </div>
+          </Transition>
         </div>
       </div>
 

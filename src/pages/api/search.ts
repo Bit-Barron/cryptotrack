@@ -23,7 +23,6 @@ export default async function handler(
     let { data, status } = response.data;
 
     let result = data.filter((item: any) => item.name.indexOf(query) > -1);
-    console.log(result)
 
     return res.status(200).json(result);
   }
