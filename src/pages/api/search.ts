@@ -19,10 +19,6 @@ export default async function handler(
         },
       }
     );
-
-    const slice = response.data.data.slice(0, 10);
-    console.log(slice);
-
     let { data, status } = response.data;
 
     let result = data.filter((item: any) => item.name.indexOf(query) > -1);
