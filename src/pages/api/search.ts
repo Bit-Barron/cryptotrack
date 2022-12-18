@@ -10,7 +10,7 @@ export default async function handler(
     const { query } = req.query;
 
     const response = await axios.get(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest`,
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=5000`,
       {
         headers: {
           'X-CMC_PRO_API_KEY': 'fe979189-cae7-490e-8cbd-66158a83141d',
@@ -19,6 +19,9 @@ export default async function handler(
         },
       }
     );
+
+    const slice = response.data.data.slice(0, 10);
+    console.log(slice);
 
     let { data, status } = response.data;
 

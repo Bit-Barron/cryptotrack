@@ -29,7 +29,7 @@ const Details = () => {
       <div className="container mt-5 p-4 md:container md:mx-auto">
         <div className="mb-4 flex">
           <span className="flex font-semibold text-[#87b55d]">
-            Cryptocurrencies <AiOutlineArrowRight className="mt-1 ml-2" />
+            Cryptocurrencies <AiOutlineArrowRight className="mt-1 ml-2" /> 
           </span>
           <span className="ml-4 font-semibold text-gray-600">
             {crypto?.name} Price

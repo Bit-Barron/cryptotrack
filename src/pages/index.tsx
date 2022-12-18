@@ -30,6 +30,7 @@ export default function Home() {
   };
 
   const search = async (e: any) => {
+    setLoading(true);
     e?.preventDefault();
 
     const { data }: any = await axios.get<any>(`/api/search`, {
@@ -43,6 +44,7 @@ export default function Home() {
     console.log(data);
 
     setResults(data);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -75,7 +77,7 @@ export default function Home() {
           <button
             type="button"
             onClick={() => {
-              search;
+              search(undefined);
               setIsShown(!show);
             }}
             className="mr-3 rounded bg-gray-500 py-1 px-2 font-semibold text-white hover:bg-gray-700"
@@ -83,15 +85,33 @@ export default function Home() {
             search
           </button>
         </div>
-        <div className="flex justify-end">
+        <div className="z-50  flex justify-end">
           <Transition
             show={show}
-            className="mt-4 mr-20  w-96 rounded-lg bg-[#171924] p-4 py-2 font-medium text-gray-400"
+            className="absolute mt-4 h-[600px] w-96 overflow-y-auto rounded-lg bg-[#181a1b] p-4 py-2 font-medium text-gray-400 md:mr-10"
           >
+            {loading && (
+              <div className="mt-52 text-center text-xl font-bold">
+                Loading...
+              </div>
+            )}
             <div>
+              <div className="mt-5 text-center">Cryptoassets</div>
+
               {results?.map((item, idx) => (
-                <div key={idx}>
+                <div
+                  key={idx}
+                  className="mt-10 flex gap-3 p-2 hover:rounded-lg hover:bg-gray-700"
+                  onClick={() => router.push(`/details/${item.id}`)}
+                >
+                  <img
+                    className="h-8 rounded-full"
+                    src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${item.id}.png`}
+                  />
                   <div>{item.name}</div>
+
+                  <div>{item.symbol}</div>
+                  <div># {item.cmc_rank}</div>
                 </div>
               ))}
             </div>
@@ -101,7 +121,7 @@ export default function Home() {
 
       <div>
         <h1 className="mt-5 text-center text-2xl font-bold text-white">
-          Today's Cryptocurrency Prices by <span className="">CryptoTrack</span>
+          Today's Cryptocurrency Prices by <span>CryptoTrack</span>
         </h1>
         <div className="mt-2 p-2 text-center text-white">
           the crypto market shoots higher and higher into the ceiling
@@ -179,7 +199,7 @@ export default function Home() {
                   </th>
                   <th
                     scope=""
-                    className="py-4 px-6 font-medium  
+                    className="flex py-4 px-6  font-medium
                      text-white"
                   >
                     $
