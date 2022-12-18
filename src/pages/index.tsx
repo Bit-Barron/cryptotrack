@@ -35,15 +35,8 @@ export default function Home() {
         query,
       },
     });
-    const res = response.data.filter((item: any) => {
-      console.log(item)
-    })
-    setResult(response.data);
 
-    const filter = result.data.filter((item: any) => {
-      console.log(item);
-    })
-    console.log(filter)
+    setResult(response.data);
   };
 
   useEffect(() => {
