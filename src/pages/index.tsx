@@ -85,7 +85,7 @@ export default function Home() {
             search
           </button>
         </div>
-        <div className="z-50  flex justify-end">
+        <div className="flex justify-end">
           <Transition
             show={show}
             className="absolute mt-4 h-[600px] w-96 overflow-y-auto rounded-lg bg-[#181a1b] p-4 py-2 font-medium text-gray-400 md:mr-10"
@@ -255,7 +255,7 @@ export default function Home() {
       <div className="mt-5 flex justify-center">
         <button
           type="button"
-          className="mr-2 mb-2 rounded-lg border border-gray-200  py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
+          className="mr-2 mb-2 rounded-lg border border-gray-200  py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400  focus:outline-none focus:ring-4 focus:ring-gray-200"
           onClick={() => next()}
         >
           Next
