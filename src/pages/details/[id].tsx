@@ -86,12 +86,7 @@ const Details = () => {
             </div>
             <div className="ml-1 rounded-lg bg-[#25282A] p-2">Coin</div>
           </div>
-          <div className="mr-4 mt-2 text-lg md:ml-[620px]">
-            24h Change:
-            <span className="ml-4">
-              {crypto?.quote.USD.percent_change_24h.toFixed(2)}%
-            </span>
-          </div>
+        
         </div>
         <span className="flex font-bold">
           <a href={`https://www.${crypto?.name}.org/`} className="">

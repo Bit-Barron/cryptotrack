@@ -10,7 +10,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const cryptoStore = useStores().cryptoStore;
-  const [query, setQuery] = useState<any>("Bitcoin");
+  const [query, setQuery] = useState<any>("");
   const [show, setIsShown] = useState(false);
   const [results, setResults] = useState<any[]>([]);
 
@@ -31,7 +31,7 @@ export default function Home() {
 
   const search = async (e: any) => {
     setLoading(true);
-    e?.preventDefault();
+    e?.preventDefault()
 
     const { data }: any = await axios.get<any>(`/api/search`, {
       params: {
@@ -46,7 +46,6 @@ export default function Home() {
     setResults(data);
     setLoading(false);
   };
-
 
   useEffect(() => {
     const getData = async () => {
@@ -66,7 +65,6 @@ export default function Home() {
             <Menu.Button className="mr-5">
               <input
                 onChange={(e) => setQuery(e.target.value)}
-                value={query}
                 id="search"
                 name="search"
                 className="flex justify-end rounded-md border border-transparent bg-gray-700 py-2 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 focus:outline-none focus:ring-white sm:text-sm"
