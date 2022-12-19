@@ -72,7 +72,14 @@ const Details = () => {
 
             <div className="flex">
               ${crypto?.quote.USD.price.toFixed(2)}
-              <button className="ml-4 rounded bg-blue-500  px-4 text-lg font-bold text-white hover:bg-blue-700">
+              <button
+                className={
+                  crypto?.quotes?.find((q: any) => q.name === "USD")!
+                    .percentChange1h < 0
+                    ? "ml-4 rounded  px-4 text-lg font-bold bg-red-500 "
+                    : "ml-4 rounded px-4 text-lg font-bold bg-green-500"
+                }
+              >
                 {crypto?.quote.USD.percent_change_1h.toFixed(2)}
               </button>
             </div>
@@ -86,7 +93,6 @@ const Details = () => {
             </div>
             <div className="ml-1 rounded-lg bg-[#25282A] p-2">Coin</div>
           </div>
-        
         </div>
         <span className="flex font-bold">
           <a href={`https://www.${crypto?.name}.org/`} className="">

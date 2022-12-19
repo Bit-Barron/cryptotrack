@@ -193,27 +193,57 @@ export default function Home() {
                   </th>
                   <th
                     scope=""
-                    className={`flex py-4 px-6  font-medium text-white`}
+                    className={
+                      coin.quotes.find((q) => q.name === "USD")!.price > 0
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }
                   >
                     $
-                    {coin.quotes.find((q) => q.name === "USD")!.price > 0? "red": "green"}
+                    {coin.quotes
+                      .find((q) => q.name === "USD")!
+                      .price.toFixed(2)}
                   </th>
-                  <td className="py-4 px-6 ">
+                  <td
+                    className={
+                      coin.quotes.find((q) => q.name === "USD")!
+                        .percentChange1h > 0
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }
+                  >
                     {coin.quotes.find((q) => q.name === "USD")?.percentChange1h}
                   </td>
-                  <td className="py-4 px-6">
+                  <td
+                    className={
+                      coin.quotes.find((q) => q.name === "USD")!
+                        .percentChange24h > 0
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }
+                  >
                     {coin.quotes
                       .find((q) => q.name === "USD")
                       ?.percentChange24h.toFixed(2)}
                     %
                   </td>
-                  <td className="py-4 px-6">
+                  <td className={
+                      coin.quotes.find((q) => q.name === "USD")!
+                        .percentChange7d > 0
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }>
                     {coin.quotes
                       .find((q) => q.name === "USD")
                       ?.percentChange7d.toFixed(2)}
                     %
                   </td>
-                  <td className="py-4 px-6">
+                  <td className={
+                      coin.quotes.find((q) => q.name === "USD")!
+                        .marketCap > 0
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }>
                     {coin.quotes
                       .find((q) => q.name === "USD")
                       ?.marketCap.toFixed(2)}
