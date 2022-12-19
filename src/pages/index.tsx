@@ -196,9 +196,7 @@ export default function Home() {
                     className={`flex py-4 px-6  font-medium text-white`}
                   >
                     $
-                    {coin.quotes.find((q) => q.name === "USD")!.price > 0
-                      ? "red"
-                      : "green"}
+                    {coin.quotes.find((q) => q.name === "USD")!.price > 0? "red": "green"}
                   </th>
                   <td className="py-4 px-6 ">
                     {coin.quotes.find((q) => q.name === "USD")?.percentChange1h}
