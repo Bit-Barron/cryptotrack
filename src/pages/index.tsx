@@ -39,8 +39,6 @@ export default function Home() {
       },
     });
 
-    console.log("asd");
-
     console.log(data);
 
     setResults(data);
