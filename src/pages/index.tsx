@@ -228,7 +228,7 @@ export default function Home() {
                       .find((q) => q.name === "USD")
                       ?.volume24h.toFixed(2)}
                   </td>
-                  <td className="">
+                  <td>
                     <img
                       src={`https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/${coin.id}.svg`}
                     />
