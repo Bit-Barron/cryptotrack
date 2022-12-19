@@ -72,21 +72,25 @@ const Details = () => {
 
             <div className="flex">
               ${crypto?.quote.USD.price.toFixed(2)}
-              <button className="ml-4 rounded bg-blue-500 py-2 px-4 text-lg font-bold text-white hover:bg-blue-700">
+              <button className="ml-4 rounded bg-blue-500  px-4 text-lg font-bold text-white hover:bg-blue-700">
                 {crypto?.quote.USD.percent_change_1h.toFixed(2)}
               </button>
             </div>
           </div>
         </div>
 
-        <div className="mb-10 flex">
-          <div className="rounded-lg bg-[#25282A] p-2">
-            Rank #{crypto?.cmc_rank}
+        <div className="mb-10 md:flex">
+          <div className="flex">
+            <div className="rounded-lg bg-[#25282A] p-2">
+              Rank #{crypto?.cmc_rank}
+            </div>
+            <div className="ml-1 rounded-lg bg-[#25282A] p-2">Coin</div>
           </div>
-          <div className="ml-4 rounded-lg bg-[#25282A] p-2">Coin</div>
-          <div className="ml-4 mt-2 text-lg md:ml-[550px]">
+          <div className="mr-4 mt-2 text-lg md:ml-[620px]">
             24h Change:
-            <span className="ml-4">{crypto?.quote.USD.percent_change_24h.toFixed(2)}%</span>
+            <span className="ml-4">
+              {crypto?.quote.USD.percent_change_24h.toFixed(2)}%
+            </span>
           </div>
         </div>
         <span className="flex font-bold">
