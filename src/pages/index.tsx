@@ -227,23 +227,20 @@ export default function Home() {
                       ?.percentChange24h.toFixed(2)}
                     %
                   </td>
-                  <td className={
+                  <td
+                    className={
                       coin.quotes.find((q) => q.name === "USD")!
                         .percentChange7d > 0
                         ? "text-green-500"
                         : "text-red-500"
-                    }>
+                    }
+                  >
                     {coin.quotes
                       .find((q) => q.name === "USD")
                       ?.percentChange7d.toFixed(2)}
                     %
                   </td>
-                  <td className={
-                      coin.quotes.find((q) => q.name === "USD")!
-                        .marketCap > 0
-                        ? "text-green-500"
-                        : "text-red-500"
-                    }>
+                  <td>
                     {coin.quotes
                       .find((q) => q.name === "USD")
                       ?.marketCap.toFixed(2)}

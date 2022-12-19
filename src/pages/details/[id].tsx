@@ -5,6 +5,7 @@ import { Fragment, useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Navbar from "../../components/NavbarContainer";
 import { CryptoCurrencyApiResponse } from "../../types";
+import Link from "next/link";
 
 const Details = () => {
   const [isData, setData] = useState<any>();
@@ -95,28 +96,28 @@ const Details = () => {
           </div>
         </div>
         <span className="flex font-bold">
-          <a href={`https://www.${crypto?.name}.org/`} className="">
+          <Link href={`https://www.${crypto?.name}.org/`} className="">
             <span className="rounded-lg bg-[#25282A] p-2">
               {crypto?.name}.org
             </span>
-          </a>
+          </Link>
           <a
             href={`https://blockchair.com/${crypto?.name.toLowerCase}/`}
             className="8"
           >
             <span className="ml-5 rounded-lg bg-[#25282A] p-2">Explorers</span>
           </a>
-          <a href={`https://reddit.com/r/${crypto?.name}`} className="ml-5">
+          <Link href={`https://reddit.com/r/${crypto?.name}`} className="ml-5">
             <span className="rounded-lg bg-[#25282A] p-2">Community</span>
-          </a>
+          </Link>
         </span>
         <span className="mt-5 flex font-bold">
-          <a href={`https://github.com/${crypto?.name}`}>
+          <Link href={`https://github.com/${crypto?.name}`}>
             <span className="rounded-lg bg-[#25282A] p-2">Source Code</span>
-          </a>
-          <a href={`https://bitcoin.org/${crypto?.name}.pdf`} className="ml-5">
+          </Link>
+          <Link href={`https://bitcoin.org/${crypto?.name}.pdf`} className="ml-5">
             <span className="rounded-lg bg-[#25282A] p-2">Whitepaper</span>
-          </a>
+          </Link>
         </span>
 
         <div className="md:flex">
@@ -286,11 +287,11 @@ const Details = () => {
               <div className="text-2xl font-bold">Info</div>
               <div className="mt-9 flex ">
                 <div>Websites</div>
-                <a href={`https://www.${crypto?.name}.org/`} className="ml-8">
+                <Link href={`https://www.${crypto?.name}.org/`} className="ml-8">
                   <span className="rounded-lg bg-[#25282A] p-2">
                     {crypto?.name}.Org
                   </span>
-                </a>
+                </Link>
                 <a
                   href={`https://bitcoin.org/${crypto?.name}.pdf`}
                   className="ml-2"
@@ -335,9 +336,9 @@ const Details = () => {
               <div className="mt-16 flex">
                 <div>Source code</div>
 
-                <a href={`https://github.com/${crypto?.name}`} className="ml-4">
+                <Link href={`https://github.com/${crypto?.name}`} className="ml-4">
                   <span className="rounded-lg bg-[#25282A] p-2">Github</span>
-                </a>
+                </Link>
               </div>
               <hr className="mt-5 h-px w-80 border-0 bg-gray-200 dark:bg-gray-700" />
 
