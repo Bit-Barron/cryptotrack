@@ -49,7 +49,7 @@ const Details = () => {
             {crypto?.name} Price
           </span>
         </div>
-        <div className="mb-6 md:flex mt-10">
+        <div className="mb-6 mt-10 md:flex">
           <div className="flex ">
             <div>
               <img
@@ -57,6 +57,7 @@ const Details = () => {
                 src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto?.id}.png`}
               />
             </div>
+
             <div className="mt-2 text-4xl font-bold">{crypto?.name}</div>
             <div className="ml-3 p-4">
               <span className="rounded-lg bg-[#25282A] p-3">
@@ -64,9 +65,16 @@ const Details = () => {
               </span>
             </div>
           </div>
-            <div className="text-4xl font-bold md:ml-96 mt-4">
-              <div>${crypto?.quote.USD.price.toFixed(2)}</div>
+          <div className="mt-4 text-4xl font-bold md:ml-96">
+            <div className="text-sm">
+              {crypto?.name} ({crypto?.symbol})
             </div>
+
+            <div className="flex">
+              ${crypto?.quote.USD.price.toFixed(2)}
+              <button className="ml-4 text-lg bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{crypto?.quote.USD.percent_change_1h.toFixed(2)}</button>
+            </div>
+          </div>
         </div>
 
         <div className="mb-10 flex">
@@ -74,6 +82,9 @@ const Details = () => {
             Rank #{crypto?.cmc_rank}
           </div>
           <div className="ml-4 rounded-lg bg-[#25282A] p-2">Coin</div>
+          <div className="md:ml-[550px] ml-4 mt-2 text-lg">
+            {crypto?.quote.USD.percent_change_24h.toFixed(2)}%
+          </div>
         </div>
         <span className="flex font-bold">
           <a href={`https://www.${crypto?.name}.org/`} className="">
@@ -99,9 +110,33 @@ const Details = () => {
             <span className="rounded-lg bg-[#25282A] p-2">Whitepaper</span>
           </a>
         </span>
+
         <div>
-          <hr className="mt-8 md:w-1/2" />
+          <div className="flex">
+            <div className="mt-5 flex">
+              <div className="text-white">Market Cap</div>
+              <div className="ml-36">
+                {crypto?.quote.USD.market_cap.toFixed(2)}
+              </div>
+            </div>
+          </div>
+          <hr className="h-px w-96 border-0 bg-gray-200 dark:bg-gray-700" />
+          <div className="mt-5 flex">
+            <div className="text-white">24 Hour Trading Vol</div>
+            <div className="ml-[83px]">
+              {crypto?.quote.USD.volume_24h.toFixed(5)}
+            </div>
+          </div>
+          <hr className="h-px w-96 border-0 bg-gray-200 dark:bg-gray-700" />
+          <div className="mt-5 flex">
+            <div className="text-white">Fully Diluted Valuation</div>
+            <div className="ml-16">
+              {crypto?.quote.USD.fully_diluted_market_cap.toFixed(2)}
+            </div>
+          </div>
+          <hr className="h-px w-96 border-0 bg-gray-200 dark:bg-gray-700" />
         </div>
+
         <div className="mt-4 mb-4">Tags</div>
         <div className="flex">
           <span className="rounded-full bg-[#25282A] p-2 ">
