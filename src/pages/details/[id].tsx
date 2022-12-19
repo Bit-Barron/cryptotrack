@@ -1,12 +1,15 @@
+import { Dialog, Transition } from "@headlessui/react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Navbar from "../../components/NavbarContainer";
 import { CryptoCurrencyApiResponse } from "../../types";
 
 const Details = () => {
   const [isData, setData] = useState<any>();
+  const [isOpen, setIsOpen] = useState(false);
+
   const router = useRouter();
   const { id } = router.query;
 
@@ -23,6 +26,14 @@ const Details = () => {
 
   const crypto = isData?.data[`${id}`];
 
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
   return (
     <>
       <Navbar />
@@ -30,77 +41,157 @@ const Details = () => {
         <div className="mb-4 flex  md:flex ">
           <span className="flex font-semibold text-[#87b55d]">
             Cryptocurrencies <AiOutlineArrowRight className="mt-1 ml-2" />
+            <span className="ml-2 flex text-white">
+              Coins <AiOutlineArrowRight className="mt-1 ml-2" />
+            </span>
           </span>
-          <span className="ml-4 font-semibold text-gray-600">
+          <span className="ml-4 font-semibold text-white">
             {crypto?.name} Price
           </span>
-          <span></span>
         </div>
-        <div className="mb-4 text-sm">Rank #{crypto?.cmc_rank}</div>
-        <div className="flex">
-          <div>
-            <img
-              className="mr-2 h-8 rounded-full"
-              src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto?.id}.png`}
-            />
+        <div className="mb-6 md:flex mt-10">
+          <div className="flex ">
+            <div>
+              <img
+                className="mr-2 h-14 rounded-full"
+                src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto?.id}.png`}
+              />
+            </div>
+            <div className="mt-2 text-4xl font-bold">{crypto?.name}</div>
+            <div className="ml-3 p-4">
+              <span className="rounded-lg bg-[#25282A] p-3">
+                ({crypto?.symbol})
+              </span>
+            </div>
           </div>
+            <div className="text-4xl font-bold md:ml-96 mt-4">
+              <div>${crypto?.quote.USD.price.toFixed(2)}</div>
+            </div>
+        </div>
 
-          <div className="mt-1 font-bold">{crypto?.name}</div>
-          <div className="mt-1">({crypto?.symbol})</div>
+        <div className="mb-10 flex">
+          <div className="rounded-lg bg-[#25282A] p-2">
+            Rank #{crypto?.cmc_rank}
+          </div>
+          <div className="ml-4 rounded-lg bg-[#25282A] p-2">Coin</div>
         </div>
-        <div className="mt-3 text-2xl font-bold">
-          ${crypto?.quote.USD.price.toFixed(2)}
-        </div>
+        <span className="flex font-bold">
+          <a href={`https://www.${crypto?.name}.org/`} className="">
+            <span className="rounded-lg bg-[#25282A] p-2">
+              {crypto?.name}.org
+            </span>
+          </a>
+          <a
+            href={`https://blockchair.com/${crypto?.name.toLowerCase}/`}
+            className="8"
+          >
+            <span className="ml-5 rounded-lg bg-[#25282A] p-2">Explorers</span>
+          </a>
+          <a href={`https://reddit.com/r/${crypto?.name}`} className="ml-5">
+            <span className="rounded-lg bg-[#25282A] p-2">Community</span>
+          </a>
+        </span>
+        <span className="mt-5 flex font-bold">
+          <a href={`https://github.com/${crypto?.name}`}>
+            <span className="rounded-lg bg-[#25282A] p-2">Source Code</span>
+          </a>
+          <a href={`https://bitcoin.org/${crypto?.name}.pdf`} className="ml-5">
+            <span className="rounded-lg bg-[#25282A] p-2">Whitepaper</span>
+          </a>
+        </span>
         <div>
-          <div>
-            <div className="mt-5 flex">
-              <div className="text-white">Market Cap</div>
-              <div className="ml-36">
-                {crypto?.quote.USD.market_cap.toFixed(2)}
-              </div>
-            </div>
-          </div>
-          <hr className="h-px w-96 border-0 bg-gray-200 dark:bg-gray-700" />
-          <div className="mt-5 flex">
-            <div className="text-white">24 Hour Trading Vol</div>
-            <div className="ml-[83px]">
-              {crypto?.quote.USD.volume_24h.toFixed(5)}
-            </div>
-          </div>
-          <hr className="h-px w-96 border-0 bg-gray-200 dark:bg-gray-700" />
-          <div className="mt-5 flex">
-            <div className="text-white">Fully Diluted Valuation</div>
-            <div className="ml-16">
-              {crypto?.quote.USD.fully_diluted_market_cap.toFixed(2)}
-            </div>
-          </div>
-          <hr className="h-px w-96 border-0 bg-gray-200 dark:bg-gray-700" />
+          <hr className="mt-8 md:w-1/2" />
         </div>
-        <div className="mt-16 ">
-          <div className="mt-5 flex">
-            <div className="text-white">Circulating supply</div>
-            <div className="ml-24 md:ml-24">
-              {crypto?.circulating_supply?.toFixed(4)}
-            </div>
+        <div className="mt-4 mb-4">Tags</div>
+        <div className="flex">
+          <span className="rounded-full bg-[#25282A] p-2 ">
+            {/* {crypto?.tags.splice(0, 1).join(" ")} */}
+            mineable
+          </span>
+          <div className="ml-2 rounded-full bg-[#25282A] p-2">
+            {/* {crypto?.tags.splice(1, 1).join(" ")} */}
+            pow
           </div>
-          <hr className="h-px w-96 border-0 bg-gray-200 dark:bg-gray-700" />
-          <div className="mt-5 flex">
-            <div className="text-white">Total Supply</div>
-            <div className="ml-[134px]">{crypto?.total_supply.toFixed(5)}</div>
+          <div className="ml-2 rounded-full bg-[#25282A] p-2">
+            {/* {crypto?.tags.splice(1, 1).join(" ")} */}
+            sh1-256
           </div>
-          <hr className="h-px w-96 border-0 bg-gray-200 dark:bg-gray-700" />
-          <div className="mt-5 flex">
-            <div className="text-white">Max Supply</div>
-            <div className="ml-36">
-              {crypto?.max_supply ? (
-                <div>{crypto?.max_supply}</div>
-              ) : (
-                <div>0</div>
-              )}
-            </div>
+          <div className="ml-4 flex items-center justify-center ">
+            <button
+              type="button"
+              onClick={openModal}
+              className=" rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white "
+            >
+              More
+            </button>
           </div>
-          <hr className="h-px w-96 border-0 bg-gray-200 dark:bg-gray-700" />
         </div>
+
+        <Transition appear show={isOpen} as={Fragment}>
+          <Dialog
+            as="div"
+            className="fixed inset-0 z-10 overflow-y-auto"
+            onClose={closeModal}
+          >
+            <div className="min-h-screen px-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <Dialog.Overlay className="fixed inset-0" />
+              </Transition.Child>
+
+              {/* This element is to trick the browser into centering the modal contents. */}
+              <span
+                className="inline-block h-screen align-middle"
+                aria-hidden="true"
+              >
+                &#8203;
+              </span>
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <div className="my-8 inline-block w-full max-w-md transform overflow-hidden rounded-2xl bg-[#17171a] p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-white"
+                  >
+                    {crypto?.name} Tags
+                  </Dialog.Title>
+                  <div className="mt-2">
+                    <p className="border-t pt-2 text-sm text-gray-500">
+                      Category
+                    </p>
+                    <div className="ml-2 p-2 text-white ">
+                      {crypto?.tags.join(" ").replace("-", " ")}
+                    </div>
+                  </div>
+
+                  <div className="mt-4">
+                    <button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-500 px-4 py-2 text-sm text-red-900 duration-300 hover:bg-red-200"
+                      onClick={closeModal}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </Transition.Child>
+            </div>
+          </Dialog>
+        </Transition>
         <div className="mt-10 w-96 md:flex">
           <div className="rounded-lg bg-[#1a1c1d] p-9 text-2xl font-bold">
             {crypto?.name} Price Statistics
@@ -170,7 +261,7 @@ const Details = () => {
                 <div>Explorers</div>
                 <a
                   href={`https://blockchair.com/${crypto?.name.toLowerCase}/`}
-                  className="ml-8"
+                  className="ml-10"
                 >
                   <span className="rounded-lg bg-[#25282A] p-2">
                     {crypto?.name}.Org

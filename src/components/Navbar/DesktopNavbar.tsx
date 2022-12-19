@@ -5,8 +5,11 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({}) => {
   return (
     <div className="flex items-center px-2 lg:px-0">
       <div className="flex-shrink-0">
-        <h1 className="text-2xl font-bold ml-5 ">CryptoTrack</h1>
+        <h1 className="ml-5 text-2xl font-bold ">CryptoTrack</h1>
       </div>
+      <hr className="text-white" />
+
+
       <div className="hidden lg:ml-6 lg:block">
         <div className="flex space-x-4">
           <a

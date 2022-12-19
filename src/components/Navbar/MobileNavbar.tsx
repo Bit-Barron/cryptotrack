@@ -9,7 +9,7 @@ const MobileNavbar: React.FC = ({}) => {
         <Disclosure.Button
           as="a"
           href="/"
-          className="block rounded-md px-3 py-2  text-base font-medium"
+          className="block rounded-md px-3 py-2 text-base font-medium text-gray-300"
         >
           Dashboard
         </Disclosure.Button>
@@ -20,13 +20,6 @@ const MobileNavbar: React.FC = ({}) => {
           className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
         >
           Discord
-        </Disclosure.Button>
-        <Disclosure.Button
-          as="a"
-          href="/"
-          className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-        >
-          Cryptocurrencies
         </Disclosure.Button>
       </div>
     </Disclosure.Panel>
