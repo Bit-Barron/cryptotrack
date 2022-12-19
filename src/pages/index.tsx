@@ -54,6 +54,7 @@ export default function Home() {
     getData();
   }, []);
 
+
   return (
     <form>
       <Navbar />
@@ -168,16 +169,14 @@ export default function Home() {
             <>
               <tbody>
                 <tr
-                  className="border-b hover:bg-gray-700 dark:border-gray-700 "
+                  className="border-b hover:bg-gray-700 dark:border-gray-700"
                   onClick={(e: any) => {
                     e.preventDefault();
                     return router.push(`/details/${coin.id}`);
                   }}
                 >
-                  <th scope="" className="px-6 font-medium">
-                    {coin.cmcRank}
-                  </th>
-                  <th className="px-5">
+                  <th className="px-6 font-medium">{coin.cmcRank}</th>
+                  <th className="px-5 p-8">
                     <img
                       className="h-8 rounded-full"
                       src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`}
@@ -196,13 +195,11 @@ export default function Home() {
                   </th>
                   <th
                     scope=""
-                    className="flex py-4 px-6  font-medium
-                     text-white"
+                    className={`flex py-4 px-6  font-medium text-white`}
+
                   >
                     $
-                    {coin.quotes
-                      .find((q) => q.name === "USD")
-                      ?.price.toFixed(2)}
+                    {coin.quotes.find((q) => q.name === "USD")!.price > 0 ? ("")  : ("green")}
                   </th>
                   <td className="py-4 px-6 ">
                     {coin.quotes.find((q) => q.name === "USD")?.percentChange1h}
