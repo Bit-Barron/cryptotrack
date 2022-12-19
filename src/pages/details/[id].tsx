@@ -27,17 +27,18 @@ const Details = () => {
     <>
       <Navbar />
       <div className="container mt-5 p-4 md:container md:mx-auto">
-        <div className="mb-4 flex">
+        <div className="mb-4 flex  md:flex ">
           <span className="flex font-semibold text-[#87b55d]">
-            Cryptocurrencies <AiOutlineArrowRight className="mt-1 ml-2" /> 
+            Cryptocurrencies <AiOutlineArrowRight className="mt-1 ml-2" />
           </span>
           <span className="ml-4 font-semibold text-gray-600">
             {crypto?.name} Price
           </span>
+          <span></span>
         </div>
         <div className="mb-4 text-sm">Rank #{crypto?.cmc_rank}</div>
         <div className="flex">
-          <div className="">
+          <div>
             <img
               className="mr-2 h-8 rounded-full"
               src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto?.id}.png`}
@@ -50,8 +51,8 @@ const Details = () => {
         <div className="mt-3 text-2xl font-bold">
           ${crypto?.quote.USD.price.toFixed(2)}
         </div>
-        <div className="">
-          <div className="md:flex">
+        <div>
+          <div>
             <div className="mt-5 flex">
               <div className="text-white">Market Cap</div>
               <div className="ml-36">
