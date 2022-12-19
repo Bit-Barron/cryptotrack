@@ -47,6 +47,7 @@ export default function Home() {
     setLoading(false);
   };
 
+
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
