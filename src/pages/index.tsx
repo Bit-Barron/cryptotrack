@@ -31,7 +31,7 @@ export default function Home() {
 
   const search = async (e: any) => {
     setLoading(true);
-    e?.preventDefault()
+    e?.preventDefault();
 
     const { data }: any = await axios.get<any>(`/api/search`, {
       params: {
