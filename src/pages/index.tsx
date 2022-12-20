@@ -17,6 +17,16 @@ export default function Home() {
   const [results, setResults] = useState<any[]>([]);
   const [click, setClick] = useState("");
 
+  const price = async() => {
+    const response = await axios.get("/api/price", {
+      params: {
+        click
+      }
+    })
+    console.log(response.data)
+
+  }
+
   const next = async () => {
     const response = await axios.get<CryptoCurrencyApiResponse>(
       "/api/nextpage",
