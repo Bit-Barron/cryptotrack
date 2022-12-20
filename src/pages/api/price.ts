@@ -1,14 +1,15 @@
 import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { CryptoCurrencyApiResponse } from "../../types";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<CryptoCurrencyApiResponse>
+  res: NextApiResponse
 ) {
   if (req.method === "GET") {
-    const result = await axios.get<CryptoCurrencyApiResponse>(
-      "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=100&convert=EUR",
+    const { click } = req.query;
+
+    const result = await axios.get(
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=100&convert=${click}`,
       {
         headers: {
           "X-CMC_PRO_API_KEY": "81d66282-4692-4081-895d-49bf82ad9d8e",
@@ -17,7 +18,8 @@ export default async function handler(
         },
       }
     );
+    console.log(click);
 
-    res.status(200).json(result.data);
+    return res.status(200).json(result.data);
   }
 }

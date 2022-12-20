@@ -12,20 +12,19 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const cryptoStore = useStores().cryptoStore;
-  const [query, setQuery] = useState<any>("usd");
+  const [query, setQuery] = useState<any>("");
   const [show, setIsShown] = useState(false);
   const [results, setResults] = useState<any[]>([]);
   const [click, setClick] = useState("");
 
-  const price = async() => {
+  const price = async () => {
     const response = await axios.get("/api/price", {
       params: {
-        click
-      }
-    })
-    console.log(response.data)
-
-  }
+        click,
+      },
+    });
+    console.log(response.data);
+  };
 
   const next = async () => {
     const response = await axios.get<CryptoCurrencyApiResponse>(
@@ -52,7 +51,7 @@ export default function Home() {
       },
     });
 
-    console.log(data);
+    data;
 
     setResults(data);
     setLoading(false);
@@ -118,7 +117,10 @@ export default function Home() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items
+              className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+              onClick={price}
+            >
               <div className="py-1">
                 <Menu.Item>
                   {({ active }) => (
@@ -130,11 +132,11 @@ export default function Home() {
                         "block px-4 py-2 text-sm"
                       )}
                     >
-                      Usd
+                      usd
                     </a>
                   )}
                 </Menu.Item>
-                <form method="POST" action="#">
+                <div>
                   <Menu.Item>
                     {({ active }) => (
                       <button
@@ -147,11 +149,27 @@ export default function Home() {
                           "block w-full px-4 py-2 text-left text-sm"
                         )}
                       >
-                        BTC
+                        btc
                       </button>
                     )}
                   </Menu.Item>
-                </form>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        type="submit"
+                        onClick={() => setClick("eur")}
+                        className={classNames(
+                          active
+                            ? "bg-gray-100 text-gray-900"
+                            : "text-gray-700",
+                          "block w-full px-4 py-2 text-left text-sm"
+                        )}
+                      >
+                        eur
+                      </button>
+                    )}
+                  </Menu.Item>
+                </div>
               </div>
             </Menu.Items>
           </Transition>
@@ -281,10 +299,14 @@ export default function Home() {
                     }
                   >
                     $
-                    {click === "usd" &&
+                    {(click === "usd" &&
                       coin.quotes
                         .find((item) => item.name === "USD")!
-                        .price.toFixed(2)}
+                        .price.toFixed(2)) ||
+                      (click === "eur" &&
+                        coin.quotes
+                          .find((item) => item.name === "EUR")!
+                          ?.price.toFixed(2))}
                   </th>
                   <td
                     className={
