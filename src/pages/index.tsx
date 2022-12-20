@@ -180,8 +180,8 @@ export default function Home() {
                   <th className="px-6 font-medium">{coin.cmcRank}</th>
                   <th className="p-8 px-5">
                     <Image
-                      height={50}
-                      width={50}
+                      height={90}
+                      width={40}
                       className="h-8 rounded-full"
                       src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`}
                       alt={""}
