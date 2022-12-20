@@ -11,7 +11,7 @@ export default async function handler(
       "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
       {
         headers: {
-          "X-CMC_PRO_API_KEY": "fe979189-cae7-490e-8cbd-66158a83141d",
+          "X-CMC_PRO_API_KEY": "81d66282-4692-4081-895d-49bf82ad9d8e",
           "Content-Type": "application/json",
           "Accept-Encoding": "application/json",
         },

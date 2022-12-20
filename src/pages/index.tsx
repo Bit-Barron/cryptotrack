@@ -86,7 +86,7 @@ export default function Home() {
         <div className="flex justify-end">
           <Transition
             show={show}
-            className="absolute mt-4 h-[600px] w-96 overflow-y-auto rounded-lg bg-[#181a1b] p-4 py-2 font-medium text-gray-400 md:mr-10"
+            className="md:absolute mt-4 h-[600px] w-96 overflow-y-auto rounded-lg bg-[#181a1b] p-4 py-2 font-medium text-gray-400 md:mr-10"
           >
             {loading && (
               <div className="mt-52 text-center text-xl font-bold">
