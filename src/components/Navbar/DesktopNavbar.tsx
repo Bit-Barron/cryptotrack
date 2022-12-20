@@ -20,7 +20,7 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({}) => {
           </Link>
 
           <Link
-            href="https://discord.com/channels/693908458986143824/910058110360625152"
+            href="https://discord.gg/coding"
             className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-[#87b55d]"
           >
             Discord
