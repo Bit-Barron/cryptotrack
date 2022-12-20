@@ -257,7 +257,7 @@ export default function Home() {
                     $
                     {coin.quotes
                       .find((q) => q.name === "USD")
-                      ?.volume24h.toFixed(2)}
+                      ?.volume24h.toLocaleString()}
                   </td>
                   <td>
                     <Image
