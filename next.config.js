@@ -2,6 +2,11 @@
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
-}
 
-module.exports = nextConfig
+  images: {
+    domains: ["s2.coinmarketcap.com"],
+    domains: ["s3.coinmarketcap.com"],
+  },
+};
+
+module.exports = nextConfig;

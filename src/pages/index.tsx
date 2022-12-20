@@ -106,6 +106,8 @@ export default function Home() {
                     className="h-8 rounded-full"
                     src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${item.id}.png`}
                     alt={""}
+                    height={50}
+                    width={50}
                   />
                   <div>{item.name}</div>
                   <div>{item.symbol}</div>
@@ -178,8 +180,12 @@ export default function Home() {
                   <th className="px-6 font-medium">{coin.cmcRank}</th>
                   <th className="p-8 px-5">
                     <Image
+                      height={50}
+                      width={50}
                       className="h-8 rounded-full"
-                      src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`} alt={""}                    />
+                      src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`}
+                      alt={""}
+                    />
                   </th>
                   <th
                     scope=""
@@ -256,7 +262,11 @@ export default function Home() {
                   </td>
                   <td>
                     <Image
-                      src={`https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/${coin.id}.svg`} alt={""}                    />
+                      height={100}
+                      width={100}
+                      src={`https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/${coin.id}.svg`}
+                      alt={""}
+                    />
                   </td>
                 </tr>
               </tbody>

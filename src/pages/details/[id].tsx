@@ -55,6 +55,7 @@ const Details = () => {
           <div className="flex ">
             <div>
               <Image
+              width={64}
                 className="mr-2 h-14 rounded-full"
                 src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto?.id}.png`} alt={""}              />
             </div>
