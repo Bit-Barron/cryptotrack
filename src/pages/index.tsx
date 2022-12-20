@@ -1,5 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import axios from "axios";
+import Image from "next/image";
 import router from "next/router";
 import { useEffect, useState } from "react";
 import Navbar from "../components/NavbarContainer";
@@ -101,9 +102,10 @@ export default function Home() {
                   className="mt-10 flex gap-3 p-2 hover:rounded-lg hover:bg-gray-700"
                   onClick={() => router.push(`/details/${item.id}`)}
                 >
-                  <img
+                  <Image
                     className="h-8 rounded-full"
                     src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${item.id}.png`}
+                    alt={""}
                   />
                   <div>{item.name}</div>
                   <div>{item.symbol}</div>
@@ -175,10 +177,9 @@ export default function Home() {
                 >
                   <th className="px-6 font-medium">{coin.cmcRank}</th>
                   <th className="p-8 px-5">
-                    <img
+                    <Image
                       className="h-8 rounded-full"
-                      src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`}
-                    />
+                      src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`} alt={""}                    />
                   </th>
                   <th
                     scope=""
@@ -254,9 +255,8 @@ export default function Home() {
                       ?.volume24h.toFixed(2)}
                   </td>
                   <td>
-                    <img
-                      src={`https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/${coin.id}.svg`}
-                    />
+                    <Image
+                      src={`https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/${coin.id}.svg`} alt={""}                    />
                   </td>
                 </tr>
               </tbody>

@@ -5,6 +5,7 @@ import { Fragment, useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Navbar from "../../components/NavbarContainer";
 import { CryptoCurrencyApiResponse } from "../../types";
+import Image from "next/image";
 import Link from "next/link";
 
 const Details = () => {
@@ -53,10 +54,9 @@ const Details = () => {
         <div className="mb-6 mt-10 md:flex">
           <div className="flex ">
             <div>
-              <img
+              <Image
                 className="mr-2 h-14 rounded-full"
-                src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto?.id}.png`}
-              />
+                src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto?.id}.png`} alt={""}              />
             </div>
 
             <div className="mt-2 text-4xl font-bold">{crypto?.name}</div>
