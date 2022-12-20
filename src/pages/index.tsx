@@ -123,51 +123,32 @@ export default function Home() {
             >
               <div className="py-1">
                 <Menu.Item>
-                  {({ active }) => (
-                    <a
-                      href="#"
-                      onClick={() => setClick("usd")}
-                      className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "block px-4 py-2 text-sm"
-                      )}
-                    >
-                      usd
-                    </a>
-                  )}
+                  <a
+                    href="#"
+                    className="text-black"
+                    onClick={() => setClick("usd")}
+                  >
+                    usd
+                  </a>
                 </Menu.Item>
                 <div>
                   <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        type="submit"
-                        onClick={() => setClick("btc")}
-                        className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block w-full px-4 py-2 text-left text-sm"
-                        )}
-                      >
-                        btc
-                      </button>
-                    )}
+                    <button
+                      type="submit"
+                      className="text-black"
+                      onClick={() => setClick("btc")}
+                    >
+                      btc
+                    </button>
                   </Menu.Item>
                   <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        type="submit"
-                        onClick={() => setClick("eur")}
-                        className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block w-full px-4 py-2 text-left text-sm"
-                        )}
-                      >
-                        eur
-                      </button>
-                    )}
+                    <button
+                      type="submit"
+                      onClick={() => setClick("eur")}
+                      className="block text-gray-900"
+                    >
+                      eur
+                    </button>
                   </Menu.Item>
                 </div>
               </div>

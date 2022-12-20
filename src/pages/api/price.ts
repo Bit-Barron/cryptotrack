@@ -20,6 +20,6 @@ export default async function handler(
     );
     console.log(click);
 
-    return res.status(200).json(result.data);
+    return res.status(200).json(click);
   }
 }
