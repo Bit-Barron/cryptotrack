@@ -1,12 +1,12 @@
 import { Dialog, Transition } from "@headlessui/react";
 import axios from "axios";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Navbar from "../../components/NavbarContainer";
 import { CryptoCurrencyApiResponse } from "../../types";
-import Image from "next/image";
-import Link from "next/link";
 
 const Details = () => {
   const [isData, setData] = useState<any>();
@@ -55,9 +55,12 @@ const Details = () => {
           <div className="flex ">
             <div>
               <Image
-              width={64}
+                width={64}
+                height={64}
                 className="mr-2 h-14 rounded-full"
-                src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto?.id}.png`} alt={""}              />
+                src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto?.id}.png`}
+                alt={""}
+              />
             </div>
 
             <div className="mt-2 text-4xl font-bold">{crypto?.name}</div>
@@ -73,16 +76,16 @@ const Details = () => {
             </div>
 
             <div className="flex">
-              ${crypto?.quote.USD.price.toFixed(2)}
+              ${crypto?.quote.USD.price.toLocaleString()}
               <button
                 className={
                   crypto?.quotes?.find((q: any) => q.name === "USD")!
                     .percentChange1h < 0
-                    ? "ml-4 rounded  px-4 text-lg font-bold bg-red-500 "
-                    : "ml-4 rounded px-4 text-lg font-bold bg-green-500"
+                    ? "ml-4 rounded  bg-red-500 px-4 text-lg font-bold "
+                    : "ml-4 rounded bg-green-500 px-4 text-lg font-bold"
                 }
               >
-                {crypto?.quote.USD.percent_change_1h.toFixed(2)}
+                {crypto?.quote.USD.percent_change_1h.toLocaleString()}
               </button>
             </div>
           </div>
@@ -116,7 +119,10 @@ const Details = () => {
           <Link href={`https://github.com/${crypto?.name}`}>
             <span className="rounded-lg bg-[#25282A] p-2">Source Code</span>
           </Link>
-          <Link href={`https://bitcoin.org/${crypto?.name}.pdf`} className="ml-5">
+          <Link
+            href={`https://bitcoin.org/${crypto?.name}.pdf`}
+            className="ml-5"
+          >
             <span className="rounded-lg bg-[#25282A] p-2">Whitepaper</span>
           </Link>
         </span>
@@ -127,7 +133,7 @@ const Details = () => {
               <div className="mt-5 flex">
                 <div className="text-white">Market Cap</div>
                 <div className="ml-36">
-                  {crypto?.quote.USD.market_cap.toFixed(2)}
+                  {crypto?.quote.USD.market_cap.toLocaleString()}
                 </div>
               </div>
             </div>
@@ -135,17 +141,17 @@ const Details = () => {
             <div className="mt-5 flex">
               <div className="text-white">24 Hour Trading Vol</div>
               <div className="ml-[83px]">
-                {crypto?.quote.USD.volume_24h.toFixed(5)}
+                {crypto?.quote.USD.volume_24h.toLocaleString()}
               </div>
             </div>
             <hr className="h-px w-96 border-0 bg-gray-200 dark:bg-gray-700" />
             <div className="mt-5 flex">
               <div className="text-white">Fully Diluted Valuation</div>
               <div className="ml-16">
-                {crypto?.quote.USD.fully_diluted_market_cap.toFixed(2)}
+                {crypto?.quote.USD.fully_diluted_market_cap.toLocaleString()}
               </div>
             </div>
-            <hr className="w-96 border-0 bg-gray-200 dark:bg-gray-700" />
+            <hr className="h-px w-96 border-0 bg-gray-200 dark:bg-gray-700 mb-5" />
           </div>
         </div>
 
@@ -288,7 +294,10 @@ const Details = () => {
               <div className="text-2xl font-bold">Info</div>
               <div className="mt-9 flex ">
                 <div>Websites</div>
-                <Link href={`https://www.${crypto?.name}.org/`} className="ml-8">
+                <Link
+                  href={`https://www.${crypto?.name}.org/`}
+                  className="ml-8"
+                >
                   <span className="rounded-lg bg-[#25282A] p-2">
                     {crypto?.name}.Org
                   </span>
@@ -337,7 +346,10 @@ const Details = () => {
               <div className="mt-16 flex">
                 <div>Source code</div>
 
-                <Link href={`https://github.com/${crypto?.name}`} className="ml-4">
+                <Link
+                  href={`https://github.com/${crypto?.name}`}
+                  className="ml-4"
+                >
                   <span className="rounded-lg bg-[#25282A] p-2">Github</span>
                 </Link>
               </div>

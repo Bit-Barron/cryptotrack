@@ -106,8 +106,8 @@ export default function Home() {
                     className="h-8 rounded-full"
                     src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${item.id}.png`}
                     alt={""}
-                    height={50}
-                    width={50}
+                    height={100}
+                    width={30}
                   />
                   <div>{item.name}</div>
                   <div>{item.symbol}</div>
@@ -180,8 +180,8 @@ export default function Home() {
                   <th className="px-6 font-medium">{coin.cmcRank}</th>
                   <th className="p-8 px-5">
                     <Image
-                      height={90}
-                      width={40}
+                      height={100}
+                      width={30}
                       className="h-8 rounded-full"
                       src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`}
                       alt={""}
@@ -202,8 +202,8 @@ export default function Home() {
                     scope=""
                     className={
                       coin.quotes.find((q) => q.name === "USD")!.price > 0
-                        ? "text-green-500"
-                        : "text-red-500"
+                        ? "text-green-500 py-4 px-6"
+                        : "text-red-500 py-4 px-6"
                     }
                   >
                     $
@@ -215,18 +215,18 @@ export default function Home() {
                     className={
                       coin.quotes.find((q) => q.name === "USD")!
                         .percentChange1h > 0
-                        ? "text-green-500"
-                        : "text-red-500"
+                        ? "text-green-500 py-4 px-6"
+                        : "text-red-500 py-4 px-6"
                     }
                   >
-                    {coin.quotes.find((q) => q.name === "USD")?.percentChange1h}
+                    {coin.quotes.find((q) => q.name === "USD")?.percentChange1h.toFixed(2)}
                   </td>
                   <td
                     className={
                       coin.quotes.find((q) => q.name === "USD")!
                         .percentChange24h > 0
-                        ? "text-green-500"
-                        : "text-red-500"
+                        ? "text-green-500 py-4 px-6"
+                        : "text-red-500 py-4 px-6"
                     }
                   >
                     {coin.quotes
@@ -238,8 +238,8 @@ export default function Home() {
                     className={
                       coin.quotes.find((q) => q.name === "USD")!
                         .percentChange7d > 0
-                        ? "text-green-500"
-                        : "text-red-500"
+                        ? "text-green-500 py-4 px-6"
+                        : "text-red-500 py-4 px-6"
                     }
                   >
                     {coin.quotes
@@ -247,11 +247,10 @@ export default function Home() {
                       ?.percentChange7d.toFixed(2)}
                     %
                   </td>
-                  <td>
+                  <td className="py-4 px-6">
                     {coin.quotes
                       .find((q) => q.name === "USD")
-                      ?.marketCap.toFixed(2)}
-                    %
+                      ?.marketCap.toLocaleString()}$
                   </td>
 
                   <td className="py-4 px-6">
@@ -263,7 +262,7 @@ export default function Home() {
                   <td>
                     <Image
                       height={100}
-                      width={100}
+                      width={150}
                       src={`https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/${coin.id}.svg`}
                       alt={""}
                     />
