@@ -1,8 +1,9 @@
 import { Menu, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/outline";
 import axios from "axios";
 import Image from "next/image";
 import router from "next/router";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Navbar from "../components/NavbarContainer";
 import { useStores } from "../stores";
 import { CryptoCurrencyApiResponse } from "../types";
@@ -11,9 +12,10 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const cryptoStore = useStores().cryptoStore;
-  const [query, setQuery] = useState<any>("");
+  const [query, setQuery] = useState<any>("usd");
   const [show, setIsShown] = useState(false);
   const [results, setResults] = useState<any[]>([]);
+  const [click, setClick] = useState("");
 
   const next = async () => {
     const response = await axios.get<CryptoCurrencyApiResponse>(
@@ -54,6 +56,9 @@ export default function Home() {
     };
     getData();
   }, []);
+  function classNames(...classes: string[]) {
+    return classes.filter(Boolean).join(" ");
+  }
 
   return (
     <form>
@@ -83,10 +88,69 @@ export default function Home() {
             search
           </button>
         </div>
+        <Menu as="div" className="relative ml-40 inline-block text-left">
+          <div>
+            <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
+              Options
+              <ChevronDownIcon
+                className="-mr-1 ml-2 h-5 w-5"
+                aria-hidden="true"
+              />
+            </Menu.Button>
+          </div>
+
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <div className="py-1">
+                <Menu.Item>
+                  {({ active }) => (
+                    <a
+                      href="#"
+                      onClick={() => setClick("usd")}
+                      className={classNames(
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "block px-4 py-2 text-sm"
+                      )}
+                    >
+                      Usd
+                    </a>
+                  )}
+                </Menu.Item>
+                <form method="POST" action="#">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        type="submit"
+                        onClick={() => setClick("btc")}
+                        className={classNames(
+                          active
+                            ? "bg-gray-100 text-gray-900"
+                            : "text-gray-700",
+                          "block w-full px-4 py-2 text-left text-sm"
+                        )}
+                      >
+                        BTC
+                      </button>
+                    )}
+                  </Menu.Item>
+                </form>
+              </div>
+            </Menu.Items>
+          </Transition>
+        </Menu>
+
         <div className="flex justify-end">
           <Transition
             show={show}
-            className="md:absolute mt-4 h-[600px] w-96 overflow-y-auto rounded-lg bg-[#181a1b] p-4 py-2 font-medium text-gray-400 md:mr-10"
+            className="mt-4 h-[600px] w-96 overflow-y-auto rounded-lg bg-[#181a1b] p-4 py-2 font-medium text-gray-400 md:absolute md:mr-10"
           >
             {loading && (
               <div className="mt-52 text-center text-xl font-bold">
@@ -202,31 +266,34 @@ export default function Home() {
                     scope=""
                     className={
                       coin.quotes.find((q) => q.name === "USD")!.price > 0
-                        ? "text-green-500 py-4 px-6"
-                        : "text-red-500 py-4 px-6"
+                        ? "py-4 px-6 text-green-500"
+                        : "py-4 px-6 text-red-500"
                     }
                   >
                     $
-                    {coin.quotes
-                      .find((q) => q.name === "USD")!
-                      .price.toFixed(2)}
+                    {click === "usd" &&
+                      coin.quotes
+                        .find((item) => item.name === "USD")!
+                        .price.toFixed(2)}
                   </th>
                   <td
                     className={
                       coin.quotes.find((q) => q.name === "USD")!
                         .percentChange1h > 0
-                        ? "text-green-500 py-4 px-6"
-                        : "text-red-500 py-4 px-6"
+                        ? "py-4 px-6 text-green-500"
+                        : "py-4 px-6 text-red-500"
                     }
                   >
-                    {coin.quotes.find((q) => q.name === "USD")?.percentChange1h.toFixed(2)}
+                    {coin.quotes
+                      .find((q) => q.name === "USD")
+                      ?.percentChange1h.toFixed(2)}
                   </td>
                   <td
                     className={
                       coin.quotes.find((q) => q.name === "USD")!
                         .percentChange24h > 0
-                        ? "text-green-500 py-4 px-6"
-                        : "text-red-500 py-4 px-6"
+                        ? "py-4 px-6 text-green-500"
+                        : "py-4 px-6 text-red-500"
                     }
                   >
                     {coin.quotes
@@ -238,8 +305,8 @@ export default function Home() {
                     className={
                       coin.quotes.find((q) => q.name === "USD")!
                         .percentChange7d > 0
-                        ? "text-green-500 py-4 px-6"
-                        : "text-red-500 py-4 px-6"
+                        ? "py-4 px-6 text-green-500"
+                        : "py-4 px-6 text-red-500"
                     }
                   >
                     {coin.quotes
@@ -250,7 +317,8 @@ export default function Home() {
                   <td className="py-4 px-6">
                     {coin.quotes
                       .find((q) => q.name === "USD")
-                      ?.marketCap.toLocaleString()}$
+                      ?.marketCap.toLocaleString()}
+                    $
                   </td>
 
                   <td className="py-4 px-6">
