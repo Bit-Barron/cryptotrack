@@ -101,12 +101,12 @@ const Details = () => {
               {crypto?.name}.org
             </span>
           </Link>
-          <a
+          <Link
             href={`https://blockchair.com/${crypto?.name.toLowerCase}/`}
             className="8"
           >
             <span className="ml-5 rounded-lg bg-[#25282A] p-2">Explorers</span>
-          </a>
+          </Link>
           <Link href={`https://reddit.com/r/${crypto?.name}`} className="ml-5">
             <span className="rounded-lg bg-[#25282A] p-2">Community</span>
           </Link>
@@ -292,44 +292,44 @@ const Details = () => {
                     {crypto?.name}.Org
                   </span>
                 </Link>
-                <a
+                <Link
                   href={`https://bitcoin.org/${crypto?.name}.pdf`}
                   className="ml-2"
                 >
                   <span className="rounded-lg bg-[#25282A] p-2">
                     Whitepaper
                   </span>
-                </a>
+                </Link>
               </div>
               <hr className="mt-5 h-px w-80 border-0 bg-gray-200 dark:bg-gray-700" />
 
               <div className="mt-16 flex">
                 <div>Explorers</div>
-                <a
+                <Link
                   href={`https://blockchair.com/${crypto?.name.toLowerCase}/`}
                   className="ml-10"
                 >
                   <span className="rounded-lg bg-[#25282A] p-2">
                     {crypto?.name}.Org
                   </span>
-                </a>
+                </Link>
               </div>
               <hr className="mt-5 h-px w-80 border-0 bg-gray-200 dark:bg-gray-700" />
 
               <div className="mt-20 flex">
                 <div>Community</div>
-                <a
+                <Link
                   href={`https://reddit.com/r/${crypto?.name}`}
                   className="ml-5"
                 >
                   <span className="rounded-lg bg-[#25282A] p-2">Reddit</span>
-                </a>
-                <a
+                </Link>
+                <Link
                   href={`https://twitter.com/${crypto?.name}`}
                   className="ml-2"
                 >
                   <span className="rounded-lg bg-[#25282A] p-2">Twitter</span>
-                </a>
+                </Link>
               </div>
               <hr className="mt-5 h-px w-80 border-0 bg-gray-200 dark:bg-gray-700" />
 

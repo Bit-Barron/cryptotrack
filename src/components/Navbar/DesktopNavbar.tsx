@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface DesktopNavbarProps {}
@@ -9,22 +10,21 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({}) => {
       </div>
       <hr className="text-white" />
 
-
       <div className="hidden lg:ml-6 lg:block">
         <div className="flex space-x-4">
-          <a
+          <Link
             href="/"
             className="rounded-md px-3  py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-[#87b55d]"
           >
             Dashboard
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="https://discord.com/channels/693908458986143824/910058110360625152"
             className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-[#87b55d]"
           >
             Discord
-          </a>
+          </Link>
         </div>
       </div>
     </div>
