@@ -23,8 +23,8 @@ export default function Home() {
         click,
       },
     });
-    console.log(response.data);
   };
+  console.log(click)
 
   const next = async () => {
     const response = await axios.get<CryptoCurrencyApiResponse>(
@@ -123,16 +123,25 @@ export default function Home() {
             >
               <div className="py-1">
                 <Menu.Item>
-                  <a href="#" className="" onClick={() => setClick("usd")}>
-                    usd
-                  </a>
+                  {({ active }) => (
+                    <button
+                      type="submit"
+                      onClick={() => setClick("ETH")}
+                      className={classNames(
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "block w-full px-4 py-2 text-left text-sm"
+                      )}
+                    >
+                      eth
+                    </button>
+                  )}
                 </Menu.Item>
                 <div>
                   <Menu.Item>
                     {({ active }) => (
                       <button
                         type="submit"
-                        onClick={() => setClick("btc")}
+                        onClick={() => setClick("BTC")}
                         className={classNames(
                           active
                             ? "bg-gray-100 text-gray-900"
@@ -148,7 +157,7 @@ export default function Home() {
                     {({ active }) => (
                       <button
                         type="submit"
-                        onClick={() => setClick("eur")}
+                        onClick={() => setClick("EUR")}
                         className={classNames(
                           active
                             ? "bg-gray-100 text-gray-900"
@@ -186,7 +195,7 @@ export default function Home() {
                   onClick={() => router.push(`/details/${item.id}`)}
                 >
                   <Image
-                    className="h-8 rounded-full"
+                    className="rounded-full h-auto w-auto"
                     src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${item.id}.png`}
                     alt={""}
                     height={100}
@@ -250,9 +259,9 @@ export default function Home() {
               </th>
             </tr>
           </thead>
-          {cryptoStore.cryptoCurrencies.map((coin) => (
+          {cryptoStore.cryptoCurrencies.map((coin, idx) => (
             <>
-              <tbody>
+              <tbody key={idx}>
                 <tr
                   className="border-b hover:bg-gray-700 dark:border-gray-700"
                   onClick={(e: any) => {
@@ -265,7 +274,7 @@ export default function Home() {
                     <Image
                       height={100}
                       width={30}
-                      className="h-8 rounded-full"
+                      className="rounded-full h-auto w-auto"
                       src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`}
                       alt={""}
                     />
@@ -353,7 +362,8 @@ export default function Home() {
                   <td>
                     <Image
                       height={100}
-                      width={150}
+                      width={300}
+                      className="h-auto w-auto"
                       src={`https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/${coin.id}.svg`}
                       alt={""}
                     />

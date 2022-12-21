@@ -52,16 +52,14 @@ const Details = () => {
           </span>
         </div>
         <div className="mb-6 mt-10 md:flex">
-          <div className="flex ">
-            <div>
-              <Image
-                width={64}
-                height={64}
-                className="mr-2 h-14 rounded-full"
-                src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto?.id}.png`}
-                alt={""}
-              />
-            </div>
+          <div className="flex">
+            <Image
+              width={64}
+              height={64}
+              className="mr-2 rounded-full h-auto w-auto"
+              src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto?.id}.png`}
+              alt={""}
+            />
 
             <div className="mt-2 text-4xl font-bold">{crypto?.name}</div>
             <div className="ml-3 p-4">
@@ -151,7 +149,7 @@ const Details = () => {
                 {crypto?.quote.USD.fully_diluted_market_cap.toLocaleString()}
               </div>
             </div>
-            <hr className="h-px w-96 border-0 bg-gray-200 dark:bg-gray-700 mb-5" />
+            <hr className="mb-5 h-px w-96 border-0 bg-gray-200 dark:bg-gray-700" />
           </div>
         </div>
 
