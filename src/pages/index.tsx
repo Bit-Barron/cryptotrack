@@ -24,7 +24,7 @@ export default function Home() {
       },
     });
   };
-  console.log(click)
+  console.log(click);
 
   const next = async () => {
     const response = await axios.get<CryptoCurrencyApiResponse>(
@@ -97,7 +97,7 @@ export default function Home() {
             search
           </button>
         </div>
-        <Menu as="div" className="relative ml-40 inline-block text-left">
+        <Menu as="div" className="relative ml-40 inline-block text-left" onClick={() => price()}>
           <div>
             <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
               Options
@@ -125,7 +125,7 @@ export default function Home() {
                 <Menu.Item>
                   {({ active }) => (
                     <button
-                      type="submit"
+                      type="button"
                       onClick={() => setClick("ETH")}
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
@@ -140,7 +140,7 @@ export default function Home() {
                   <Menu.Item>
                     {({ active }) => (
                       <button
-                        type="submit"
+                        type="button"
                         onClick={() => setClick("BTC")}
                         className={classNames(
                           active
@@ -156,7 +156,7 @@ export default function Home() {
                   <Menu.Item>
                     {({ active }) => (
                       <button
-                        type="submit"
+                        type="button"
                         onClick={() => setClick("EUR")}
                         className={classNames(
                           active
@@ -195,7 +195,7 @@ export default function Home() {
                   onClick={() => router.push(`/details/${item.id}`)}
                 >
                   <Image
-                    className="rounded-full h-auto w-auto"
+                    className="h-auto w-auto rounded-full"
                     src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${item.id}.png`}
                     alt={""}
                     height={100}
@@ -260,117 +260,115 @@ export default function Home() {
             </tr>
           </thead>
           {cryptoStore.cryptoCurrencies.map((coin, idx) => (
-            <>
-              <tbody key={idx}>
-                <tr
-                  className="border-b hover:bg-gray-700 dark:border-gray-700"
-                  onClick={(e: any) => {
-                    e.preventDefault();
-                    return router.push(`/details/${coin.id}`);
-                  }}
-                >
-                  <th className="px-6 font-medium">{coin.cmcRank}</th>
-                  <th className="p-8 px-5">
-                    <Image
-                      height={100}
-                      width={30}
-                      className="rounded-full h-auto w-auto"
-                      src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`}
-                      alt={""}
-                    />
-                  </th>
-                  <th
-                    scope=""
-                    className="py-4 px-6 font-medium  
+            <tbody key={idx}>
+              <tr
+                className="border-b hover:bg-gray-700 dark:border-gray-700"
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  return router.push(`/details/${coin.id}`);
+                }}
+              >
+                <th className="px-6 font-medium">{coin.cmcRank}</th>
+                <th className="p-8 px-5">
+                  <Image
+                    height={100}
+                    width={30}
+                    className="h-auto w-auto rounded-full"
+                    src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`}
+                    alt={""}
+                  />
+                </th>
+                <th
+                  scope=""
+                  className="py-4 px-6 font-medium  
                      text-white"
-                  >
-                    {coin.name}
-                  </th>
+                >
+                  {coin.name}
+                </th>
 
-                  <th scope="" className="py-4 px-6 font-medium text-white">
-                    {coin.symbol}
-                  </th>
-                  <th
-                    scope=""
-                    className={
-                      coin.quotes.find((q) => q.name === "USD")!.price > 0
-                        ? "py-4 px-6 text-green-500"
-                        : "py-4 px-6 text-red-500"
-                    }
-                  >
-                    $
-                    {(click === "usd" &&
+                <th scope="" className="py-4 px-6 font-medium text-white">
+                  {coin.symbol}
+                </th>
+                <th
+                  scope=""
+                  className={
+                    coin.quotes.find((q) => q.name === "USD")!.price > 0
+                      ? "py-4 px-6 text-green-500"
+                      : "py-4 px-6 text-red-500"
+                  }
+                >
+                  $
+                  {(click === "usd" &&
+                    coin.quotes
+                      .find((item) => item.name === "USD")!
+                      .price.toFixed(2)) ||
+                    (click === "eur" &&
                       coin.quotes
-                        .find((item) => item.name === "USD")!
-                        .price.toFixed(2)) ||
-                      (click === "eur" &&
-                        coin.quotes
-                          .find((item) => item.name === "EUR")!
-                          ?.price.toFixed(2))}
-                  </th>
-                  <td
-                    className={
-                      coin.quotes.find((q) => q.name === "USD")!
-                        .percentChange1h > 0
-                        ? "py-4 px-6 text-green-500"
-                        : "py-4 px-6 text-red-500"
-                    }
-                  >
-                    {coin.quotes
-                      .find((q) => q.name === "USD")
-                      ?.percentChange1h.toFixed(2)}
-                  </td>
-                  <td
-                    className={
-                      coin.quotes.find((q) => q.name === "USD")!
-                        .percentChange24h > 0
-                        ? "py-4 px-6 text-green-500"
-                        : "py-4 px-6 text-red-500"
-                    }
-                  >
-                    {coin.quotes
-                      .find((q) => q.name === "USD")
-                      ?.percentChange24h.toFixed(2)}
-                    %
-                  </td>
-                  <td
-                    className={
-                      coin.quotes.find((q) => q.name === "USD")!
-                        .percentChange7d > 0
-                        ? "py-4 px-6 text-green-500"
-                        : "py-4 px-6 text-red-500"
-                    }
-                  >
-                    {coin.quotes
-                      .find((q) => q.name === "USD")
-                      ?.percentChange7d.toFixed(2)}
-                    %
-                  </td>
-                  <td className="py-4 px-6">
-                    {coin.quotes
-                      .find((q) => q.name === "USD")
-                      ?.marketCap.toLocaleString()}
-                    $
-                  </td>
+                        .find((item) => item.name === "EUR")!
+                        ?.price.toFixed(2))}
+                </th>
+                <td
+                  className={
+                    coin.quotes.find((q) => q.name === "USD")!.percentChange1h >
+                    0
+                      ? "py-4 px-6 text-green-500"
+                      : "py-4 px-6 text-red-500"
+                  }
+                >
+                  {coin.quotes
+                    .find((q) => q.name === "USD")
+                    ?.percentChange1h.toFixed(2)}
+                </td>
+                <td
+                  className={
+                    coin.quotes.find((q) => q.name === "USD")!
+                      .percentChange24h > 0
+                      ? "py-4 px-6 text-green-500"
+                      : "py-4 px-6 text-red-500"
+                  }
+                >
+                  {coin.quotes
+                    .find((q) => q.name === "USD")
+                    ?.percentChange24h.toFixed(2)}
+                  %
+                </td>
+                <td
+                  className={
+                    coin.quotes.find((q) => q.name === "USD")!.percentChange7d >
+                    0
+                      ? "py-4 px-6 text-green-500"
+                      : "py-4 px-6 text-red-500"
+                  }
+                >
+                  {coin.quotes
+                    .find((q) => q.name === "USD")
+                    ?.percentChange7d.toFixed(2)}
+                  %
+                </td>
+                <td className="py-4 px-6">
+                  {coin.quotes
+                    .find((q) => q.name === "USD")
+                    ?.marketCap.toLocaleString()}
+                  $
+                </td>
 
-                  <td className="py-4 px-6">
-                    $
-                    {coin.quotes
-                      .find((q) => q.name === "USD")
-                      ?.volume24h.toLocaleString()}
-                  </td>
-                  <td>
-                    <Image
-                      height={100}
-                      width={300}
-                      className="h-auto w-auto"
-                      src={`https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/${coin.id}.svg`}
-                      alt={""}
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            </>
+                <td className="py-4 px-6">
+                  $
+                  {coin.quotes
+                    .find((q) => q.name === "USD")
+                    ?.volume24h.toLocaleString()}
+                </td>
+                <td>
+                  <Image
+                    height={100}
+                    width={300}
+                    className="h-auto w-auto"
+                    src={`https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/${coin.id}.svg`}
+                    alt={""}
+                  />
+                </td>
+              </tr>
+            </tbody>
           ))}
         </table>
       </div>

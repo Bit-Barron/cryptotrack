@@ -54,9 +54,9 @@ const Details = () => {
         <div className="mb-6 mt-10 md:flex">
           <div className="flex">
             <Image
-              width={64}
-              height={64}
-              className="mr-2 rounded-full h-auto w-auto"
+              width={60}
+              height={80}
+              className="mr-2 h-auto w-auto rounded-full"
               src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${crypto?.id}.png`}
               alt={""}
             />
@@ -68,7 +68,7 @@ const Details = () => {
               </span>
             </div>
           </div>
-          <div className="mt-4 text-4xl font-bold md:ml-96">
+          <div className="text-4xl font-bold md:ml-96">
             <div className="text-sm">
               {crypto?.name} ({crypto?.symbol})
             </div>
