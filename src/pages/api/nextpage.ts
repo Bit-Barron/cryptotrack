@@ -7,12 +7,12 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "GET") {
-    const { page } = req.query;
+    const { page, exchange } = req.query;
 
     const response = await axios.get(
       `https://api.coinmarketcap.com/data-api/v3/cryptocurrency/listing?start=${page}`
     );
+    console.log(exchange)
     return res.status(200).json(response.data);
-
   }
 }
