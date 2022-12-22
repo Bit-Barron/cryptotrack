@@ -18,7 +18,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!exchange) {
-      setExchange("EUR");
+      return setExchange("EUR");
     }
     const fetch = async () => {
       const response = await axios.get("/api/price", {
@@ -26,11 +26,10 @@ export default function Home() {
           exchange,
         },
       });
-      console.log(response.data)
+      console.log(response.data);
     };
     fetch();
   }, [exchange]);
-
 
   const next = async () => {
     const response = await axios.get<CryptoCurrencyApiResponse>(
@@ -56,7 +55,7 @@ export default function Home() {
         query,
       },
     });
-    console.log(data)
+    console.log(data);
 
     setResults(data);
     setLoading(false);
@@ -102,8 +101,16 @@ export default function Home() {
             search
           </button>
         </div>
-          <button onClick={() => setExchange("EUR")} type="button" className="mr-10">EUR</button>
-          <button onClick={() => setExchange("BTC")} type="button">BTC</button>
+        <button
+          onClick={() => setExchange("EUR")}
+          type="button"
+          className="mr-10"
+        >
+          EUR
+        </button>
+        <button onClick={() => setExchange("DOLLAR")} type="button">
+          DOLLAR
+        </button>
 
         <div className="flex justify-end">
           <Transition
@@ -228,7 +235,7 @@ export default function Home() {
                   }
                 >
                   $
-                  {(exchange === "BTC" &&
+                  {(exchange === "DOLLAR" &&
                     coin.quotes
                       .find((item) => item.name === "USD")!
                       .price.toFixed(2)) ||
