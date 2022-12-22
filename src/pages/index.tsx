@@ -66,6 +66,7 @@ export default function Home() {
     };
     getData();
   }, []);
+
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
   }
@@ -98,10 +99,10 @@ export default function Home() {
             search
           </button>
         </div>
-        <Menu as="div" className="relative inline-block text-left">
+        <Menu as="div" className="relative inline-block text-left mt-3 ml-32 md:md:ml-32">
           <div>
-            <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-              Options
+            <Menu.Button className="inline-flex w-full justify-center rounded-md border  border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
+              Currency
               <ChevronDownIcon
                 className="-mr-1 ml-2 h-5 w-5"
                 aria-hidden="true"
@@ -118,7 +119,10 @@ export default function Home() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute mt-2 w-56  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items
+              className="absolute mt-2 w-56  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+              onChange={(e: any) => e.preventDefault()}
+            >
               <div className="py-1">
                 <Menu.Item>
                   {({ active }) => (
@@ -130,7 +134,7 @@ export default function Home() {
                         "block px-4 py-2 text-sm"
                       )}
                     >
-                      EURO
+                      euro
                     </a>
                   )}
                 </Menu.Item>
@@ -138,13 +142,55 @@ export default function Home() {
                   {({ active }) => (
                     <a
                       href="#"
-                      onClick={() => setExchange("DOLLAR")}
+                      onClick={() => setExchange("usd")}
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
                       )}
                     >
-                      DOLLAR
+                      usd
+                    </a>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <a
+                      href="#"
+                      onClick={() => setExchange("JPY")}
+                      className={classNames(
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "block px-4 py-2 text-sm"
+                      )}
+                    >
+                      Yen
+                    </a>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <a
+                      href="#"
+                      onClick={() => setExchange("ARS")}
+                      className={classNames(
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "block px-4 py-2 text-sm"
+                      )}
+                    >
+                      Peso
+                    </a>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <a
+                      href="#"
+                      onClick={() => setExchange("GBP")}
+                      className={classNames(
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "block px-4 py-2 text-sm"
+                      )}
+                    >
+                      Pound
                     </a>
                   )}
                 </Menu.Item>
@@ -275,7 +321,7 @@ export default function Home() {
                   }
                 >
                   $
-                  {(exchange === "DOLLAR" &&
+                  {(exchange === "usd" &&
                     coin.quotes
                       .find((item) => item.name === "USD")!
                       .price.toFixed(2)) ||
@@ -350,6 +396,7 @@ export default function Home() {
           ))}
         </table>
       </div>
+
       {loading && (
         <div className="mt-52 flex justify-center text-3xl font-bold text-white">
           Loading...
