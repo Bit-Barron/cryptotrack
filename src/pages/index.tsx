@@ -15,16 +15,22 @@ export default function Home() {
   const [query, setQuery] = useState<any>("");
   const [show, setIsShown] = useState(false);
   const [results, setResults] = useState<any[]>([]);
-  const [exchange, setExchange] = useState("EUR");
+  const [exchange, setExchange] = useState<string>("EUR");
+  const [data, setData] = useState<any[]>([]);
+  const [prices, setPrices] = useState<number[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get<any>("/api/price", {
         params: {
           exchange,
+          page,
         },
       });
-      console.log(response.data);
+      console.log(response.data.data);
+      setData(response.data.data);
+      // console.log(response.data.data)
+      // console.log(response.data.data[9]?.quote?.[exchange].price);
     };
     fetch();
   }, [exchange]);
@@ -134,7 +140,7 @@ export default function Home() {
                         "block px-4 py-2 text-sm"
                       )}
                     >
-                      euro
+                      Euro
                     </a>
                   )}
                 </Menu.Item>
@@ -148,7 +154,7 @@ export default function Home() {
                         "block px-4 py-2 text-sm"
                       )}
                     >
-                      usd
+                      Usd
                     </a>
                   )}
                 </Menu.Item>
@@ -190,7 +196,7 @@ export default function Home() {
                         "block px-4 py-2 text-sm"
                       )}
                     >
-                      pound
+                      Pound
                     </a>
                   )}
                 </Menu.Item>
@@ -282,7 +288,7 @@ export default function Home() {
               </th>
             </tr>
           </thead>
-          {cryptoStore.cryptoCurrencies.map((coin, idx) => (
+          {data.map((coin, idx) => (
             <tbody key={idx}>
               <tr
                 className="border-b hover:bg-gray-700 dark:border-gray-700"
@@ -291,7 +297,7 @@ export default function Home() {
                   return router.push(`/details/${coin.id}`);
                 }}
               >
-                <th className="px-6 font-medium">{coin.cmcRank}</th>
+                <th className="px-6 font-medium">{coin.cmc_rank}</th>
                 <th className="p-8 px-5">
                   <Image
                     height={100}
@@ -314,71 +320,57 @@ export default function Home() {
                 </th>
                 <th
                   className={
-                    coin.quotes.find((q) => q.name === "USD")!.price > 0
+                    coin.quotes?.find(
+                      (q: { name: string }) => q.name === "USD"
+                    )!.price > 0
                       ? "py-4 px-6 text-green-500"
                       : "py-4 px-6 text-red-500"
                   }
                 >
-                  $
-                  {coin.quotes
-                    .find((item) => item.name === "USD")!
-                    .price.toFixed(2) ||
-                    (exchange === "EUR" ??
-                      coin.quotes
-                        .find((item) => item.name === "EUR")!
-                        ?.price.toFixed(2))}
+                  <div>{coin?.quote?.[exchange]?.price.toFixed(2)}</div>
                 </th>
 
                 <td
                   className={
-                    coin.quotes.find((q) => q.name === "USD")!.percentChange1h >
-                    0
+                    coin.quotes?.find(
+                      (q: { name: string }) => q.name === "USD"
+                    )!.percentChange1h > 0
                       ? "py-4 px-6 text-green-500"
                       : "py-4 px-6 text-red-500"
                   }
                 >
-                  {coin.quotes
-                    .find((q) => q.name === "USD")
-                    ?.percentChange1h.toFixed(2)}
+                  {coin?.quote?.[exchange]?.percent_change_1h.toFixed(2)}
                 </td>
                 <td
                   className={
-                    coin.quotes.find((q) => q.name === "USD")!
-                      .percentChange24h > 0
+                    coin.quotes?.find(
+                      (q: { name: string }) => q.name === "USD"
+                    )!.percentChange24h > 0
                       ? "py-4 px-6 text-green-500"
                       : "py-4 px-6 text-red-500"
                   }
                 >
-                  {coin.quotes
-                    .find((q) => q.name === "USD")
-                    ?.percentChange24h.toFixed(2)}
-                  %
+                  {coin?.quote?.[exchange]?.percent_change_24h.toFixed(2)}%
                 </td>
                 <td
                   className={
-                    coin.quotes.find((q) => q.name === "USD")!.percentChange7d >
-                    0
+                    coin.quotes?.find(
+                      (q: { name: string }) => q.name === "USD"
+                    )!.percentChange7d > 0
                       ? "py-4 px-6 text-green-500"
                       : "py-4 px-6 text-red-500"
                   }
                 >
-                  {coin.quotes
-                    .find((q) => q.name === "USD")
-                    ?.percentChange7d.toFixed(2)}
-                  %
+                  {coin?.quote?.[exchange]?.percent_change_7d.toFixed(2)}%
                 </td>
                 <td className="py-4 px-6">
-                  {coin.quotes
-                    .find((q) => q.name === "USD")
-                    ?.marketCap.toLocaleString()}
-                  $
+                  {coin?.quote?.[exchange]?.market_cap.toLocaleString()} $
                 </td>
 
                 <td className="py-4 px-6">
                   $
-                  {coin.quotes
-                    .find((q) => q.name === "USD")
-                    ?.volume24h.toLocaleString()}
+                  {coin?.quote?.[exchange]?.volume_24h.toLocaleString()} $
+
                 </td>
                 <td>
                   <Image
