@@ -9,7 +9,7 @@ export default async function handler(
     const { exchange, page } = req.query;
 
     const result = await axios.get(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=${page}&limit=100&convert=${exchange}`,
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=${page}&convert=${exchange}`,
       {
         headers: {
           "X-CMC_PRO_API_KEY": "81d66282-4692-4081-895d-49bf82ad9d8e",

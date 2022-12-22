@@ -13,5 +13,6 @@ export default async function handler(
       `https://api.coinmarketcap.com/data-api/v3/cryptocurrency/listing?start=${page}`
     );
     return res.status(200).json(response.data);
+
   }
 }
