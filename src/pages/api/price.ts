@@ -18,8 +18,9 @@ export default async function handler(
         },
       }
     );
-    let { data, status } = result.data;
-    console.log(data)
-    return res.status(200).json(data);
+    console.log(exchange)
+    // @ts-ignore
+    console.log(result.data.data[0].quote[exchange].price);
+    return res.status(200).json(result.data);
   }
 }

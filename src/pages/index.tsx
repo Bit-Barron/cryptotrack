@@ -142,7 +142,7 @@ export default function Home() {
                   {({ active }) => (
                     <a
                       href="#"
-                      onClick={() => setExchange("usd")}
+                      onClick={() => setExchange("USD")}
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
@@ -190,7 +190,7 @@ export default function Home() {
                         "block px-4 py-2 text-sm"
                       )}
                     >
-                      Pound
+                      pound
                     </a>
                   )}
                 </Menu.Item>
