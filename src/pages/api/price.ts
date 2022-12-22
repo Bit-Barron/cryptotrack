@@ -18,7 +18,6 @@ export default async function handler(
         },
       }
     );
-    console.log(result.data);
     return res.status(200).json(result.data);
   }
 }
