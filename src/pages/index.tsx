@@ -25,6 +25,7 @@ export default function Home() {
           page,
         },
       });
+      console.log(page)
       setPage(page + 100);
       setData(response.data.data);
     };
