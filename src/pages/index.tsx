@@ -6,6 +6,7 @@ import router from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import Navbar from "../components/NavbarContainer";
 import { useStores } from "../stores";
+import { CryptoCurrencyApiResponse } from "../types";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -16,37 +17,32 @@ export default function Home() {
   const [results, setResults] = useState<any[]>([]);
   const [exchange, setExchange] = useState<string>("EUR");
   const [data, setData] = useState<any[]>([]);
+  const [nextPage, setNextPage] = useState<CryptoCurrencyApiResponse[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
+      setPage(page + 100);
       const response = await axios.get<any>("/api/price", {
         params: {
           exchange,
           page,
         },
       });
-      console.log(page)
-      setPage(page + 100);
       setData(response.data.data);
     };
     fetch();
   }, [exchange]);
+  console.log(page);
 
-  // const next = async () => {
-  //   const response = await axios.get<CryptoCurrencyApiResponse>(
-  //     "/api/nextpage",
-  //     {
-  //       params: {
-  //         page,
-  //       },
-  //     }
-  //   );
-  //   setPage(page + 100);
-  //   console.log(page);
-
-  //   cryptoStore.cryptoCurrencies =
-  //     response.data.data.cryptoCurrencyList || cryptoStore.cryptoCurrencies;
-  // };
+  const next = async () => {
+    const response = await axios.get("/api/nextpage", {
+      params: {
+        page,
+      },
+    });
+    setPage(page + 100);
+    setNextPage(response.data);
+  };
 
   const search = async (e: any) => {
     setLoading(true);
@@ -316,7 +312,9 @@ export default function Home() {
                 </th>
                 <th
                   className={
-                   coin.quote?.[exchange]?.price > 0 ? "py-4 px-6 text-green-500" : "py-4 px-6 text-red-500"
+                    coin.quote?.[exchange]?.price > 0
+                      ? "py-4 px-6 text-green-500"
+                      : "py-4 px-6 text-red-500"
                   }
                 >
                   <div>{coin?.quote?.[exchange]?.price.toFixed(2)}</div>
@@ -324,22 +322,28 @@ export default function Home() {
 
                 <td
                   className={
-                    coin.quote?.[exchange]?.percent_change_1h > 0 ? "py-4 px-6 text-green-500" : "py-4 px-6 text-red-500"
-                   }
-                 >
+                    coin.quote?.[exchange]?.percent_change_1h > 0
+                      ? "py-4 px-6 text-green-500"
+                      : "py-4 px-6 text-red-500"
+                  }
+                >
                   {coin?.quote?.[exchange]?.percent_change_1h.toFixed(2)}
                 </td>
                 <td
-                 className={
-                  coin.quote?.[exchange]?.percent_change_24h > 0 ? "py-4 px-6 text-green-500" : "py-4 px-6 text-red-500"
-                 }
+                  className={
+                    coin.quote?.[exchange]?.percent_change_24h > 0
+                      ? "py-4 px-6 text-green-500"
+                      : "py-4 px-6 text-red-500"
+                  }
                 >
                   {coin?.quote?.[exchange]?.percent_change_24h.toFixed(2)}%
                 </td>
                 <td
                   className={
-                    coin.quote?.[exchange]?.percent_change_7d > 0 ? "py-4 px-6 text-green-500" : "py-4 px-6 text-red-500"
-                   }
+                    coin.quote?.[exchange]?.percent_change_7d > 0
+                      ? "py-4 px-6 text-green-500"
+                      : "py-4 px-6 text-red-500"
+                  }
                 >
                   {coin?.quote?.[exchange]?.percent_change_7d.toFixed(2)}%
                 </td>
@@ -375,6 +379,9 @@ export default function Home() {
         <button
           type="button"
           className="mr-2 mb-2 rounded-lg border border-gray-200  py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400  focus:outline-none focus:ring-4 focus:ring-gray-200"
+          onClick={() => {
+            next();
+          }}
         >
           Next
         </button>
