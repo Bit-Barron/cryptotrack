@@ -19,6 +19,7 @@ export default async function handler(
       }
     );
     let { data, status } = result.data;
+    console.log(data)
     return res.status(200).json(data);
   }
 }
