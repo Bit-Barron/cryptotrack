@@ -1,9 +1,8 @@
 import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/outline";
 import axios from "axios";
 import Image from "next/image";
 import router from "next/router";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/NavbarContainer";
 import { useStores } from "../stores";
 import { CryptoCurrencyApiResponse } from "../types";
@@ -15,16 +14,23 @@ export default function Home() {
   const [query, setQuery] = useState<any>("");
   const [show, setIsShown] = useState(false);
   const [results, setResults] = useState<any[]>([]);
-  const [click, setClick] = useState("");
+  const [exchange, setExchange] = useState("");
 
-  const price = async () => {
-    const response = await axios.get("/api/price", {
-      params: {
-        click,
-      },
-    });
-  };
-  console.log(click);
+  useEffect(() => {
+    if (!exchange) {
+      setExchange("EUR");
+    }
+    const fetch = async () => {
+      const response = await axios.get("/api/price", {
+        params: {
+          exchange,
+        },
+      });
+      console.log(response.data)
+    };
+    fetch();
+  }, [exchange]);
+
 
   const next = async () => {
     const response = await axios.get<CryptoCurrencyApiResponse>(
@@ -50,8 +56,7 @@ export default function Home() {
         query,
       },
     });
-
-    data;
+    console.log(data)
 
     setResults(data);
     setLoading(false);
@@ -97,83 +102,8 @@ export default function Home() {
             search
           </button>
         </div>
-        <Menu as="div" className="relative ml-40 inline-block text-left" onClick={() => price()}>
-          <div>
-            <Menu.Button className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-              Options
-              <ChevronDownIcon
-                className="-mr-1 ml-2 h-5 w-5"
-                aria-hidden="true"
-              />
-            </Menu.Button>
-          </div>
-
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
-          >
-            <Menu.Items
-              className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-              onClick={price}
-            >
-              <div className="py-1">
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      type="button"
-                      onClick={() => setClick("ETH")}
-                      className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "block w-full px-4 py-2 text-left text-sm"
-                      )}
-                    >
-                      eth
-                    </button>
-                  )}
-                </Menu.Item>
-                <div>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        type="button"
-                        onClick={() => setClick("BTC")}
-                        className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block w-full px-4 py-2 text-left text-sm"
-                        )}
-                      >
-                        btc
-                      </button>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        type="button"
-                        onClick={() => setClick("EUR")}
-                        className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block w-full px-4 py-2 text-left text-sm"
-                        )}
-                      >
-                        eur
-                      </button>
-                    )}
-                  </Menu.Item>
-                </div>
-              </div>
-            </Menu.Items>
-          </Transition>
-        </Menu>
+          <button onClick={() => setExchange("EUR")} type="button" className="mr-10">EUR</button>
+          <button onClick={() => setExchange("BTC")} type="button">BTC</button>
 
         <div className="flex justify-end">
           <Transition
@@ -298,11 +228,11 @@ export default function Home() {
                   }
                 >
                   $
-                  {(click === "usd" &&
+                  {(exchange === "BTC" &&
                     coin.quotes
                       .find((item) => item.name === "USD")!
                       .price.toFixed(2)) ||
-                    (click === "eur" &&
+                    (exchange === "EUR" &&
                       coin.quotes
                         .find((item) => item.name === "EUR")!
                         ?.price.toFixed(2))}
