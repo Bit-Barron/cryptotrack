@@ -16,7 +16,6 @@ export default function Home() {
   const [show, setIsShown] = useState(false);
   const [results, setResults] = useState<any[]>([]);
   const [exchange, setExchange] = useState("EUR");
-  const [data, setDa] = useState<any[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
