@@ -1,11 +1,11 @@
-import axios from 'axios';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import axios from "axios";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === 'GET') {
+  if (req.method === "GET") {
     const { exchange } = req.query;
 
     const result = await axios.get(
@@ -18,6 +18,8 @@ export default async function handler(
         },
       }
     );
-    return res.status(200).json(result.data);
+    let { data, status } = result.data;
+    console.log(data);
+    return res.status(200).json(data);
   }
 }

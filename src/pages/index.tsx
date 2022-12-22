@@ -15,19 +15,15 @@ export default function Home() {
   const [query, setQuery] = useState<any>("");
   const [show, setIsShown] = useState(false);
   const [results, setResults] = useState<any[]>([]);
-  const [exchange, setExchange] = useState("");
+  const [exchange, setExchange] = useState("EUR");
 
   useEffect(() => {
-    if (!exchange) {
-      return setExchange("EUR");
-    }
     const fetch = async () => {
-      const response = await axios.get("/api/price", {
+      const response = await axios.get<any>("/api/price", {
         params: {
           exchange,
         },
       });
-
       console.log(response.data);
     };
     fetch();
@@ -279,10 +275,11 @@ export default function Home() {
                   }
                 >
                   $
-                  {coin.quotes
-                    .find((item) => item.name === "USD")!
-                    .price.toFixed(2) ||
-                    (exchange === "EUR" &&
+                  {(exchange === "DOLLAR" &&
+                    coin.quotes
+                      .find((item) => item.name === "USD")!
+                      .price.toFixed(2)) ||
+                    (exchange === "EUR" ??
                       coin.quotes
                         .find((item) => item.name === "EUR")!
                         ?.price.toFixed(2))}
