@@ -10,7 +10,7 @@ export default async function handler(
     const { page } = req.query;
 
     const response = await axios.get(
-      `https://api.coinmarketcap.com/data-api/v3/cryptocurrency/listing?start=${page}`
+      `https://api.coinmarketcap.com/data-api/v3/cryptocurrency/listing?start=${page}&limit=100`
     );
     return res.status(200).json(response.data);
   }

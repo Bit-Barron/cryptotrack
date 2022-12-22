@@ -313,7 +313,6 @@ export default function Home() {
                   {coin.symbol}
                 </th>
                 <th
-                  scope=""
                   className={
                     coin.quotes.find((q) => q.name === "USD")!.price > 0
                       ? "py-4 px-6 text-green-500"
