@@ -5,19 +5,15 @@ import Image from "next/image";
 import router from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import Navbar from "../components/NavbarContainer";
-import { useStores } from "../stores";
-import { CryptoCurrencyApiResponse } from "../types";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const cryptoStore = useStores().cryptoStore;
   const [query, setQuery] = useState<any>("");
   const [show, setIsShown] = useState(false);
   const [results, setResults] = useState<any[]>([]);
   const [exchange, setExchange] = useState<string>("EUR");
   const [data, setData] = useState<any[]>([]);
-  const [nextPage, setNextPage] = useState<CryptoCurrencyApiResponse[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -33,18 +29,13 @@ export default function Home() {
   }, [page, exchange]);
 
   const next = async () => {
-    const response = await axios.get("/api/nextpage", {
+    await axios.get("/api/nextpage", {
       params: {
         page,
       },
     });
     setPage(page + 100);
-    setNextPage(response.data);
-    const coins = response.data.quote?.[exchange]
-
   };
-
-  console.log("finish")
 
   const search = async (e: any) => {
     setLoading(true);
@@ -70,7 +61,6 @@ export default function Home() {
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
   }
-
 
   return (
     <form>
@@ -351,11 +341,11 @@ export default function Home() {
                   {coin?.quote?.[exchange]?.percent_change_7d.toFixed(2)}%
                 </td>
                 <td className="py-4 px-6">
-                  {coin?.quote?.[exchange]?.market_cap.toLocaleString()} 
+                  {coin?.quote?.[exchange]?.market_cap.toLocaleString()}
                 </td>
 
                 <td className="py-4 px-6">
-                  {coin?.quote?.[exchange]?.volume_24h.toLocaleString()} 
+                  {coin?.quote?.[exchange]?.volume_24h.toLocaleString()}
                 </td>
                 <td>
                   <Image
