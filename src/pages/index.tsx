@@ -18,7 +18,6 @@ export default function Home() {
   const [exchange, setExchange] = useState<string>("EUR");
   const [data, setData] = useState<any[]>([]);
   const [nextPage, setNextPage] = useState<CryptoCurrencyApiResponse[]>([]);
-  const [prevPage, setPrevPage] = useState<any[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -42,6 +41,8 @@ export default function Home() {
     setPage(page + 100);
     setNextPage(response.data);
   };
+
+  console.log("finish")
 
   const search = async (e: any) => {
     setLoading(true);
