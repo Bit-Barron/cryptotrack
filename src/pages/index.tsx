@@ -320,7 +320,7 @@ export default function Home() {
                       : "py-4 px-6 text-red-500"
                   }
                 >
-                  <div>{coin?.quote?.[exchange]?.price.toFixed(2)}</div>
+                  <div>{coin?.quote?.[exchange]?.price.toLocaleString()}</div>
                 </th>
 
                 <td
