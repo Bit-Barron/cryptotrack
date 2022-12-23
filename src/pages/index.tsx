@@ -18,10 +18,10 @@ export default function Home() {
   const [exchange, setExchange] = useState<string>("EUR");
   const [data, setData] = useState<any[]>([]);
   const [nextPage, setNextPage] = useState<CryptoCurrencyApiResponse[]>([]);
+  const [prevPage, setPrevPage] = useState<any[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
-      setPage(page + 100);
       const response = await axios.get<any>("/api/price", {
         params: {
           exchange,
@@ -31,8 +31,7 @@ export default function Home() {
       setData(response.data.data);
     };
     fetch();
-  }, [exchange]);
-  console.log(page);
+  }, [page, exchange]);
 
   const next = async () => {
     const response = await axios.get("/api/nextpage", {

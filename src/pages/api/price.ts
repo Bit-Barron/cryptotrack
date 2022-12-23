@@ -19,7 +19,6 @@ export default async function handler(
       }
     );
 
-    console.log(exchange);
     return res.status(200).json(result.data);
   }
 }
