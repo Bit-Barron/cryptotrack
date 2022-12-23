@@ -348,11 +348,11 @@ export default function Home() {
                   {coin?.quote?.[exchange]?.percent_change_7d.toFixed(2)}%
                 </td>
                 <td className="py-4 px-6">
-                  {coin?.quote?.[exchange]?.market_cap.toLocaleString()} $
+                  {coin?.quote?.[exchange]?.market_cap.toLocaleString()} 
                 </td>
 
                 <td className="py-4 px-6">
-                  ${coin?.quote?.[exchange]?.volume_24h.toLocaleString()} $
+                  {coin?.quote?.[exchange]?.volume_24h.toLocaleString()} 
                 </td>
                 <td>
                   <Image
