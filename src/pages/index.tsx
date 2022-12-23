@@ -40,6 +40,8 @@ export default function Home() {
     });
     setPage(page + 100);
     setNextPage(response.data);
+    const coins = response.data.quote?.[exchange]
+
   };
 
   console.log("finish")
@@ -68,6 +70,7 @@ export default function Home() {
   function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
   }
+
 
   return (
     <form>
