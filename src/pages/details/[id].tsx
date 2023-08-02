@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import Navbar from "../../components/NavbarContainer";
 import { CryptoCurrencyApiResponse } from "../../types";
+import NavbarContainer from "../../components/container/NavbarContainer";
 
 const Details = () => {
   const [isData, setData] = useState<any>();
@@ -38,7 +38,7 @@ const Details = () => {
 
   return (
     <>
-      <Navbar />
+      <NavbarContainer />
       <div className="container mt-5 p-4 md:container md:mx-auto">
         <div className="mb-4 flex  md:flex ">
           <span className="flex font-semibold text-[#87b55d]">
