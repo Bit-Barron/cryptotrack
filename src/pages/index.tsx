@@ -4,7 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import router from "next/router";
 import { Fragment, useEffect, useState } from "react";
-import Navbar from "../components/NavbarContainer";
+import NavbarContainer from "../components/container/NavbarContainer";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -64,7 +64,7 @@ export default function Home() {
 
   return (
     <form>
-      <Navbar />
+      <NavbarContainer />
       <div className="p-3">
         <div className="mt-3 flex justify-end">
           <Menu>
@@ -73,7 +73,7 @@ export default function Home() {
                 onChange={(e) => setQuery(e.target.value)}
                 id="search"
                 name="search"
-                className="flex justify-end rounded-md border border-transparent bg-gray-700 py-2 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 focus:border-white focus:bg-white focus:text-gray-900 focus:outline-none focus:ring-white sm:text-sm"
+                className="block w-full  rounded-md border border-inputBord bg-inputBg p-2.5 pl-10 placeholder:text-inputPlaceholder focus:outline-none"
                 placeholder="Search"
                 type="search"
               />
@@ -85,7 +85,7 @@ export default function Home() {
               search(undefined);
               setIsShown(!show);
             }}
-            className="mr-3 rounded bg-gray-500 py-1 px-2 font-semibold text-white hover:bg-gray-700"
+            className="w-20 bg-primary p-2 h-10 mt-1 font-semibold hover:bg-primary "
           >
             search
           </button>
@@ -95,7 +95,7 @@ export default function Home() {
           className="relative mt-3 ml-32 inline-block text-left md:md:ml-32"
         >
           <div>
-            <Menu.Button className="inline-flex w-full justify-center rounded-md border  border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
+            <Menu.Button className="inline-flex w-full justify-center rounded-md  bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
               Currency
               <ChevronDownIcon
                 className="-mr-1 ml-2 h-5 w-5"
@@ -294,7 +294,7 @@ export default function Home() {
                 </th>
                 <th
                   scope=""
-                  className="py-4 px-6 font-medium  
+                  className="py-4 px-6 font-medium
                      text-white"
                 >
                   {coin.name}
