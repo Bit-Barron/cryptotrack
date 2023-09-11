@@ -85,7 +85,7 @@ export default function Home() {
               search(undefined);
               setIsShown(!show);
             }}
-            className="w-20 bg-primary p-2 h-10 mt-1 font-semibold hover:bg-primary "
+            className="mt-1 h-10 w-20 bg-primary p-2 font-semibold hover:bg-primary "
           >
             search
           </button>
@@ -285,7 +285,7 @@ export default function Home() {
                 <th className="px-6 font-medium">{coin.cmc_rank}</th>
                 <th className="p-8 px-5">
                   <Image
-                    height={100}
+                    height={10}
                     width={30}
                     className="h-auto w-auto rounded-full"
                     src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`}
