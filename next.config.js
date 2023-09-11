@@ -6,6 +6,7 @@ const nextConfig = {
   api: {
     responseLimit: "3mb",
   },
+  output: "standalone",
   reactStrictMode: false,
   swcMinify: true,
 };
