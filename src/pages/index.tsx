@@ -212,8 +212,6 @@ export default function Home() {
                     className="h-auto w-auto rounded-full"
                     src={`https://s2.coinmarketcap.com/static/img/coins/32x32/${item.id}.png`}
                     alt={""}
-                    height={100}
-                    width={30}
                   />
                   <div>{item.name}</div>
                   <div>{item.symbol}</div>
