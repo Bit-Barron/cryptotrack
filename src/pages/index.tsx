@@ -210,7 +210,7 @@ export default function Home() {
                 >
                   <Image
                     className="h-auto w-auto rounded-full"
-                    src={`https://s2.coinmarketcap.com/static/img/coins/32x32/${item.id}.png`}
+                    src={`https://s2.coinmarketcap.com/static/img/coins/${item.id}.png`}
                     alt={""}
                   />
                   <div>{item.name}</div>
