@@ -10,8 +10,6 @@ values:
   imagePullSecrets:
     - name: ghcr-login-secret
   containerPort: 3000
-  nodeSelector:
-    type: control-plane
   ingress:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt
