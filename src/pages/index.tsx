@@ -68,7 +68,7 @@ export default function Home() {
       <div className="p-3">
         <div className="mt-3 flex justify-end">
           <Menu>
-            <Menu.Button className="mr-5">
+            <Menu.Button className="mr-5"> 
               <input
                 onChange={(e) => setQuery(e.target.value)}
                 id="search"
