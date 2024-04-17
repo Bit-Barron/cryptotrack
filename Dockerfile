@@ -1,27 +1,15 @@
-FROM node:16-alpine AS base
+FROM node:14-alpine
 
-RUN apk update; apk add curl bash
-RUN curl -L https://unpkg.com/@pnpm/self-installer | node
-
-FROM base AS dependencies
 WORKDIR /app
-COPY package.json ./
-RUN pnpm i
 
-FROM base AS build
-WORKDIR /app
-COPY --from=dependencies /app/node_modules ./node_modules
+COPY package*.json ./
+
+RUN npm install
+
 COPY . .
-RUN pnpm run build
 
-FROM base
-WORKDIR /app
-COPY --from=build /app/package.json .
-COPY --from=build /app/pnpm-lock.yaml .
-COPY --from=build /app/next.config.js ./
-COPY --from=build /app/public ./public
-COPY --from=build /app/.next/standalone ./
-COPY --from=build /app/.next/static ./.next/static
+RUN npm run build
+
 EXPOSE 3000
-ENV NODE_ENV=production
-CMD [ "node", "server.js" ]
+
+CMD ["npm", "start"]
