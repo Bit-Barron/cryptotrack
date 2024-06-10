@@ -70,7 +70,7 @@ export default function Home() {
                 onChange={(e) => setQuery(e.target.value)}
                 id="search"
                 name="search"
-                className="block w-[900px] rounded-md border border-inputBord bg-inputBg p-3 pl-10 placeholder:text-inputPlaceholder focus:outline-none"
+                className="block w-[900px] rounded-md border border-inputBord bg-inputBg p-3 placeholder:text-inputPlaceholder focus:outline-none"
                 placeholder="Search"
                 type="search"
               />
