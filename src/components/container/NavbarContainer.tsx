@@ -9,14 +9,12 @@ export default function Example() {
       {({ open }) => (
         <>
           <div className="p-1.5">
-            <div className="relative flex h-16 items-center justify-between">
-              <DesktopNavbar />
-              <div className="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
-                <div className="w-full max-w-lg lg:max-w-xs">
-                  <label htmlFor="search" className="sr-only">
-                    Search
-                  </label>
-                </div>
+            <DesktopNavbar />
+            <div className="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
+              <div className="w-full max-w-lg lg:max-w-xs">
+                <label htmlFor="search" className="sr-only">
+                  Search
+                </label>
               </div>
 
               <div className="flex lg:hidden">

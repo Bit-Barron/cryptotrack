@@ -58,22 +58,18 @@ export default function Home() {
     getData();
   }, []);
 
-  function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(" ");
-  }
-
   return (
     <form>
       <NavbarContainer />
       <div className="p-3">
-        <div className="mt-3 flex justify-end">
+        <div className="mt-3 flex items-center justify-center">
           <Menu>
-            <Menu.Button className="mr-5"> 
+            <Menu.Button className="mr-5">
               <input
                 onChange={(e) => setQuery(e.target.value)}
                 id="search"
                 name="search"
-                className="block w-full  rounded-md border border-inputBord bg-inputBg p-2.5 pl-10 placeholder:text-inputPlaceholder focus:outline-none"
+                className="block w-[900px] rounded-md border border-inputBord bg-inputBg p-3 pl-10 placeholder:text-inputPlaceholder focus:outline-none"
                 placeholder="Search"
                 type="search"
               />
@@ -85,7 +81,7 @@ export default function Home() {
               search(undefined);
               setIsShown(!show);
             }}
-            className="mt-1 h-10 w-20 bg-primary p-2 font-semibold hover:bg-primary "
+            className="mt-1 w-40 rounded-lg bg-primary p-2.5 font-semibold hover:bg-primary"
           >
             search
           </button>
