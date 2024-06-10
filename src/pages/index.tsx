@@ -4,19 +4,21 @@ import Image from "next/image";
 import router from "next/router";
 import { useEffect, useState } from "react";
 import { NavbarContainer } from "../components/NavbarContainer";
+import { CryptoCurrency } from "../types";
+import { Button } from "../components/Button";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState<string>("");
   const [show, setIsShown] = useState(false);
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<CryptoCurrency[]>([]);
   const [exchange, setExchange] = useState<string>("EUR");
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get<any>("/api/price", {
+      const response = await axios.get("/api/price", {
         params: {
           exchange,
           page,
@@ -74,16 +76,7 @@ export default function Home() {
               />
             </Menu.Button>
           </Menu>
-          <button
-            type="button"
-            onClick={() => {
-              search(undefined);
-              setIsShown(!show);
-            }}
-            className="mt-1 w-40 rounded-lg bg-primary p-2.5 font-semibold hover:bg-primary"
-          >
-            search
-          </button>
+          <Button onClick={() => search} text="Search" />
         </div>
 
         <div className="flex justify-end">
@@ -103,7 +96,11 @@ export default function Home() {
                 <div
                   key={idx}
                   className="mt-10 flex gap-3 p-2 hover:rounded-lg hover:bg-gray-700"
-                  onClick={() => router.push(`/details/${item.id}`)}
+                  onClick={() =>
+                    router.push(
+                      `https://coinmarketcap.com/de/currencies/${item.name}/`
+                    )
+                  }
                 >
                   <Image
                     className="h-auto w-auto rounded-full"
@@ -112,7 +109,6 @@ export default function Home() {
                   />
                   <div>{item.name}</div>
                   <div>{item.symbol}</div>
-                  <div># {item.cmc_rank}</div>
                 </div>
               ))}
             </div>
@@ -174,7 +170,9 @@ export default function Home() {
                 className="border-b hover:bg-gray-700 dark:border-gray-700"
                 onClick={(e: any) => {
                   e.preventDefault();
-                  return router.push(`/details/${coin.id}`);
+                  return router.push(
+                    `https://coinmarketcap.com/de/currencies/${coin.name}/`
+                  );
                 }}
               >
                 <th className="px-6 font-medium">{coin.cmc_rank}</th>
