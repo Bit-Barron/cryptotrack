@@ -15,16 +15,6 @@ export const DesktopNavbar: React.FC<DesktopNavbarProps> = ({}) => {
         as="div"
         className="relative mt-3 ml-32 inline-block text-left md:md:ml-32"
       >
-        <div>
-          <Menu.Button className="inline-flex w-full justify-center rounded-md  bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-            Currency
-            <ChevronDownIcon
-              className="-mr-1 ml-2 h-5 w-5"
-              aria-hidden="true"
-            />
-          </Menu.Button>
-        </div>
-
         <Transition
           as={Fragment}
           enter="transition ease-out duration-100"
