@@ -1,9 +1,9 @@
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import DesktopNavbar from "./Navbar/DesktopNavbar";
-import MobileNavbar from "./Navbar/MobileNavbar";
+import { DesktopNavbar } from "./DesktopNavbar";
+import { MobileNavbar } from "./MobileNavbar";
 
-export default function Example() {
+export const NavbarContainer = () => {
   return (
     <Disclosure as="nav" className="bg-[#181a1b]">
       {({ open }) => (
@@ -35,4 +35,4 @@ export default function Example() {
       )}
     </Disclosure>
   );
-}
+};

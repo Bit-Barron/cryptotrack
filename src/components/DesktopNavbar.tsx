@@ -1,14 +1,11 @@
 import { Menu, Transition } from "@headlessui/react";
+import { classNames } from "../utils/helper";
 import { ChevronDownIcon } from "@heroicons/react/outline";
-import { Fragment } from "react";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 
 interface DesktopNavbarProps {}
-const DesktopNavbar: React.FC<DesktopNavbarProps> = ({}) => {
-  function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(" ");
-  }
 
+export const DesktopNavbar: React.FC<DesktopNavbarProps> = ({}) => {
   const [exchange, setExchange] = useState<string>("EUR");
 
   return (
@@ -116,5 +113,3 @@ const DesktopNavbar: React.FC<DesktopNavbarProps> = ({}) => {
     </div>
   );
 };
-
-export default DesktopNavbar;

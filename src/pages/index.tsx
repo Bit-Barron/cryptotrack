@@ -1,10 +1,11 @@
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/outline";
+import { classNames } from "../utils/helper";
 import axios from "axios";
 import Image from "next/image";
 import router from "next/router";
 import { Fragment, useEffect, useState } from "react";
-import NavbarContainer from "../components/container/NavbarContainer";
+import { NavbarContainer } from "../components/NavbarContainer";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);

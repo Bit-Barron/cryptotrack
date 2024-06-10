@@ -6,12 +6,11 @@ import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { CryptoCurrencyApiResponse } from "../../types";
-import NavbarContainer from "../../components/container/NavbarContainer";
+import { NavbarContainer } from "../../components/NavbarContainer";
 
 const Details = () => {
   const [isData, setData] = useState<any>();
   const [isOpen, setIsOpen] = useState(false);
-
   const router = useRouter();
   const { id } = router.query;
 
