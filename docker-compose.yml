@@ -1,5 +1,7 @@
+version: "3.8"
+
 services:
-  demo:
+  crypto-track-web:
     container_name: crypto-track-web
     restart: always
     build:
@@ -10,10 +12,10 @@ services:
       - proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.demo.rule=Host(`barron.agency`)"
-      - "traefik.http.routers.demo.entrypoints=websecure"
-      - "traefik.http.routers.demo.tls.certresolver=letsencrypt"
-      - "traefik.http.services.demo.loadbalancer.server.port=3000"
+      - "traefik.http.routers.crypto-track-web.rule=Host(`barron.agency`)"
+      - "traefik.http.routers.crypto-track-web.entrypoints=websecure"
+      - "traefik.http.routers.crypto-track-web.tls.certresolver=letsencrypt"
+      - "traefik.http.services.crypto-track-web.loadbalancer.server.port=3000"
 
 networks:
   proxy:
