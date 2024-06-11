@@ -35,12 +35,13 @@ export default function Home() {
         page,
       },
     });
-    setPage(page + 100);
+    setPage(page + 1); // change to increment by 1 page instead of 100
   };
 
-  const search = async (e: any) => {
+  const Search = async (e: any) => {
+    console.log("daddy");
     setLoading(true);
-    e?.preventDefault();
+    e.preventDefault();
 
     const { data }: any = await axios.get<any>(`/api/search`, {
       params: {
@@ -48,19 +49,17 @@ export default function Home() {
       },
     });
 
-    setResults(data);
+    setResults(
+      data.filter(
+        (item: CryptoCurrency) =>
+          item.name.includes(query) || item.symbol.includes(query)
+      )
+    );
     setLoading(false);
   };
-  useEffect(() => {
-    const getData = async () => {
-      setLoading(true);
-      setLoading(false);
-    };
-    getData();
-  }, []);
 
   return (
-    <form>
+    <form onSubmit={Search}>
       <NavbarContainer />
       <div className="p-3">
         <div className="mt-3 flex items-center justify-center">
@@ -76,7 +75,7 @@ export default function Home() {
               />
             </Menu.Button>
           </Menu>
-          <Button onClick={() => search} text="Search" />
+          <Button onClick={Search as any} text="Search" />
         </div>
 
         <div className="flex justify-end">
@@ -105,7 +104,7 @@ export default function Home() {
                   <Image
                     className="h-auto w-auto rounded-full"
                     src={`https://s2.coinmarketcap.com/static/img/coins/${item.id}.png`}
-                    alt={""}
+                    alt={item.name}
                   />
                   <div>{item.name}</div>
                   <div>{item.symbol}</div>
@@ -182,14 +181,10 @@ export default function Home() {
                     width={30}
                     className="h-auto w-auto rounded-full"
                     src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`}
-                    alt={""}
+                    alt={coin.name}
                   />
                 </th>
-                <th
-                  scope=""
-                  className="py-4 px-6 font-medium
-                     text-white"
-                >
+                <th scope="" className="py-4 px-6 font-medium text-white">
                   {coin.name}
                 </th>
 
@@ -248,7 +243,7 @@ export default function Home() {
                     width={300}
                     className="h-auto w-auto"
                     src={`https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/${coin.id}.svg`}
-                    alt={""}
+                    alt={coin.name}
                   />
                 </td>
               </tr>
@@ -267,9 +262,7 @@ export default function Home() {
         <button
           type="button"
           className="mr-2 mb-2 rounded-lg border border-gray-200  py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400  focus:outline-none focus:ring-4 focus:ring-gray-200"
-          onClick={() => {
-            next();
-          }}
+          onClick={next}
         >
           Next
         </button>

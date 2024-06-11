@@ -14,7 +14,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       type="button"
-      onClick={() => onClick()}
+      onClick={onClick}
       className="mt-1 w-40 rounded-lg bg-primary p-2.5 font-semibold hover:bg-primary"
     >
       {text}
