@@ -2,22 +2,40 @@ version: "3.8"
 
 services:
   crypto-track-web:
-    container_name: crypto-track-web
-    restart: always
     build:
-      context: ./
-      dockerfile: Dockerfile
-      target: prod
-    networks:
-      - proxy
+      context: .
+      dockerfile: Dockerfile # Stelle sicher, dass der Dockerfile-Name korrekt ist
+    container_name: crypto-track-web
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.crypto-track-web.rule=Host(`barron.agency`)"
-      - "traefik.http.routers.crypto-track-web.entrypoints=websecure"
-      - "traefik.http.routers.crypto-track-web.tls.certresolver=letsencrypt"
-      - "traefik.http.services.crypto-track-web.loadbalancer.server.port=3000"
+      - "traefik.http.routers.crypto-track-web.entrypoints=web"
+      - "traefik.http.routers.crypto-track-web-secure.rule=Host(`barron.agency`)"
+      - "traefik.http.routers.crypto-track-web-secure.entrypoints=websecure"
+      - "traefik.http.routers.crypto-track-web-secure.tls=true"
+    networks:
+      - webnet
+
+  traefik:
+    image: traefik:v2.4
+    container_name: traefik
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=youremail@domain.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./letsencrypt:/letsencrypt"
+    networks:
+      - webnet
 
 networks:
-  proxy:
-    external: false
-    name: proxy
+  webnet:
