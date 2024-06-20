@@ -16,6 +16,7 @@ export default async function handler(
         params: {
           id,
         },
+        
         headers: {
           "X-CMC_PRO_API_KEY": "81d66282-4692-4081-895d-49bf82ad9d8e",
           "Content-Type": "application/json",

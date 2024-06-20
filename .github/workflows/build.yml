@@ -23,7 +23,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
-          cd repository/ocr_python/
+          cd repository/CryptoTrack/
           git pull origin main
           git status
           

@@ -1,27 +1,25 @@
-FROM node:22.3-alpine3.19 AS base
-
-RUN apk update; apk add curl bash
-RUN curl -L https://unpkg.com/@pnpm/self-installer | node
-
-FROM base AS dependencies
+# Stage 0: Install dependencies
+FROM node:lts AS deps
 WORKDIR /app
-COPY package.json ./
-RUN pnpm i
 
-FROM base AS build
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
+
+# Stage 1: Build application
+FROM deps AS builder
 WORKDIR /app
-COPY --from=dependencies /app/node_modules ./node_modules
+
 COPY . .
-RUN pnpm run build
+RUN yarn build
 
-FROM base
+# Stage 2: Production image
+FROM node:lts AS prod
 WORKDIR /app
-COPY --from=build /app/package.json .
-COPY --from=build /app/pnpm-lock.yaml .
-COPY --from=build /app/next.config.js ./
-COPY --from=build /app/public ./public
-COPY --from=build /app/.next/standalone ./
-COPY --from=build /app/.next/static ./.next/static
-EXPOSE 3000
-ENV NODE_ENV=production
-CMD [ "node", "server.js" ]
+
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+
+# Ensure Next.js environment is set to production
+
+CMD ["yarn", "start"]

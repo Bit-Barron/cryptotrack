@@ -8,15 +8,15 @@ services:
     container_name: crypto-track-web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.crypto-track-web.rule=Host(`barron.agency`)"
+      - "traefik.http.routers.crypto-track-web.rule=Host(`cryptotrack.barron.agency`)"
       - "traefik.http.routers.crypto-track-web.entrypoints=web"
-      - "traefik.http.routers.crypto-track-web-secure.rule=Host(`barron.agency`)"
+      - "traefik.http.routers.crypto-track-web-secure.rule=Host(`cryptotrack.barron.agency`)"
       - "traefik.http.routers.crypto-track-web-secure.entrypoints=websecure"
       - "traefik.http.routers.crypto-track-web-secure.tls=true"
     networks:
       - webnet
 
-  traefik:
+  traefik: 
     image: traefik:v2.4
     container_name: traefik
     command:

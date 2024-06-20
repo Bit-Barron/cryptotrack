@@ -1,23 +1,24 @@
 import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/outline";
 import axios from "axios";
 import Image from "next/image";
 import router from "next/router";
-import { Fragment, useEffect, useState } from "react";
-import NavbarContainer from "../components/container/NavbarContainer";
+import { useEffect, useState } from "react";
+import { NavbarContainer } from "../components/NavbarContainer";
+import { CryptoCurrency } from "../types";
+import { Button } from "../components/Button";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [query, setQuery] = useState<any>("");
+  const [query, setQuery] = useState<string>("");
   const [show, setIsShown] = useState(false);
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<CryptoCurrency[]>([]);
   const [exchange, setExchange] = useState<string>("EUR");
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get<any>("/api/price", {
+      const response = await axios.get("/api/price", {
         params: {
           exchange,
           page,
@@ -34,12 +35,13 @@ export default function Home() {
         page,
       },
     });
-    setPage(page + 100);
+    setPage(page + 1); // change to increment by 1 page instead of 100
   };
 
-  const search = async (e: any) => {
+  const Search = async (e: any) => {
+    console.log("daddy");
     setLoading(true);
-    e?.preventDefault();
+    e.preventDefault();
 
     const { data }: any = await axios.get<any>(`/api/search`, {
       params: {
@@ -47,148 +49,35 @@ export default function Home() {
       },
     });
 
-    setResults(data);
+    setResults(
+      data.filter(
+        (item: CryptoCurrency) =>
+          item.name.includes(query) || item.symbol.includes(query)
+      )
+    );
     setLoading(false);
   };
-  useEffect(() => {
-    const getData = async () => {
-      setLoading(true);
-      setLoading(false);
-    };
-    getData();
-  }, []);
-
-  function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(" ");
-  }
 
   return (
-    <form>
+    <form onSubmit={Search}>
       <NavbarContainer />
       <div className="p-3">
-        <div className="mt-3 flex justify-end">
+        <div className="mt-3 flex items-center justify-center">
           <Menu>
-            <Menu.Button className="mr-5"> 
+            <Menu.Button className="mr-5">
               <input
                 onChange={(e) => setQuery(e.target.value)}
                 id="search"
                 name="search"
-                className="block w-full  rounded-md border border-inputBord bg-inputBg p-2.5 pl-10 placeholder:text-inputPlaceholder focus:outline-none"
+                className="block w-[900px] rounded-md border border-inputBord bg-inputBg p-3 placeholder:text-inputPlaceholder focus:outline-none"
                 placeholder="Search"
                 type="search"
               />
             </Menu.Button>
           </Menu>
-          <button
-            type="button"
-            onClick={() => {
-              search(undefined);
-              setIsShown(!show);
-            }}
-            className="mt-1 h-10 w-20 bg-primary p-2 font-semibold hover:bg-primary "
-          >
-            search
-          </button>
+          <Button onClick={Search as any} text="Search" />
         </div>
-        <Menu
-          as="div"
-          className="relative mt-3 ml-32 inline-block text-left md:md:ml-32"
-        >
-          <div>
-            <Menu.Button className="inline-flex w-full justify-center rounded-md  bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-              Currency
-              <ChevronDownIcon
-                className="-mr-1 ml-2 h-5 w-5"
-                aria-hidden="true"
-              />
-            </Menu.Button>
-          </div>
 
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
-          >
-            <Menu.Items className="absolute mt-2 w-56  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              <div className="py-1">
-                <Menu.Item>
-                  {({ active }) => (
-                    <a
-                      href="#"
-                      onClick={() => setExchange("EUR")}
-                      className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "block px-4 py-2 text-sm"
-                      )}
-                    >
-                      Euro
-                    </a>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <a
-                      href="#"
-                      onClick={() => setExchange("USD")}
-                      className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "block px-4 py-2 text-sm"
-                      )}
-                    >
-                      Usd
-                    </a>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <a
-                      href="#"
-                      onClick={() => setExchange("JPY")}
-                      className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "block px-4 py-2 text-sm"
-                      )}
-                    >
-                      Yen
-                    </a>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <a
-                      href="#"
-                      onClick={() => setExchange("ARS")}
-                      className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "block px-4 py-2 text-sm"
-                      )}
-                    >
-                      Peso
-                    </a>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <a
-                      href="#"
-                      onClick={() => setExchange("GBP")}
-                      className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "block px-4 py-2 text-sm"
-                      )}
-                    >
-                      Pound
-                    </a>
-                  )}
-                </Menu.Item>
-              </div>
-            </Menu.Items>
-          </Transition>
-        </Menu>
         <div className="flex justify-end">
           <Transition
             show={show}
@@ -206,16 +95,19 @@ export default function Home() {
                 <div
                   key={idx}
                   className="mt-10 flex gap-3 p-2 hover:rounded-lg hover:bg-gray-700"
-                  onClick={() => router.push(`/details/${item.id}`)}
+                  onClick={() =>
+                    router.push(
+                      `https://coinmarketcap.com/de/currencies/${item.name}/`
+                    )
+                  }
                 >
                   <Image
                     className="h-auto w-auto rounded-full"
                     src={`https://s2.coinmarketcap.com/static/img/coins/${item.id}.png`}
-                    alt={""}
+                    alt={item.name}
                   />
                   <div>{item.name}</div>
                   <div>{item.symbol}</div>
-                  <div># {item.cmc_rank}</div>
                 </div>
               ))}
             </div>
@@ -277,7 +169,9 @@ export default function Home() {
                 className="border-b hover:bg-gray-700 dark:border-gray-700"
                 onClick={(e: any) => {
                   e.preventDefault();
-                  return router.push(`/details/${coin.id}`);
+                  return router.push(
+                    `https://coinmarketcap.com/de/currencies/${coin.name}/`
+                  );
                 }}
               >
                 <th className="px-6 font-medium">{coin.cmc_rank}</th>
@@ -287,14 +181,10 @@ export default function Home() {
                     width={30}
                     className="h-auto w-auto rounded-full"
                     src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${coin.id}.png`}
-                    alt={""}
+                    alt={coin.name}
                   />
                 </th>
-                <th
-                  scope=""
-                  className="py-4 px-6 font-medium
-                     text-white"
-                >
+                <th scope="" className="py-4 px-6 font-medium text-white">
                   {coin.name}
                 </th>
 
@@ -308,7 +198,9 @@ export default function Home() {
                       : "py-4 px-6 text-red-500"
                   }
                 >
-                  <div>{coin?.quote?.[exchange]?.price.toLocaleString()}</div>
+                  <div>
+                    {coin?.quote?.[exchange]?.price.toLocaleString() + "€"}
+                  </div>
                 </th>
 
                 <td
@@ -351,7 +243,7 @@ export default function Home() {
                     width={300}
                     className="h-auto w-auto"
                     src={`https://s3.coinmarketcap.com/generated/sparklines/web/7d/2781/${coin.id}.svg`}
-                    alt={""}
+                    alt={coin.name}
                   />
                 </td>
               </tr>
@@ -370,9 +262,7 @@ export default function Home() {
         <button
           type="button"
           className="mr-2 mb-2 rounded-lg border border-gray-200  py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400  focus:outline-none focus:ring-4 focus:ring-gray-200"
-          onClick={() => {
-            next();
-          }}
+          onClick={next}
         >
           Next
         </button>
