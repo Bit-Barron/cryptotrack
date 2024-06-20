@@ -16,7 +16,6 @@ services:
       - "traefik.http.routers.crypto-track-web-secure.rule=Host(`cryptotrack.barron.agency`)"
       - "traefik.http.routers.crypto-track-web-secure.entrypoints=websecure"
       - "traefik.http.routers.crypto-track-web-secure.tls=true"
-
     networks:
       - webnet
 
