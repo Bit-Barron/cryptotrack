@@ -10,10 +10,10 @@ services:
       - "3000:3000"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.crypto-track-web.rule=Host(`barron.agency`)"
+      - "traefik.http.routers.crypto-track-web.rule=Host(`cryptotrack.barron.agency`)"
       - "traefik.http.routers.crypto-track-web.entrypoints=web"
       - "traefik.http.services.crypto-track-web.loadbalancer.server.port=3000"
-      - "traefik.http.routers.crypto-track-web-secure.rule=Host(`barron.agency`)"
+      - "traefik.http.routers.crypto-track-web-secure.rule=Host(`cryptotrack.barron.agency`)"
       - "traefik.http.routers.crypto-track-web-secure.entrypoints=websecure"
       - "traefik.http.routers.crypto-track-web-secure.tls=true"
 
