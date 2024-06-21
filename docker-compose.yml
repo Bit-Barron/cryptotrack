@@ -6,8 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: crypto-track-web
-    ports:
-      - "3000:3000"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.crypto-track-web.rule=Host(`cryptotrack.barron.agency`)"
