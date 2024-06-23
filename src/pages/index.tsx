@@ -62,22 +62,6 @@ export default function Home() {
     <form onSubmit={Search}>
       <NavbarContainer />
       <div className="p-3">
-        <div className="mt-3 flex items-center justify-center">
-          <Menu>
-            <Menu.Button className="mr-5">
-              <input
-                onChange={(e) => setQuery(e.target.value)}
-                id="search"
-                name="search"
-                className="block w-[900px] rounded-md border border-inputBord bg-inputBg p-3 placeholder:text-inputPlaceholder focus:outline-none"
-                placeholder="Search"
-                type="search"
-              />
-            </Menu.Button>
-          </Menu>
-          <Button onClick={Search as any} text="Search" />
-        </div>
-
         <div className="flex justify-end">
           <Transition
             show={show}
@@ -127,38 +111,38 @@ export default function Home() {
         <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
           <thead className="text-bold text-xs uppercase text-white ">
             <tr>
-              <th scope="col" className="py-3 px-6">
+              <th scope="col" className="px-6 py-3">
                 Ranks
               </th>
-              <th scope="col" className="py-3 px-6">
+              <th scope="col" className="px-6 py-3">
                 Icons
               </th>
-              <th scope="col" className="py-3 px-6">
+              <th scope="col" className="px-6 py-3">
                 Name
               </th>
-              <th scope="col" className="py-3 px-6">
+              <th scope="col" className="px-6 py-3">
                 Symbol
               </th>
-              <th scope="col" className="py-3 px-6">
+              <th scope="col" className="px-6 py-3">
                 Price
               </th>
 
-              <th scope="col" className="py-3 px-6">
+              <th scope="col" className="px-6 py-3">
                 1h %
               </th>
-              <th scope="col" className="py-3 px-6">
+              <th scope="col" className="px-6 py-3">
                 24%
               </th>
-              <th scope="col" className="py-3 px-6">
+              <th scope="col" className="px-6 py-3">
                 7d%
               </th>
-              <th scope="col" className="py-3 px-6">
+              <th scope="col" className="px-6 py-3">
                 Market Cap
               </th>
-              <th scope="col" className="py-3 px-6">
+              <th scope="col" className="px-6 py-3">
                 Volume(24h)
               </th>
-              <th scope="col" className="py-3 px-6">
+              <th scope="col" className="px-6 py-3">
                 Last 7 Days
               </th>
             </tr>
@@ -184,18 +168,18 @@ export default function Home() {
                     alt={coin.name}
                   />
                 </th>
-                <th scope="" className="py-4 px-6 font-medium text-white">
+                <th scope="" className="px-6 py-4 font-medium text-white">
                   {coin.name}
                 </th>
 
-                <th scope="" className="py-4 px-6 font-medium text-white">
+                <th scope="" className="px-6 py-4 font-medium text-white">
                   {coin.symbol}
                 </th>
                 <th
                   className={
                     coin.quote?.[exchange]?.price > 0
-                      ? "py-4 px-6 text-green-500"
-                      : "py-4 px-6 text-red-500"
+                      ? "px-6 py-4 text-green-500"
+                      : "px-6 py-4 text-red-500"
                   }
                 >
                   <div>
@@ -206,8 +190,8 @@ export default function Home() {
                 <td
                   className={
                     coin.quote?.[exchange]?.percent_change_1h > 0
-                      ? "py-4 px-6 text-green-500"
-                      : "py-4 px-6 text-red-500"
+                      ? "px-6 py-4 text-green-500"
+                      : "px-6 py-4 text-red-500"
                   }
                 >
                   {coin?.quote?.[exchange]?.percent_change_1h.toFixed(2)}
@@ -215,8 +199,8 @@ export default function Home() {
                 <td
                   className={
                     coin.quote?.[exchange]?.percent_change_24h > 0
-                      ? "py-4 px-6 text-green-500"
-                      : "py-4 px-6 text-red-500"
+                      ? "px-6 py-4 text-green-500"
+                      : "px-6 py-4 text-red-500"
                   }
                 >
                   {coin?.quote?.[exchange]?.percent_change_24h.toFixed(2)}%
@@ -224,17 +208,17 @@ export default function Home() {
                 <td
                   className={
                     coin.quote?.[exchange]?.percent_change_7d > 0
-                      ? "py-4 px-6 text-green-500"
-                      : "py-4 px-6 text-red-500"
+                      ? "px-6 py-4 text-green-500"
+                      : "px-6 py-4 text-red-500"
                   }
                 >
                   {coin?.quote?.[exchange]?.percent_change_7d.toFixed(2)}%
                 </td>
-                <td className="py-4 px-6">
+                <td className="px-6 py-4">
                   {coin?.quote?.[exchange]?.market_cap.toLocaleString()}
                 </td>
 
-                <td className="py-4 px-6">
+                <td className="px-6 py-4">
                   {coin?.quote?.[exchange]?.volume_24h.toLocaleString()}
                 </td>
                 <td>
@@ -261,7 +245,7 @@ export default function Home() {
       <div className="mt-5 flex justify-center">
         <button
           type="button"
-          className="mr-2 mb-2 rounded-lg border border-gray-200  py-2.5 px-5 text-sm font-medium text-white hover:bg-gray-400  focus:outline-none focus:ring-4 focus:ring-gray-200"
+          className="mb-2 mr-2 rounded-lg border border-gray-200  px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-400  focus:outline-none focus:ring-4 focus:ring-gray-200"
           onClick={next}
         >
           Next
