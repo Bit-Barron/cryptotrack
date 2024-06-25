@@ -1,21 +1,22 @@
 version: "3.8"
 
 services:
-  crypto-track-web:
+  cryptotrack:
     build:
-      context: .
+      context: ./
       dockerfile: Dockerfile
-    container_name: crypto-track-web
+    container_name: cryptotrack
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.crypto-track-web.rule=Host(`cryptotrack.barron.agency`)"
-      - "traefik.http.routers.crypto-track-web.entrypoints=web"
-      - "traefik.http.services.crypto-track-web.loadbalancer.server.port=3000"
-      - "traefik.http.routers.crypto-track-web-secure.rule=Host(`cryptotrack.barron.agency`)"
-      - "traefik.http.routers.crypto-track-web-secure.entrypoints=websecure"
-      - "traefik.http.routers.crypto-track-web-secure.tls=true"
+      - "traefik.http.routers.cryptotrack.rule=Host(`cryptotrack.barron.agency`)"
+      - "traefik.http.routers.cryptotrack.entrypoints=websecure"
+      - "traefik.http.routers.cryptotrack.tls.certresolver=letsencrypt"
+      - "traefik.http.services.cryptotrack.loadbalancer.server.port=3000"
+
     networks:
-      - webnet
+      - proxy
 
 networks:
-  webnet:
+  proxy:
+    external: false
+    name: proxy
