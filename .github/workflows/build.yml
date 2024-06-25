@@ -15,8 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Docker down docker
-        run: docker-compose down
-
-      - name: Docker Prod
+      - name: Docker run
+      
         run: docker-compose up -d --force-recreate --build
