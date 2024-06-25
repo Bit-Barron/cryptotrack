@@ -4,7 +4,9 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: self-hosted
@@ -13,4 +15,4 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Docker run
-        run: docker-compose up -d --force-recreate --build
+        run: docker compose up -d --force-recreate --build
