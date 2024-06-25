@@ -101,7 +101,7 @@ export default function Home() {
 
       <div>
         <h1 className="mt-5 text-center text-2xl font-bold text-white">
-          Today is Cryptocurrency Prices by <span>CryptoTrack </span>
+          Today is Cryptocurrency Prices by <span>CryptoTrack</span>
         </h1>
         <div className="mt-2 p-2 text-center text-white">
           the crypto market shoots higher and higher into the ceiling
