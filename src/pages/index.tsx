@@ -5,16 +5,13 @@ import router from "next/router";
 import { useEffect, useState } from "react";
 import { NavbarContainer } from "../components/NavbarContainer";
 import { CryptoCurrency } from "../types";
-import { Button } from "../components/Button";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState<string>("");
-  const [show, setIsShown] = useState(false);
-  const [results, setResults] = useState<CryptoCurrency[]>([]);
   const [exchange, setExchange] = useState<string>("EUR");
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<CryptoCurrency[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -35,76 +32,36 @@ export default function Home() {
         page,
       },
     });
-    setPage(page + 1); // change to increment by 1 page instead of 100
+    setPage(page + 1);
   };
 
-  const Search = async (e: any) => {
-    console.log("daddy");
-    setLoading(true);
-    e.preventDefault();
-
-    const { data }: any = await axios.get<any>(`/api/search`, {
-      params: {
-        query,
-      },
-    });
-
-    setResults(
-      data.filter(
-        (item: CryptoCurrency) =>
-          item.name.includes(query) || item.symbol.includes(query)
-      )
-    );
-    setLoading(false);
-  };
+  const filteredData = data.filter(
+    (item) =>
+      item.name.toLowerCase().includes(query.toLowerCase()) ||
+      item.symbol.toLowerCase().includes(query.toLowerCase())
+  );
 
   return (
-    <form onSubmit={Search}>
+    <div>
       <NavbarContainer />
-      <div className="p-3">
-        <div className="flex justify-end">
-          <Transition
-            show={show}
-            className="mt-4 h-[600px] w-96 overflow-y-auto rounded-lg bg-[#181a1b] p-4 py-2 font-medium text-gray-400 md:absolute md:mr-10"
-          >
-            {loading && (
-              <div className="mt-52 text-center text-xl font-bold">
-                Loading...
-              </div>
-            )}
-            <div>
-              <div className="mt-5 text-center">Cryptoassets</div>
-
-              {results?.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="mt-10 flex gap-3 p-2 hover:rounded-lg hover:bg-gray-700"
-                  onClick={() =>
-                    router.push(
-                      `https://coinmarketcap.com/de/currencies/${item.name}/`
-                    )
-                  }
-                >
-                  <Image
-                    className="h-auto w-auto rounded-full"
-                    src={`https://s2.coinmarketcap.com/static/img/coins/${item.id}.png`}
-                    alt={item.name}
-                  />
-                  <div>{item.name}</div>
-                  <div>{item.symbol}</div>
-                </div>
-              ))}
-            </div>
-          </Transition>
-        </div>
-      </div>
 
       <div>
         <h1 className="mt-5 text-center text-2xl font-bold text-white">
-          Today is Cryptocurrency Prices by <span>CryptoTrack</span>
+          Todays Cryptocurrency Prices by <span>CryptoTrack</span>
         </h1>
-        <div className="mt-2 p-2 text-center text-white"> 
-          the crypto market shoots higher and higher into the ceiling
+        <div className="mt-2 p-2 text-center text-white">
+          The crypto market shoots higher and higher into the ceiling
+        </div>
+      </div>
+      <div className="p-3">
+        <div className="flex items-center justify-center">
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search for cryptocurrency..."
+            className="mr-2 w-[600px] rounded-lg border bg-transparent p-2"
+          />
         </div>
       </div>
       <div className="container relative mx-auto mt-10 overflow-x-auto">
@@ -147,15 +104,13 @@ export default function Home() {
               </th>
             </tr>
           </thead>
-          {data.map((coin, idx) => (
+          {filteredData.map((coin: any, idx) => (
             <tbody key={idx}>
               <tr
                 className="border-b hover:bg-gray-700 dark:border-gray-700"
                 onClick={(e: any) => {
                   e.preventDefault();
-                  return router.push(
-                    `https://coinmarketcap.com/de/currencies/${coin.name}/`
-                  );
+                  return router.push(`/details/${coin.id}`);
                 }}
               >
                 <th className="px-6 font-medium">{coin.cmc_rank}</th>
@@ -251,6 +206,6 @@ export default function Home() {
           Next
         </button>
       </div>
-    </form>
+    </div>
   );
 }
