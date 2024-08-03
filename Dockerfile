@@ -21,6 +21,5 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 
 # Ensure Next.js environment is set to production
-ENV NODE_ENV=production
 
 CMD ["yarn", "start"]
